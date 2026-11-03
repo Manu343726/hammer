@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write # publishing the site to the gh-pages branch
+  pages: write # switching Pages on the first time, so the site is not a 404
   pull-requests: write # the run summary comments on a pull request
 
 env:
@@ -164,6 +165,27 @@ jobs:
             | sort -n \
             | head -50
           exit 1
+
+      # A repository has to be told once that it serves Pages, and the branch the
+      # script pushes to does not exist on the first run. This is that once:
+      # idempotent, best effort, and it says so in the log when it does nothing.
+      - name: Serve Pages from the gh-pages branch
+        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          status=$(curl -s -o /tmp/pages.json -w '%{http_code}' \
+            -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}')
+          case "$status" in
+            201) echo "Pages enabled, serving the gh-pages branch" ;;
+            409|422) echo "Pages is already configured (${status}); leaving it alone" ;;
+            *) echo "::warning::could not configure Pages (HTTP ${status}) — set Settings → Pages → Deploy from a branch → gh-pages"; head -c 400 /tmp/pages.json ;;
+          esac
 
       # The report is generated for every run, including a pull request's, but
       # only a push to main has a durable place to live.
