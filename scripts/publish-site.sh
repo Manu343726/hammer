@@ -30,6 +30,7 @@
 #   HISTORY_BRANCH     where reports are stored    (default: gh-pages)
 #   KEEP_RUNS          how many reports kept       (default: 10)
 #   PAGES_URL          the site's base URL         (default: derived from the repo)
+#   HISTORY_REMOTE     where the reports are stored (default: the repository)
 #
 set -euo pipefail
 
@@ -42,6 +43,8 @@ keep="${KEEP_RUNS:-10}"
 site_dir="${SITE_DIR:-public}"
 report_dir="${REPORT_DIR:-allure-report}"
 output="${SITE_OUTPUT:-_site}"
+# Absolute, because the script changes directory while it works.
+output=$(mkdir -p "$output" && cd "$output" && pwd)
 
 # Resolve both inputs before changing directory, or the copies below read from
 # the wrong place.
@@ -59,10 +62,13 @@ trap 'rm -rf "$work"' EXIT
 # A token turns the clone into one that can see a private repository; without
 # one, a public repository clones anonymously, which is what lets this script be
 # run by hand.
-if [ -n "${GITHUB_TOKEN:-}" ]; then
-  auth="x-access-token:${GITHUB_TOKEN}@"
-else
-  auth=""
+remote="${HISTORY_REMOTE:-}"
+if [ -z "$remote" ]; then
+  if [ -n "${GITHUB_TOKEN:-}" ]; then
+    remote="https://x-access-token:${GITHUB_TOKEN}@github.com/${repo}.git"
+  else
+    remote="https://github.com/${repo}.git"
+  fi
 fi
 
 # 1. Fetch the reports from previous runs. They live on a branch rather than in
@@ -70,9 +76,7 @@ fi
 #    the next one.
 history="$work/history"
 mkdir -p "$history"
-if git clone --quiet --depth=1 --branch "$branch" \
-     "https://${auth}github.com/${repo}.git" \
-     "$history" 2>/dev/null; then
+if git clone --quiet --depth=1 --branch "$branch" "$remote" "$history" 2>/dev/null; then
   echo "carrying forward the reports on ${branch}"
 else
   echo "no ${branch} branch yet; this run starts the history"
@@ -170,16 +174,27 @@ if [ -z "${GITHUB_TOKEN:-}" ]; then
   exit 0
 fi
 
-cd "$output"
+# The branch is checked out in its own directory and the assembled tree is
+# copied over it, rather than checking it out inside the assembled tree: git
+# refuses to check out over untracked files, and every file here is untracked.
+store="$work/store"
+mkdir -p "$store"
+cd "$store"
 git init -q
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${repo}.git"
+git remote add origin "$remote"
 if git fetch -q --depth=1 origin "$branch" 2>/dev/null; then
   git checkout -q -B "$branch" FETCH_HEAD
 else
   git checkout -q --orphan "$branch"
 fi
+
+# The assembled tree owns the branch: a page deleted from site/ is deleted here
+# too instead of lingering.
+find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+cp -R "${output}"/. .
+
 git add -A
 if git diff --cached --quiet; then
   echo "history branch already holds this run"
