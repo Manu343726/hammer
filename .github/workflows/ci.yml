@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # publishing the site to the gh-pages branch
-  pages: write # switching Pages on the first time, so the site is not a 404
+  contents: write # storing the reports that later runs carry forward
+  pages: write # deploying the site
+  id-token: write # what deploy-pages proves the deployment with
   pull-requests: write # the run summary comments on a pull request
 
 env:
@@ -72,6 +73,11 @@ jobs:
     name: Test, report and publish
     runs-on: ubuntu-latest
     needs: build
+    # The deployment the run points at. Pages deploys an artifact, so this
+    # environment is what gives the run a URL rather than a branch name.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -130,16 +136,22 @@ jobs:
           hugo-version: latest
           extended: true
 
-      # baseURL is the project page of this repository, and it has to be given
-      # at build time: every link the site makes is relative to it, which is
-      # what keeps the site working when it is served from a subdirectory.
+      # Pages is the source of truth for where the site lives, so the address is
+      # asked for rather than assumed: every link Hugo writes is relative to it,
+      # which is what keeps the site working under a project subpath.
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          # Idempotent: enables Pages on a repository that has never had it,
+          # and leaves an already-configured one alone.
+          enablement: true
+
       - name: Build the project site
         run: |
-          owner=$(printf '%s' "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
-          name=${GITHUB_REPOSITORY##*/}
           hugo --source site \
             --destination "$PWD/public" \
-            --baseURL "https://${owner}.github.io/${name}/" \
+            --baseURL "${{ steps.pages.outputs.base_url }}/" \
             --gc --minify
 
       - name: Coverage per package
@@ -166,30 +178,12 @@ jobs:
             | head -50
           exit 1
 
-      # A repository has to be told once that it serves Pages, and the branch the
-      # script pushes to does not exist on the first run. This is that once:
-      # idempotent, best effort, and it says so in the log when it does nothing.
-      - name: Serve Pages from the gh-pages branch
-        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          status=$(curl -s -o /tmp/pages.json -w '%{http_code}' \
-            -X POST \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
-            -d '{"source":{"branch":"gh-pages","path":"/"}}')
-          case "$status" in
-            201) echo "Pages enabled, serving the gh-pages branch" ;;
-            409|422) echo "Pages is already configured (${status}); leaving it alone" ;;
-            *) echo "::warning::could not configure Pages (HTTP ${status}) — set Settings → Pages → Deploy from a branch → gh-pages"; head -c 400 /tmp/pages.json ;;
-          esac
-
+      # Pages deploys an artifact, so the artifact has to be the whole site every
+      # time: the script fetches the previous reports from the branch that keeps
+      # them, adds this run's, and assembles the tree Hugo just built around it.
       # The report is generated for every run, including a pull request's, but
-      # only a push to main has a durable place to live.
-      - name: Publish the site and the report
+      # only a push to main has a published place to live.
+      - name: Assemble the site and the report
         id: publish
         if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
@@ -199,8 +193,21 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           SITE_DIR: public
           REPORT_DIR: allure-report
+          SITE_OUTPUT: _site
           KEEP_RUNS: ${{ env.KEEP_RUNS }}
+          PAGES_URL: ${{ steps.pages.outputs.base_url }}
         run: ./scripts/publish-site.sh
+
+      - name: Upload the Pages artifact
+        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v4
 
       - name: Upload the raw results
         if: always()
@@ -220,7 +227,7 @@ jobs:
         if: always()
         env:
           REPORT_URL: ${{ steps.publish.outputs.url }}
-          SITE_URL: ${{ steps.publish.outputs.site }}
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
           COVERAGE: ${{ steps.coverage.outputs.total }}
           TEST_STATUS: ${{ steps.tests.outputs.status }}
         run: |
@@ -242,14 +249,12 @@ jobs:
             printf '\n#### Where to read more\n'
             if [ -n "${REPORT_URL}" ]; then
               printf '\n- [Allure report for this run](%s)\n' "${REPORT_URL}"
-              printf -- '- [Project site](%s) · [Latest report](%sallure/latest/)\n' \
-                "${SITE_URL}" "${SITE_URL}"
+              printf -- '- [The project site](%s) · [latest report](%sallure/latest/)\n' \
+                "${SITE_URL%/}/" "${SITE_URL%/}/"
             else
               printf '\n- The Allure report is attached to this run as the `test-report` artifact.\n'
-              printf -- '- A published report exists only for runs on `main`.\n'
+              printf -- '- The site and its reports are published only for runs on `main`.\n'
             fi
-            printf -- '- [The project site](https://%s) goes live after the first run on `main`.\n' \
-              "$(echo "${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')"
 
             if [ -f cover-summary.txt ]; then
               printf '\n<details><summary>Coverage per package</summary>\n\n```\n'

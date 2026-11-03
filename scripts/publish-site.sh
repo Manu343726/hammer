@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #
-# Publish the project site and a test report to GitHub Pages.
+# Assemble the pages directory that GitHub Pages deploys from the Actions
+# artifact, and keep the same tree on a branch so past reports survive a run.
 #
-# The layout on the branch is:
+# The layout:
 #
-#   /                     the project page, from site/
+#   /                     the project site, built by Hugo into SITE_DIR
 #   /allure/<run>/        the Allure report for one workflow run
 #   /allure/latest/       a copy of the most recent one, for a stable link
 #   /allure/              an index of the runs still kept
@@ -13,27 +14,34 @@
 # make every link in every past run's summary point at whatever ran last, which
 # is exactly the question a summary is asked to answer months later.
 #
+# Pages deploys an artifact, so the artifact has to be the whole site every
+# time — which means the previous reports have to be fetched from the branch
+# that stores them before this run's report is added to it.
+#
 # Environment:
-#   GITHUB_REPOSITORY  owner/name            (required)
-#   GITHUB_RUN_NUMBER  the run number        (required)
-#   GITHUB_TOKEN       a token allowed to push the branch (required)
-#   GITHUB_SHA         the commit published  (optional, recorded in the message)
-#   SITE_DIR           the built Hugo site    (default: public)
-#   REPORT_DIR         the Allure report     (default: allure-report)
-#   BRANCH             the Pages branch      (default: gh-pages)
-#   KEEP_RUNS          how many reports kept (default: 10)
+#   GITHUB_REPOSITORY  owner/name                  (required)
+#   GITHUB_RUN_NUMBER  the run number              (required)
+#   GITHUB_TOKEN       pushes the history branch   (optional: without it the
+#                                                  tree is assembled, not stored)
+#   GITHUB_SHA         the commit published        (optional, recorded)
+#   SITE_DIR           the built Hugo site         (default: public)
+#   REPORT_DIR         the Allure report           (default: allure-report)
+#   SITE_OUTPUT        where to assemble           (default: _site)
+#   HISTORY_BRANCH     where reports are stored    (default: gh-pages)
+#   KEEP_RUNS          how many reports kept       (default: 10)
+#   PAGES_URL          the site's base URL         (default: derived from the repo)
 #
 set -euo pipefail
 
 repo="${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}"
 run="${GITHUB_RUN_NUMBER:?GITHUB_RUN_NUMBER is required}"
-token="${GITHUB_TOKEN:?GITHUB_TOKEN is required}"
 sha="${GITHUB_SHA:-unknown}"
-branch="${BRANCH:-gh-pages}"
+branch="${HISTORY_BRANCH:-gh-pages}"
 keep="${KEEP_RUNS:-10}"
 
 site_dir="${SITE_DIR:-public}"
 report_dir="${REPORT_DIR:-allure-report}"
+output="${SITE_OUTPUT:-_site}"
 
 # Resolve both inputs before changing directory, or the copies below read from
 # the wrong place.
@@ -42,52 +50,64 @@ report_dir=$(cd "$report_dir" && pwd)
 
 owner="${repo%%/*}"
 name="${repo##*/}"
-pages_url="https://$(printf '%s' "$owner" | tr '[:upper:]' '[:lower:]').github.io/${name}"
+pages_url="${PAGES_URL:-https://$(printf '%s' "$owner" | tr '[:upper:]' '[:lower:]').github.io/${name}}"
+pages_url="${pages_url%/}"
 
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
-publish="$work/publish"
-mkdir -p "$publish"
-cd "$publish"
 
-git init -q
-git config user.name "github-actions[bot]"
-git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-git remote add origin "https://x-access-token:${token}@github.com/${repo}.git"
-
-if git fetch -q --depth=1 origin "$branch" 2>/dev/null; then
-  git checkout -q -B "$branch" FETCH_HEAD
+# A token turns the clone into one that can see a private repository; without
+# one, a public repository clones anonymously, which is what lets this script be
+# run by hand.
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+  auth="x-access-token:${GITHUB_TOKEN}@"
 else
-  echo "no ${branch} branch yet; creating it"
-  git checkout -q --orphan "$branch"
+  auth=""
 fi
 
-# The project page owns the root. Everything except the reports is replaced, so
-# a page that is deleted from site/ is deleted from the branch too rather than
-# lingering.
-find . -mindepth 1 -maxdepth 1 ! -name .git ! -name allure -exec rm -rf {} +
-cp -R "${site_dir}"/. .
-# Pages runs Jekyll by default, which ignores paths beginning with an underscore
-# and costs a build for files that are already static.
-: > .nojekyll
+# 1. Fetch the reports from previous runs. They live on a branch rather than in
+#    the artifact because an artifact belongs to one run and is not carried to
+#    the next one.
+history="$work/history"
+mkdir -p "$history"
+if git clone --quiet --depth=1 --branch "$branch" \
+     "https://${auth}github.com/${repo}.git" \
+     "$history" 2>/dev/null; then
+  echo "carrying forward the reports on ${branch}"
+else
+  echo "no ${branch} branch yet; this run starts the history"
+  rm -rf "$history"
+  mkdir -p "$history"
+fi
 
-mkdir -p allure
-rm -rf "allure/${run}"
-cp -R "${report_dir}" "allure/${run}"
-rm -rf allure/latest
-cp -R "allure/${run}" allure/latest
+# 2. Assemble the tree that will be deployed. It is built outside the checkout
+#    so a run never leaves a half-written site behind in the working tree.
+rm -rf "$output"
+mkdir -p "$output"
+cp -R "${site_dir}"/. "$output"/
+: > "$output/.nojekyll"
 
-# Keep the newest reports and drop the rest: a report is tens of megabytes, and
-# a branch nobody ever prunes becomes a clone nobody wants.
-kept=$(ls -1 allure | grep -E '^[0-9]+$' | sort -n || true)
+if [ -d "$history/allure" ]; then
+  cp -R "$history/allure" "$output/allure"
+fi
+mkdir -p "$output/allure"
+rm -rf "$output/allure/${run}"
+cp -R "${report_dir}" "$output/allure/${run}"
+rm -rf "$output/allure/latest"
+cp -R "$output/allure/${run}" "$output/allure/latest"
+
+# 3. Keep the newest reports and drop the rest: a report is tens of megabytes,
+#    and a branch nobody prunes becomes a clone nobody wants.
+kept=$(ls -1 "$output/allure" | grep -E '^[0-9]+$' | sort -n || true)
 count=$(printf '%s\n' "$kept" | grep -c . || true)
 if [ "${count:-0}" -gt "$keep" ]; then
   printf '%s\n' "$kept" | head -n "-${keep}" | while read -r old; do
-    [ -n "$old" ] && rm -rf "allure/${old}"
+    [ -n "$old" ] && rm -rf "$output/allure/${old}"
   done
 fi
+kept=$(ls -1 "$output/allure" | grep -E '^[0-9]+$' | sort -n || true)
 
-# An index, so /allure/ is browsable rather than a 403.
+# 4. An index, so /allure/ is browsable rather than a 403.
 {
   cat <<'HTML'
 <!doctype html>
@@ -130,21 +150,41 @@ HTML
   </body>
 </html>
 HTML
-} > allure/index.html
-
-git add -A
-if git diff --cached --quiet; then
-  echo "nothing to publish"
-else
-  git commit -q -m "Publish site and test report for ${sha:0:7} (run ${run})"
-  git push -q origin "$branch"
-fi
+} > "$output/allure/index.html"
 
 url="${pages_url}/allure/${run}/"
-echo "$url"
+echo "assembled ${output} for ${url}"
+
 if [ -n "${GITHUB_OUTPUT:-}" ]; then
   {
     echo "url=${url}"
     echo "site=${pages_url}/"
   } >> "$GITHUB_OUTPUT"
+fi
+
+# 5. Store the tree on the history branch. Without a token this is a dry run —
+#    the artifact is still assembled and deployed, it just will not be carried
+#    to the next run.
+if [ -z "${GITHUB_TOKEN:-}" ]; then
+  echo "no token: assembled only, nothing stored for the next run"
+  exit 0
+fi
+
+cd "$output"
+git init -q
+git config user.name "github-actions[bot]"
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${repo}.git"
+if git fetch -q --depth=1 origin "$branch" 2>/dev/null; then
+  git checkout -q -B "$branch" FETCH_HEAD
+else
+  git checkout -q --orphan "$branch"
+fi
+git add -A
+if git diff --cached --quiet; then
+  echo "history branch already holds this run"
+else
+  git commit -q -m "Publish the site and the test report for ${sha:0:7} (run ${run})"
+  git push -q origin "$branch"
+  echo "stored on ${branch}"
 fi
