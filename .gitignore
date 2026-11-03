@@ -1,0 +1,15 @@
+# Binaries and build output
+/bin/
+*.exe
+*.test
+*.out
+
+# Coverage and profiles
+*.prof
+coverage.*
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
