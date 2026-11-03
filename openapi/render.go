@@ -150,9 +150,16 @@ func renderOpenAPI(described api.API, options renderOptions) ([]byte, []string, 
 		}
 	}
 	if len(paths) == 0 {
-		return nil, nil, fmt.Errorf("api %q has no operation that OpenAPI can represent", described.ID)
+		return nil, warnings, fmt.Errorf("api %q has no operation that OpenAPI can represent", described.ID)
 	}
-	return marshalDocument(document, options)
+	// The findings collected above are the package's account of what it derived
+	// and what it omitted. They travel with the document: an encoding step that
+	// dropped them would make every caller believe a derived path was declared.
+	encoded, err := marshalDocument(document, options)
+	if err != nil {
+		return nil, warnings, err
+	}
+	return encoded, warnings, nil
 }
 
 // operationMapping maps a standard operation onto an HTTP method and path.
@@ -441,7 +448,7 @@ func firstNonEmpty(values ...string) string {
 // marshalDocument encodes a rendered document. JSON is the default because it is
 // what agent tooling reads without a parser; YAML is available for a document
 // meant to be read by a person or committed to a repository.
-func marshalDocument(document map[string]any, options renderOptions) ([]byte, []string, error) {
+func marshalDocument(document map[string]any, options renderOptions) ([]byte, error) {
 	asYAML := strings.Contains(strings.ToLower(options.mediaType), "yaml")
 	if requested := strings.ToLower(strings.TrimSpace(options.options["format"])); requested == "yaml" || requested == "yml" {
 		asYAML = true
@@ -449,13 +456,13 @@ func marshalDocument(document map[string]any, options renderOptions) ([]byte, []
 	if asYAML {
 		encoded, err := yaml.Marshal(document)
 		if err != nil {
-			return nil, nil, fmt.Errorf("encode YAML document: %w", err)
+			return nil, fmt.Errorf("encode YAML document: %w", err)
 		}
-		return encoded, nil, nil
+		return encoded, nil
 	}
 	encoded, err := json.MarshalIndent(document, "", "  ")
 	if err != nil {
-		return nil, nil, fmt.Errorf("encode JSON document: %w", err)
+		return nil, fmt.Errorf("encode JSON document: %w", err)
 	}
-	return encoded, nil, nil
+	return encoded, nil
 }

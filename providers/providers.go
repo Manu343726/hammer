@@ -57,7 +57,16 @@ type contribution struct {
 // contributions is the set of packages that make a claim, asked every time they
 // are needed. Everything the four functions below answer is derived from it, so
 // there is exactly one place a package is named and no place a claim is repeated.
-func contributions() []contribution {
+//
+// It is a variable rather than a function so that a test can substitute a set of
+// its own and prove the guards below: the ones that drop an empty claim, an
+// identifier two packages both used, and a format two packages both read. Those
+// guards are unreachable from this library's own set — no package here claims what
+// another claims — and a guard nothing reaches is a guard nobody has verified.
+var contributions = claimedContributions
+
+// claimedContributions is the set this library contributes.
+func claimedContributions() []contribution {
 	return []contribution{
 		{
 			id:         "openapi",
@@ -121,7 +130,7 @@ func Providers() []api.Provider {
 	result := make([]api.Provider, 0, 11)
 	for _, c := range contributions() {
 		version := versionOf(descriptorsOf(c))
-		if formats := c.formats(); len(formats) > 0 {
+		if formats := formatsOf(c); len(formats) > 0 {
 			result = append(result, api.Provider{
 				ID:                    c.id + "-parser",
 				Role:                  api.ProviderParser,
@@ -129,7 +138,7 @@ func Providers() []api.Provider {
 				ImplementationVersion: version,
 			})
 		}
-		if targets := c.targets(); len(targets) > 0 {
+		if targets := targetsOf(c); len(targets) > 0 {
 			result = append(result, api.Provider{
 				ID:                    c.id + "-adapter",
 				Role:                  api.ProviderAdapter,
@@ -137,15 +146,13 @@ func Providers() []api.Provider {
 				ImplementationVersion: version,
 			})
 		}
-		if c.transports != nil {
-			if transports := transportIDs(c.transports()); len(transports) > 0 {
-				result = append(result, api.Provider{
-					ID:                    c.id + "-invoker",
-					Role:                  api.ProviderInvoker,
-					Transports:            transports,
-					ImplementationVersion: version,
-				})
-			}
+		if transports := transportIDs(transportsOf(c)); len(transports) > 0 {
+			result = append(result, api.Provider{
+				ID:                    c.id + "-invoker",
+				Role:                  api.ProviderInvoker,
+				Transports:            transports,
+				ImplementationVersion: version,
+			})
 		}
 	}
 	return result
@@ -181,7 +188,7 @@ func Targets() []string {
 	result := make([]string, 0, 8)
 	seen := make(map[string]bool, 8)
 	for _, c := range contributions() {
-		for _, target := range c.targets() {
+		for _, target := range targetsOf(c) {
 			key := api.NormalizeIdentifier(target)
 			if key == "" || seen[key] {
 				continue
@@ -203,10 +210,7 @@ func Transports() []api.TransportDescriptor {
 	result := make([]api.TransportDescriptor, 0, 8)
 	seen := make(map[string]bool, 8)
 	for _, c := range contributions() {
-		if c.transports == nil {
-			continue
-		}
-		for _, descriptor := range c.transports() {
+		for _, descriptor := range transportsOf(c) {
 			key := api.NormalizeIdentifier(descriptor.ID)
 			if key == "" || seen[key] {
 				continue
@@ -249,6 +253,31 @@ func HandlesTarget(target string) bool {
 		}
 	}
 	return false
+}
+
+// formatsOf, targetsOf and transportsOf are a contribution's claims. A package
+// implements as many roles as it implements, and a role it does not implement is a
+// function it never sets, so asking for that role answers "none" rather than
+// failing: the registry asks every contribution every question.
+func formatsOf(c contribution) []api.Format {
+	if c.formats == nil {
+		return nil
+	}
+	return c.formats()
+}
+
+func targetsOf(c contribution) []string {
+	if c.targets == nil {
+		return nil
+	}
+	return c.targets()
+}
+
+func transportsOf(c contribution) []api.TransportDescriptor {
+	if c.transports == nil {
+		return nil
+	}
+	return c.transports()
 }
 
 // descriptorsOf is a contribution's format descriptors, whether it states them as

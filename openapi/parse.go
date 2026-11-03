@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"reflect"
 	"sort"
 	"strconv"
 	"strings"
@@ -204,30 +205,76 @@ type mediaNode struct {
 }
 
 type schemaNode struct {
-	Ref                  string                `yaml:"$ref"`
-	Type                 string                `yaml:"type"`
-	Format               string                `yaml:"format"`
-	Title                string                `yaml:"title"`
-	Description          string                `yaml:"description"`
-	Deprecated           bool                  `yaml:"deprecated"`
-	ReadOnly             bool                  `yaml:"readOnly"`
-	Properties           map[string]schemaNode `yaml:"properties"`
-	Required             []string              `yaml:"required"`
-	Items                *schemaNode           `yaml:"items"`
-	AdditionalProperties *schemaNode           `yaml:"additionalProperties"`
-	Enum                 []yaml.Node           `yaml:"enum"`
-	OneOf                []*schemaNode         `yaml:"oneOf"`
-	AnyOf                []*schemaNode         `yaml:"anyOf"`
-	Default              yaml.Node             `yaml:"default"`
-	Nullable             bool                  `yaml:"nullable"`
-	Minimum              *float64              `yaml:"minimum"`
-	Maximum              *float64              `yaml:"maximum"`
-	ExclusiveMinimum     *float64              `yaml:"exclusiveMinimum"`
-	ExclusiveMaximum     *float64              `yaml:"exclusiveMaximum"`
-	MinLength            *int64                `yaml:"minLength"`
-	MaxLength            *int64                `yaml:"maxLength"`
-	Pattern              string                `yaml:"pattern"`
-	Extensions           map[string]yaml.Node  `yaml:",inline"`
+	Ref                  string                    `yaml:"$ref"`
+	Type                 string                    `yaml:"type"`
+	Format               string                    `yaml:"format"`
+	Title                string                    `yaml:"title"`
+	Description          string                    `yaml:"description"`
+	Deprecated           bool                      `yaml:"deprecated"`
+	ReadOnly             bool                      `yaml:"readOnly"`
+	Properties           map[string]schemaNode     `yaml:"properties"`
+	Required             []string                  `yaml:"required"`
+	Items                *schemaNode               `yaml:"items"`
+	AdditionalProperties *additionalPropertiesNode `yaml:"additionalProperties"`
+	Enum                 []yaml.Node               `yaml:"enum"`
+	OneOf                []*schemaNode             `yaml:"oneOf"`
+	AnyOf                []*schemaNode             `yaml:"anyOf"`
+	AllOf                []*schemaNode             `yaml:"allOf"`
+	Default              yaml.Node                 `yaml:"default"`
+	Nullable             bool                      `yaml:"nullable"`
+	Minimum              *float64                  `yaml:"minimum"`
+	Maximum              *float64                  `yaml:"maximum"`
+	ExclusiveMinimum     *float64                  `yaml:"exclusiveMinimum"`
+	ExclusiveMaximum     *float64                  `yaml:"exclusiveMaximum"`
+	MinLength            *int64                    `yaml:"minLength"`
+	MaxLength            *int64                    `yaml:"maxLength"`
+	Pattern              string                    `yaml:"pattern"`
+	Extensions           map[string]yaml.Node      `yaml:",inline"`
+}
+
+// additionalPropertiesNode is the additionalProperties keyword in either of the
+// two spellings the document language gives it: a schema describing the members
+// the object does not name, or the boolean that says every such member is
+// accepted or that none is.
+//
+// It decodes itself because the two spellings have nothing in common. A boolean
+// cannot be decoded into a schema, so a field typed as a schema refused the whole
+// document over a keyword that is valid — and the boolean is the only way the
+// language has to say "any member", which is exactly the shape an untyped map
+// needs.
+type additionalPropertiesNode struct {
+	// Schema is the declared shape of the unlisted members, when the document
+	// states one.
+	Schema *schemaNode
+	// Allowed is the boolean form: true accepts any member, false accepts none.
+	Allowed *bool
+}
+
+// UnmarshalYAML reads either spelling, keeping which one the document used so a
+// boolean is never mistaken for a schema. A schema is zero members, not "any
+// member", and the difference is the whole reason the keyword exists.
+//
+// There is no alias case here on purpose: the decoder resolves a YAML anchor to the
+// node it names before asking this method, so an anchored keyword arrives as the
+// scalar or mapping itself.
+func (a *additionalPropertiesNode) UnmarshalYAML(node *yaml.Node) error {
+	switch node.Kind {
+	case yaml.ScalarNode:
+		var allowed bool
+		if err := node.Decode(&allowed); err != nil {
+			return fmt.Errorf("additionalProperties must be a schema or a boolean: %w", err)
+		}
+		a.Allowed = &allowed
+		return nil
+	case yaml.MappingNode:
+		schema := &schemaNode{}
+		if err := node.Decode(schema); err != nil {
+			return fmt.Errorf("additionalProperties: %w", err)
+		}
+		a.Schema = schema
+		return nil
+	}
+	return fmt.Errorf("additionalProperties must be a schema or a boolean, not a %v", node.Kind)
 }
 
 // httpMethod is one HTTP method a path item may declare, with the side effect
@@ -667,6 +714,13 @@ func (b *builder) convertComponentSchema(node *schemaNode, visiting map[string]b
 	if node == nil {
 		return nil, nil
 	}
+	if len(node.AllOf) > 0 {
+		// A composition states that every member describes part of one value, so
+		// it is folded into this node before it is converted. Dropping the
+		// members would leave a schema with no type and no members — a value of
+		// any shape — which is the opposite of what a composition says.
+		node = b.mergeAllOf(node, visiting)
+	}
 	if node.Ref != "" {
 		name, ok := componentName(node.Ref, "schemas")
 		if !ok {
@@ -745,12 +799,19 @@ func (b *builder) convertComponentSchema(node *schemaNode, visiting map[string]b
 		schema.Items = items
 	}
 	if node.AdditionalProperties != nil {
-		additional, err := b.convertComponentSchema(node.AdditionalProperties, visiting)
-		if err != nil {
-			return nil, fmt.Errorf("additionalProperties: %w", err)
+		if declared := node.AdditionalProperties.Schema; declared != nil {
+			additional, err := b.convertComponentSchema(declared, visiting)
+			if err != nil {
+				return nil, fmt.Errorf("additionalProperties: %w", err)
+			}
+			schema.AdditionalProperties = additional
 		}
-		schema.AdditionalProperties = additional
 	}
+	// The boolean form states that every unlisted member is accepted (true) or
+	// that none is (false). "None" is the closed object this model already
+	// describes by carrying neither a member shape nor the allowed flag, so it is
+	// not turned into the free-form object that an empty member shape — "any
+	// member, with no constraint" — would be.
 	if node.AdditionalPropertiesAllowed() {
 		schema.AdditionalPropertiesAllowed = true
 	}
@@ -777,7 +838,260 @@ func (b *builder) convertComponentSchema(node *schemaNode, visiting map[string]b
 	return schema, nil
 }
 
+// mergeAllOf folds a schema's allOf members into the schema itself.
+//
+// A composition states that every member describes part of one value, so for this
+// model there are exactly two honest outcomes: the member is folded in, or the
+// member is reported. A member that disappears leaves the value it described
+// undescribed, and a schema with nothing left is read as free-form — which is the
+// opposite of what a composition says.
+//
+// Where two members state different values for one keyword the later wins, because
+// a composition is applied in order and refusing a document over a redundant
+// restatement would reject documents servers accept. The replacement is reported
+// rather than chosen in silence: a value that replaced another is a value nobody
+// can find by reading the document.
+func (b *builder) mergeAllOf(node *schemaNode, visiting map[string]bool) *schemaNode {
+	merged := *node
+	merged.AllOf = nil
+	if node.Ref != "" {
+		// Keywords beside a reference are part of the composed value: the
+		// reference is resolved first, and the merged shape keeps the document's
+		// own name for what it now carries.
+		if resolved, ok := b.schemaNodeFor(node.Ref, visiting); ok {
+			ref := node.Ref
+			siblings := merged
+			siblings.Ref = ""
+			merged = *resolved
+			merged.Ref = ref
+			b.absorbSchema(&merged, &siblings, "the keywords beside its reference")
+		}
+	}
+	for index, member := range node.AllOf {
+		label := fmt.Sprintf("allOf[%d]", index)
+		if member != nil && member.Ref != "" {
+			label = fmt.Sprintf("%s (%s)", label, member.Ref)
+		}
+		if member == nil {
+			b.warn("allOf member %s carries no schema, so there is nothing to merge", label)
+			continue
+		}
+		b.absorbSchema(&merged, b.mergeAllOf(member, visiting), label)
+	}
+	return &merged
+}
+
+// schemaNodeFor resolves a component reference to the schema node it names, with
+// its own reference and composition already folded, so it can be merged like a
+// member written out in place. A reference it cannot resolve is reported with the
+// name the document used, because that is the name a reader can act on.
+func (b *builder) schemaNodeFor(ref string, visiting map[string]bool) (*schemaNode, bool) {
+	name, ok := componentName(ref, "schemas")
+	if !ok {
+		b.warn("allOf member %q could not be merged: it is not a local component reference", ref)
+		return nil, false
+	}
+	if visiting[name] {
+		b.warn("allOf member %q could not be merged: it refers back to a schema already being merged", ref)
+		return nil, false
+	}
+	declared, found := b.document.Components.Schemas[name]
+	if !found {
+		b.warn("allOf member %q could not be merged: it is not declared in components", ref)
+		return nil, false
+	}
+	visiting[name] = true
+	defer delete(visiting, name)
+	if declared.Ref != "" || len(declared.AllOf) > 0 {
+		merged := b.mergeAllOf(&declared, visiting)
+		merged.Ref = ""
+		return merged, true
+	}
+	copied := declared
+	copied.Ref = ""
+	return &copied, true
+}
+
+// absorbSchema folds one schema into another. A keyword the source states replaces
+// the target's value, and the replacement is reported when the two disagreed.
+//
+// The booleans combine instead of replacing, because each of them is a permission
+// or a warning about the value as a whole: a value any member calls nullable,
+// deprecated or read-only is nullable, deprecated or read-only.
+func (b *builder) absorbSchema(target, source *schemaNode, label string) {
+	replaced := func(keyword, kept, earlier string) {
+		b.warn("allOf member %s declares %s %q, which replaces the earlier %q", label, keyword, kept, earlier)
+	}
+	if source.Type != "" {
+		if target.Type != "" && target.Type != source.Type {
+			replaced("type", source.Type, target.Type)
+		}
+		target.Type = source.Type
+	}
+	if source.Format != "" {
+		if target.Format != "" && target.Format != source.Format {
+			replaced("format", source.Format, target.Format)
+		}
+		target.Format = source.Format
+	}
+	if source.Title != "" {
+		if target.Title != "" && target.Title != source.Title {
+			replaced("title", source.Title, target.Title)
+		}
+		target.Title = source.Title
+	}
+	if source.Description != "" {
+		if target.Description != "" && target.Description != source.Description {
+			replaced("description", source.Description, target.Description)
+		}
+		target.Description = source.Description
+	}
+	if source.Pattern != "" {
+		if target.Pattern != "" && target.Pattern != source.Pattern {
+			replaced("pattern", source.Pattern, target.Pattern)
+		}
+		target.Pattern = source.Pattern
+	}
+	target.Nullable = target.Nullable || source.Nullable
+	target.Deprecated = target.Deprecated || source.Deprecated
+	target.ReadOnly = target.ReadOnly || source.ReadOnly
+	if !source.Default.IsZero() {
+		if !target.Default.IsZero() && (target.Default.Tag != source.Default.Tag || target.Default.Value != source.Default.Value) {
+			replaced("default", source.Default.Value, target.Default.Value)
+		}
+		target.Default = source.Default
+	}
+	if source.Minimum != nil {
+		if target.Minimum != nil && *target.Minimum != *source.Minimum {
+			replaced("minimum", formatNumber(*source.Minimum), formatNumber(*target.Minimum))
+		}
+		target.Minimum = source.Minimum
+	}
+	if source.Maximum != nil {
+		if target.Maximum != nil && *target.Maximum != *source.Maximum {
+			replaced("maximum", formatNumber(*source.Maximum), formatNumber(*target.Maximum))
+		}
+		target.Maximum = source.Maximum
+	}
+	if source.MinLength != nil {
+		if target.MinLength != nil && *target.MinLength != *source.MinLength {
+			replaced("minLength", formatInteger(*source.MinLength), formatInteger(*target.MinLength))
+		}
+		target.MinLength = source.MinLength
+	}
+	if source.MaxLength != nil {
+		if target.MaxLength != nil && *target.MaxLength != *source.MaxLength {
+			replaced("maxLength", formatInteger(*source.MaxLength), formatInteger(*target.MaxLength))
+		}
+		target.MaxLength = source.MaxLength
+	}
+	if len(source.Properties) > 0 {
+		if target.Properties == nil {
+			target.Properties = make(map[string]schemaNode, len(source.Properties))
+		}
+		for name, incoming := range source.Properties {
+			folded := incoming
+			if existing, declared := target.Properties[name]; declared {
+				// Two members describing the same member are two statements about
+				// it, so they are folded rather than one of them discarded; the
+				// fold reports a real disagreement and stays quiet about a
+				// restatement.
+				folded = existing
+				b.absorbSchema(&folded, &incoming, fmt.Sprintf("%s for property %q", label, name))
+			}
+			target.Properties[name] = folded
+		}
+	}
+	if len(source.Required) > 0 {
+		target.Required = deduplicate(append(append([]string(nil), target.Required...), source.Required...))
+	}
+	if source.Items != nil {
+		if target.Items == nil {
+			items := *source.Items
+			target.Items = &items
+		} else {
+			b.absorbSchema(target.Items, source.Items, label+" for its element schema")
+		}
+	}
+	if source.AdditionalProperties != nil {
+		switch {
+		case target.AdditionalProperties == nil:
+			copied := *source.AdditionalProperties
+			target.AdditionalProperties = &copied
+		case target.AdditionalProperties.Schema != nil && source.AdditionalProperties.Schema != nil:
+			b.absorbSchema(target.AdditionalProperties.Schema, source.AdditionalProperties.Schema, label+" for its unlisted members")
+		default:
+			if !reflect.DeepEqual(*target.AdditionalProperties, *source.AdditionalProperties) {
+				replaced("additionalProperties", describeAdditionalProperties(source.AdditionalProperties), describeAdditionalProperties(target.AdditionalProperties))
+			}
+			copied := *source.AdditionalProperties
+			target.AdditionalProperties = &copied
+		}
+	}
+	if len(source.Enum) > 0 {
+		if len(target.Enum) > 0 && !reflect.DeepEqual(target.Enum, source.Enum) {
+			replaced("enum", enumValues(source), enumValues(target))
+		}
+		target.Enum = source.Enum
+	}
+	// A set of alternatives cannot be merged with another set: the composed value
+	// is one alternative or the other, and this model states one set per schema, so
+	// the later member's set is the one kept. It is reported because a caller
+	// reading the schema cannot see the set that was dropped.
+	if len(source.OneOf) > 0 {
+		if len(target.OneOf) > 0 {
+			b.warn("allOf member %s states a oneOf of its own, so the earlier oneOf is replaced", label)
+		}
+		target.OneOf = source.OneOf
+	}
+	if len(source.AnyOf) > 0 {
+		if len(target.AnyOf) > 0 {
+			b.warn("allOf member %s states an anyOf of its own, so the earlier anyOf is replaced", label)
+		}
+		target.AnyOf = source.AnyOf
+	}
+	for name, value := range source.Extensions {
+		if target.Extensions == nil {
+			target.Extensions = make(map[string]yaml.Node, len(source.Extensions))
+		}
+		target.Extensions[name] = value
+	}
+}
+
+// describeAdditionalProperties names the spelling of the keyword a member used, so
+// the report of a replacement says what replaced what.
+func describeAdditionalProperties(node *additionalPropertiesNode) string {
+	if node.Schema != nil {
+		return "a member shape"
+	}
+	if node.Allowed != nil && *node.Allowed {
+		return "any member"
+	}
+	return "no member"
+}
+
+func enumValues(node *schemaNode) string {
+	values := make([]string, 0, len(node.Enum))
+	for _, value := range node.Enum {
+		values = append(values, scalarString(value))
+	}
+	return "[" + strings.Join(values, ", ") + "]"
+}
+
+func formatNumber(value float64) string {
+	return strconv.FormatFloat(value, 'f', -1, 64)
+}
+
+func formatInteger(value int64) string {
+	return strconv.FormatInt(value, 10)
+}
+
 func (n schemaNode) AdditionalPropertiesAllowed() bool {
+	if n.AdditionalProperties != nil {
+		return n.AdditionalProperties.Allowed != nil && *n.AdditionalProperties.Allowed
+	}
+	// A node assembled by hand may still carry the keyword in its extension map,
+	// which is where an untyped decoder used to leave it.
 	value, ok := n.Extensions["additionalProperties"]
 	if !ok {
 		return false
@@ -963,6 +1277,12 @@ func schemaTypeFor(node *schemaNode, schema *api.Schema) api.SchemaType {
 		return api.TypeObject
 	case node.Items != nil:
 		return api.TypeArray
+	case node.AdditionalProperties != nil && node.AdditionalProperties.Schema == nil:
+		// A schema that states only what its unlisted members are — every member
+		// accepted, or none — describes an object. Without this it would have no
+		// type at all, and "no type" is "a value of any shape": the free-form
+		// reading the keyword exists to deny.
+		return api.TypeObject
 	case len(node.Enum) > 0:
 		return api.TypeString
 	case node.Format != "":

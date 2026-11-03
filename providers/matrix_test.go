@@ -37,6 +37,13 @@ type loss struct {
 // The losses are the measurement this suite exists to publish. They are the answer
 // to "what does publishing in this format cost?", and each of them is checked
 // against the code, so the table cannot outlive the behaviour it describes.
+//
+// Two cells changed verdict when the OpenAPI writer's findings started reaching the
+// caller: grpc-to-openapi and mcp-to-openapi used to report nothing at all, because
+// the writer collected its findings and then lost them in the encode step. Silence
+// there was never a fact about those formats; it was the bug. Both cells now record
+// the mapping the writer derives for every operation, and each says so where it
+// stands.
 func matrix() []cell {
 	return []cell{
 		// From an OpenAPI document.
@@ -84,8 +91,20 @@ func matrix() []cell {
 
 		// From a protobuf contract.
 		{
+			// This cell used to report nothing, and that was the defect rather than
+			// a property of the format: the OpenAPI writer collected the mapping it
+			// derived for each method and then discarded the collection in the
+			// encode step, so a contract published as a document claimed no findings
+			// while the document it produced carried paths the contract never
+			// declared. The findings now reach the caller, so the cell records the
+			// two facts it derives — a unary method is not an HTTP verb, and it has
+			// no path — instead of the silence that used to stand in for them.
 			source: "grpc",
 			target: "openapi",
+			reports: []string{
+				"which is not an HTTP method; rendered as POST",
+				"declares no request path; rendered as",
+			},
 			losses: []loss{lossWireDerived, lossVersionRequired, lossTags, lossServiceProse, lossResponses, lossCreate},
 		},
 		{
@@ -104,8 +123,18 @@ func matrix() []cell {
 
 		// From a tool manifest.
 		{
+			// Silent for the same reason the protobuf cell was, and corrected by the
+			// same fix: the writer's findings never left the render call, so a tool
+			// manifest published as an OpenAPI document reported no findings while
+			// the document invented a POST and a path for every tool. It now reports
+			// both, and the method it names is the protocol's own call method rather
+			// than an HTTP verb.
 			source: "mcp",
 			target: "openapi",
+			reports: []string{
+				`method "tools/call", which is not an HTTP method; rendered as POST`,
+				"declares no request path; rendered as",
+			},
 			losses: []loss{lossWireDerived, lossVersionRequired, lossResponses, lossCreate, lossTags, lossOpenShape},
 		},
 		{

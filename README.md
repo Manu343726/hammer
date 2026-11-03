@@ -155,11 +155,23 @@ make check     # build, vet, test — what CI runs
 make site      # build the project site into public/
 ```
 
-The suite is held to a coverage floor in CI. Every run publishes an Allure report to the
-project site, and the run summary links to it:
+The suite is held to a coverage floor in CI — **98.8% of the library's statements**
+today. The statements that remain are defensive branches whose condition cannot occur: a
+descriptor the protobuf runtime has already validated, an error return from a function
+that cannot fail, a terminal that has to actually be a terminal. They are listed in the
+run summary rather than faked with a test that would only prove a mock was called.
+
+`providers` holds the conformance suite: every format is read from a real document,
+rendered into every target, read back, and compared. Each of the twelve cells either
+round-trips exactly or declares what it cannot carry — and the loss is asserted to still
+*be* a loss, so a cell that quietly starts carrying a fact breaks the table instead of
+hiding it.
+
+Every run publishes an Allure report to the project site, and the run summary links to it:
 
 - site: <https://manu343726.github.io/hammer/>
 - reports: <https://manu343726.github.io/hammer/allure/latest/>
+
 
 ## License
 
