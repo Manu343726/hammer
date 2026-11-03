@@ -1,0 +1,2 @@
+=== RUN   TestSchemaFromJSONSchemaReadsAnAbsentDocument
+--- PASS: TestSchemaFromJSONSchemaReadsAnAbsentDocument (0.00s)

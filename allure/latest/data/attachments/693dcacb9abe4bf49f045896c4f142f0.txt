@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsMalformedPathItems/not_a_mapping
+--- PASS: TestCovParseRejectsMalformedPathItems/not_a_mapping (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestAMemberWhoseNameCarriesASpaceIsTypedWithAHyphen
---- PASS: TestAMemberWhoseNameCarriesASpaceIsTypedWithAHyphen (0.00s)

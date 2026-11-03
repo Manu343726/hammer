@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/malformed_operation
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/malformed_operation (0.00s)

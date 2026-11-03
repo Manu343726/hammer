@@ -1,0 +1,2 @@
+=== RUN   TestFieldTypesDefaultsAndNestingAreReported
+--- PASS: TestFieldTypesDefaultsAndNestingAreReported (0.00s)

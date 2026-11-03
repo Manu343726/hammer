@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorDescribesRequestAndResponse
+--- PASS: TestDescriptorDescribesRequestAndResponse (0.00s)

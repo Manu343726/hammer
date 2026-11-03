@@ -1,2 +1,0 @@
-=== RUN   TestDescriptionSurvivesTheMcpRoundTrip
---- PASS: TestDescriptionSurvivesTheMcpRoundTrip (0.01s)

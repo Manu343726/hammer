@@ -1,0 +1,2 @@
+=== RUN   TestGenerateRefusesADescriptionWithoutIdentifiers
+--- PASS: TestGenerateRefusesADescriptionWithoutIdentifiers (0.00s)

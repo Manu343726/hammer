@@ -1,0 +1,2 @@
+=== RUN   TestATemplateOfTheToolsOwnIsRead
+--- PASS: TestATemplateOfTheToolsOwnIsRead (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestASecondLookupAnswersTheSameSchema
+--- PASS: TestASecondLookupAnswersTheSameSchema (0.03s)

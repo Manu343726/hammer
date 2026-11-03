@@ -1,0 +1,2 @@
+=== RUN   TestFormatsAndTargetsCoverBothProtocols
+--- PASS: TestFormatsAndTargetsCoverBothProtocols (0.00s)

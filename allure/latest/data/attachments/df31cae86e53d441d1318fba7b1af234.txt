@@ -1,2 +1,0 @@
-=== RUN   TestACachedSchemaCostsOneReflectionRoundTrip
---- PASS: TestACachedSchemaCostsOneReflectionRoundTrip (0.03s)

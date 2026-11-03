@@ -1,2 +1,0 @@
-=== RUN   TestATypedCallIsRoutedByTheReflectedContract
---- PASS: TestATypedCallIsRoutedByTheReflectedContract (0.01s)

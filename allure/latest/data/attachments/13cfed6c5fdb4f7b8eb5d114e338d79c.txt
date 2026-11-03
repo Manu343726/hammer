@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/read-mcp-parser-mcp
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/read-mcp-parser-mcp (0.00s)

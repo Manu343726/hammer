@@ -1,0 +1,2 @@
+=== RUN   TestAHiddenCommandAndAHiddenFlagAreNotDescribed
+--- PASS: TestAHiddenCommandAndAHiddenFlagAreNotDescribed (0.00s)

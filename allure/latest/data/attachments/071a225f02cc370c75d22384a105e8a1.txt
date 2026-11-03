@@ -1,0 +1,2 @@
+=== RUN   ExampleGenerate
+--- PASS: ExampleGenerate (0.00s)

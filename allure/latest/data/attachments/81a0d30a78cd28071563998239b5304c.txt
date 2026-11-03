@@ -1,0 +1,2 @@
+=== RUN   TestNormalizeRequiresIdentityAndFormat
+--- PASS: TestNormalizeRequiresIdentityAndFormat (0.00s)

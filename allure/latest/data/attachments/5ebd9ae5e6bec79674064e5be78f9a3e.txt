@@ -1,0 +1,2 @@
+=== RUN   TestASideEffectClassIsAFilterNotAGrant
+--- PASS: TestASideEffectClassIsAFilterNotAGrant (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAnImportNobodyHasIsReported
+--- PASS: TestAnImportNobodyHasIsReported (0.00s)

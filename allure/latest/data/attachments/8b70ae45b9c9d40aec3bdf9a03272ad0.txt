@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentReadsSecuritySchemes
+--- PASS: TestParseDocumentReadsSecuritySchemes (0.01s)

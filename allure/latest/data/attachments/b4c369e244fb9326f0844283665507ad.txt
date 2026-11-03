@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/float64
+--- PASS: TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/float64 (0.00s)

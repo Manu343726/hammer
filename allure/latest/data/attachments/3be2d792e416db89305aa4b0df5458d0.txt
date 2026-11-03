@@ -1,0 +1,2 @@
+=== RUN   TestTwoPagesNamingOneOperationKeepBoth
+--- PASS: TestTwoPagesNamingOneOperationKeepBoth (0.00s)

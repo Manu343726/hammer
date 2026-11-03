@@ -1,0 +1,2 @@
+=== RUN   ExampleParsePolicy
+--- PASS: ExampleParsePolicy (0.00s)

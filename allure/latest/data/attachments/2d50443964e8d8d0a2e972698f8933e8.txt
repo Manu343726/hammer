@@ -1,0 +1,2 @@
+=== RUN   TestToolNameIsShortenedWithADigest
+--- PASS: TestToolNameIsShortenedWithADigest (0.00s)

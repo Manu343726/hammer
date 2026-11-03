@@ -1,0 +1,2 @@
+=== RUN   TestCoverFormatTransportDescriptorsCarryOneContract
+--- PASS: TestCoverFormatTransportDescriptorsCarryOneContract (0.00s)

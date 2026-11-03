@@ -1,2 +1,0 @@
-=== RUN   TestABinaryIsDescribedWithNoContext
---- PASS: TestABinaryIsDescribedWithNoContext (0.02s)

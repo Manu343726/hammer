@@ -1,0 +1,2 @@
+=== RUN   TestCovDescribeReportsAServerThatWillNotListItsTools
+--- PASS: TestCovDescribeReportsAServerThatWillNotListItsTools (0.01s)

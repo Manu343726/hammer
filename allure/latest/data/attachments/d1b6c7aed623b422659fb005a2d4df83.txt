@@ -1,0 +1,2 @@
+=== RUN   TestTheCommandWritesResultsAndASummary
+--- PASS: TestTheCommandWritesResultsAndASummary (0.00s)

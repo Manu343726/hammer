@@ -1,0 +1,2 @@
+=== RUN   TestADeclaredDefaultSurvivesTheRoundTrip
+--- PASS: TestADeclaredDefaultSurvivesTheRoundTrip (0.01s)

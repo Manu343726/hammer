@@ -1,0 +1,2 @@
+=== RUN   TestParseAnnotationsLeavesOrdinaryProseAlone
+--- PASS: TestParseAnnotationsLeavesOrdinaryProseAlone (0.00s)

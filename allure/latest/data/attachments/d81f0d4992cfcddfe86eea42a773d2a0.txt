@@ -1,0 +1,2 @@
+=== RUN   TestCovAdditionalPropertiesFlagIsReadFromTheExtension
+--- PASS: TestCovAdditionalPropertiesFlagIsReadFromTheExtension (0.00s)

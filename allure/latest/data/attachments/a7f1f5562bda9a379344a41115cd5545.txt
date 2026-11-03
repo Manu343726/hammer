@@ -1,0 +1,2 @@
+=== RUN   TestAServiceThatWasNeverRegisteredIsNotFound
+--- PASS: TestAServiceThatWasNeverRegisteredIsNotFound (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaReadsOnlyTheFirstUsableType
+--- PASS: TestModelSchemaFromJSONSchemaReadsOnlyTheFirstUsableType (0.00s)

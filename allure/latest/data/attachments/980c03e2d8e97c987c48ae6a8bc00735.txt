@@ -1,0 +1,2 @@
+=== RUN   TestADeprecatedFlagOfATreeIsRead
+--- PASS: TestADeprecatedFlagOfATreeIsRead (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/operation_claiming_another_api
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/operation_claiming_another_api (0.00s)

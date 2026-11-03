@@ -1,0 +1,2 @@
+=== RUN   TestASummaryIsAWholeSentenceNotASourceLine
+--- PASS: TestASummaryIsAWholeSentenceNotASourceLine (0.00s)

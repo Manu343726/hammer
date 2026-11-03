@@ -1,0 +1,2 @@
+=== RUN   TestCovRegistryDropsAClaimWithNoIdentifier
+--- PASS: TestCovRegistryDropsAClaimWithNoIdentifier (0.00s)

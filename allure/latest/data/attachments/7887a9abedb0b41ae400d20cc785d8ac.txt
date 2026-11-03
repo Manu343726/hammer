@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderHasNoInstructionsWhenTheDescriptionHasNoProse
+--- PASS: TestCovRenderHasNoInstructionsWhenTheDescriptionHasNoProse (0.00s)

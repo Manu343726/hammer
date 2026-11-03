@@ -1,0 +1,2 @@
+=== RUN   TestOutputBeforeATestStartsIsIgnored
+--- PASS: TestOutputBeforeATestStartsIsIgnored (0.00s)

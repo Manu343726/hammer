@@ -1,0 +1,2 @@
+=== RUN   TestDescribeFitsTheCompositionShape
+--- PASS: TestDescribeFitsTheCompositionShape (0.01s)

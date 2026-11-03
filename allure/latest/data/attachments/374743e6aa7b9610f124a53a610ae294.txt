@@ -1,0 +1,2 @@
+=== RUN   TestSchemaEndpointRejectsAnotherFile
+--- PASS: TestSchemaEndpointRejectsAnotherFile (0.00s)

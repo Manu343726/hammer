@@ -1,0 +1,2 @@
+=== RUN   TestModelSummarizeDoesNotShareTheServerList
+--- PASS: TestModelSummarizeDoesNotShareTheServerList (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeRefusesAnEmptyRequest
+--- PASS: TestCoverParseDescribeRefusesAnEmptyRequest (0.00s)

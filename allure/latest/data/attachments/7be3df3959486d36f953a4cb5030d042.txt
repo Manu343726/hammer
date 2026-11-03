@@ -1,0 +1,2 @@
+=== RUN   TestAFlagDescriptionWrapsToTheTerminal
+--- PASS: TestAFlagDescriptionWrapsToTheTerminal (0.00s)

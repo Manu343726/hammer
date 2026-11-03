@@ -1,0 +1,2 @@
+=== RUN   TestAFailedDocumentationCallIsReported
+--- PASS: TestAFailedDocumentationCallIsReported (0.03s)

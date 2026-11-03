@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeNormalizesTheAnswer
+--- PASS: TestCovInvokeNormalizesTheAnswer (0.00s)

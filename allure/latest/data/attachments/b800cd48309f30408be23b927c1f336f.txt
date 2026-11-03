@@ -1,0 +1,2 @@
+=== RUN   TestRenderReportsAStreamingOperationInsteadOfOfferingIt
+--- PASS: TestRenderReportsAStreamingOperationInsteadOfOfferingIt (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestSlugDerivesReadableIdentifiers
+--- PASS: TestSlugDerivesReadableIdentifiers (0.00s)

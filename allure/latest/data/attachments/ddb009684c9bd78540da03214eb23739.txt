@@ -1,0 +1,2 @@
+=== RUN   TestAResultIsWrittenThroughATemporaryFile
+--- PASS: TestAResultIsWrittenThroughATemporaryFile (0.00s)

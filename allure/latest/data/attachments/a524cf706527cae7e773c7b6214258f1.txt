@@ -1,0 +1,2 @@
+=== RUN   TestACommandThatGroupsAndRunsIsAService
+--- PASS: TestACommandThatGroupsAndRunsIsAService (0.00s)

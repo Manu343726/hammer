@@ -1,2 +1,0 @@
-=== RUN   TestMatrix/mcp-to-connect
---- PASS: TestMatrix/mcp-to-connect (0.02s)

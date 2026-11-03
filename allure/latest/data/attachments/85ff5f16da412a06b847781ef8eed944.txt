@@ -1,2 +1,0 @@
-=== RUN   TestAStreamingMethodIsRefusedRatherThanCalledAsUnary
---- PASS: TestAStreamingMethodIsRefusedRatherThanCalledAsUnary (0.02s)

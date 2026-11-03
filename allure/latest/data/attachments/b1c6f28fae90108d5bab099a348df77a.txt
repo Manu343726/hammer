@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription (0.00s)

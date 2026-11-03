@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsNamesProtobufCannotDeclare
+--- PASS: TestCoverRenderReportsNamesProtobufCannotDeclare (0.00s)

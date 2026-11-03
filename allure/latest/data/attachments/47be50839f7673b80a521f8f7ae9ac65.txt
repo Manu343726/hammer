@@ -1,0 +1,2 @@
+=== RUN   TestStopEndsTheSurface
+--- PASS: TestStopEndsTheSurface (0.01s)

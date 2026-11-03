@@ -1,0 +1,2 @@
+=== RUN   TestSeveralPagesAreReadFromOneStream
+--- PASS: TestSeveralPagesAreReadFromOneStream (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovRegistryHelpersAnswerForAContributionThatStatesNothing
+--- PASS: TestCovRegistryHelpersAnswerForAContributionThatStatesNothing (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelObjectSchemaSortsOnlyTheRequiredNames
+--- PASS: TestModelObjectSchemaSortsOnlyTheRequiredNames (0.00s)

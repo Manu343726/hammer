@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderCarriesARepeatableOperationIntoTheTool
+--- PASS: TestCovRenderCarriesARepeatableOperationIntoTheTool (0.00s)

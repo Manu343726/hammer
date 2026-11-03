@@ -1,0 +1,2 @@
+=== RUN   TestAnUnreachableEndpointIsReported
+--- PASS: TestAnUnreachableEndpointIsReported (0.00s)

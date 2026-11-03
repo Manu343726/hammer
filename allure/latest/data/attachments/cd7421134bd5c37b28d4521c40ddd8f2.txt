@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentRejectsUnusableDocuments
+--- PASS: TestParseDocumentRejectsUnusableDocuments (0.00s)

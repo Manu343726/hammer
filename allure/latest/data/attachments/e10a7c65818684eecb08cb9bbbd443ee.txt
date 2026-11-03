@@ -1,0 +1,2 @@
+=== RUN   TestAServiceNamedAfterItsCommandIsFlattened
+--- PASS: TestAServiceNamedAfterItsCommandIsFlattened (0.00s)

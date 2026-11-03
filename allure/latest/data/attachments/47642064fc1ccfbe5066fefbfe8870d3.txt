@@ -1,0 +1,2 @@
+=== RUN   TestACommentBecomesAMethodsDescription
+--- PASS: TestACommentBecomesAMethodsDescription (0.00s)

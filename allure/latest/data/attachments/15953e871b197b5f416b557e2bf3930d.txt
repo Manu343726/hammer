@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectAllOfFoldsEveryKeyword
+--- PASS: TestCovDefectAllOfFoldsEveryKeyword (0.01s)

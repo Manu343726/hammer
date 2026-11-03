@@ -1,0 +1,2 @@
+=== RUN   TestRenderUsesTheDescriptionForInstructions
+--- PASS: TestRenderUsesTheDescriptionForInstructions (0.00s)

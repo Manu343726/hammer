@@ -1,2 +1,0 @@
-=== RUN   TestADescriptionWithNoServerNeedsOne
---- PASS: TestADescriptionWithNoServerNeedsOne (0.00s)

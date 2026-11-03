@@ -1,0 +1,2 @@
+=== RUN   TestAVersionDoesNotEndASentence
+--- PASS: TestAVersionDoesNotEndASentence (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationValidateRejectsWhatCannotBeInvoked/parameter_without_a_location
+--- PASS: TestModelOperationValidateRejectsWhatCannotBeInvoked/parameter_without_a_location (0.00s)

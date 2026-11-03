@@ -1,0 +1,2 @@
+=== RUN   TestCompilingASourceNobodyRegisteredIsRefused
+--- PASS: TestCompilingASourceNobodyRegisteredIsRefused (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestTheRootCommandNameHasAWireWordFallback
+--- PASS: TestTheRootCommandNameHasAWireWordFallback (0.00s)

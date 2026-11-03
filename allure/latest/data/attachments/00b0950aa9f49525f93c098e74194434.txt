@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/an_empty_path_parameter
+--- PASS: TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/an_empty_path_parameter (0.00s)

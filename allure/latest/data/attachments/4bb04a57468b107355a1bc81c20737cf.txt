@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme/http_bearer
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme/http_bearer (0.00s)

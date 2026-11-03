@@ -1,2 +1,0 @@
-=== RUN   TestADocumentationRequestWithoutTheTargetFieldIsReported
---- PASS: TestADocumentationRequestWithoutTheTargetFieldIsReported (0.01s)

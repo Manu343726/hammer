@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorClaimsBothFormats
+--- PASS: TestDescriptorClaimsBothFormats (0.00s)

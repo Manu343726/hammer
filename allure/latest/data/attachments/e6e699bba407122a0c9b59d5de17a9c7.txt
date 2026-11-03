@@ -1,2 +1,0 @@
-=== RUN   TestCovTunnelRefusesAnOversizedBody
---- PASS: TestCovTunnelRefusesAnOversizedBody (0.77s)

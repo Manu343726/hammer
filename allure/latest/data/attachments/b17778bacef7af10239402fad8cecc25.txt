@@ -1,2 +1,0 @@
-=== RUN   TestCovServedSurfaceAnswersOnlyItsOwnRoutes
---- PASS: TestCovServedSurfaceAnswersOnlyItsOwnRoutes (0.01s)

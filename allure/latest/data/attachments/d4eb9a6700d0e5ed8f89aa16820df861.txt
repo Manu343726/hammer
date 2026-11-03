@@ -1,2 +1,0 @@
-=== RUN   TestAReflectedClientCanReadAContractItWasNeverTold
---- PASS: TestAReflectedClientCanReadAContractItWasNeverTold (0.01s)

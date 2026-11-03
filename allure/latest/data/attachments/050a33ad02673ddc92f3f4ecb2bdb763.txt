@@ -1,2 +1,0 @@
-=== RUN   TestManifestIsTheDocumentAReaderInspects
---- PASS: TestManifestIsTheDocumentAReaderInspects (0.01s)

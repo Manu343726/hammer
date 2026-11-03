@@ -1,0 +1,2 @@
+=== RUN   TestNewNormalizesEndpoint
+--- PASS: TestNewNormalizesEndpoint (0.00s)

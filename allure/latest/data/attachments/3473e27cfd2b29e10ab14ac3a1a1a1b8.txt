@@ -1,0 +1,2 @@
+=== RUN   ExampleClient_DescribeService
+--- PASS: ExampleClient_DescribeService (0.01s)

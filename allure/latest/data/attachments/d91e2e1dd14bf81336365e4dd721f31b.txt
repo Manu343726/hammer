@@ -1,0 +1,2 @@
+=== RUN   TestAnEnumeratedFlagListsItsValues
+--- PASS: TestAnEnumeratedFlagListsItsValues (0.00s)

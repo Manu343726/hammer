@@ -1,0 +1,2 @@
+=== RUN   TestServerNormalizeAppliesDefaults
+--- PASS: TestServerNormalizeAppliesDefaults (0.00s)

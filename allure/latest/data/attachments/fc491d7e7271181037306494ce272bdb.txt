@@ -1,2 +1,0 @@
-=== RUN   TestDescribeWarnsAboutUndocumentedTools
---- PASS: TestDescribeWarnsAboutUndocumentedTools (0.01s)

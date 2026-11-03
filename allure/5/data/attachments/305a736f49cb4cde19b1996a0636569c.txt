@@ -1,0 +1,2 @@
+=== RUN   TestMatrix/openapi-to-grpc
+--- PASS: TestMatrix/openapi-to-grpc (0.03s)

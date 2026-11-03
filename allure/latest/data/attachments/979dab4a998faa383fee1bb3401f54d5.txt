@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderSpellsAFieldNameProtobufCanDeclare
+--- PASS: TestCoverRenderSpellsAFieldNameProtobufCanDeclare (0.00s)

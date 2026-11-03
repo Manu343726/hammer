@@ -1,0 +1,2 @@
+=== RUN   TestAWildcardMatchesOneSegmentAndNoMore
+--- PASS: TestAWildcardMatchesOneSegmentAndNoMore (0.00s)

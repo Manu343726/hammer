@@ -1,0 +1,2 @@
+=== RUN   TestEveryOperationBecomesACommand
+--- PASS: TestEveryOperationBecomesACommand (0.00s)

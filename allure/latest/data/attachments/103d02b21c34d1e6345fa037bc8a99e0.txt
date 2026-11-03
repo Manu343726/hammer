@@ -1,0 +1,2 @@
+=== RUN   TestAFlagWithNoNameIsNotAFlag
+--- PASS: TestAFlagWithNoNameIsNotAFlag (0.00s)

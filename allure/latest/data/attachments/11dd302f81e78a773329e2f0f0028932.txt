@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/write-openapi-adapter-openapi
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/write-openapi-adapter-openapi (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderDerivesTheHTTPMappingItHasToInvent
+--- PASS: TestCovRenderDerivesTheHTTPMappingItHasToInvent (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverInvokeReportsARequestThatDoesNotMatchTheMethod
+--- PASS: TestCoverInvokeReportsARequestThatDoesNotMatchTheMethod (0.03s)

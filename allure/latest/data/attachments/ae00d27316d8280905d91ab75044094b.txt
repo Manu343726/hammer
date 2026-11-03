@@ -1,2 +1,0 @@
-=== RUN   TestMatrix/grpc-to-mcp
---- PASS: TestMatrix/grpc-to-mcp (0.01s)

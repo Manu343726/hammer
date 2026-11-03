@@ -1,0 +1,2 @@
+=== RUN   TestAnEndpointWithNoReflectionIsReportedNotSilentlyEmpty
+--- PASS: TestAnEndpointWithNoReflectionIsReportedNotSilentlyEmpty (0.00s)

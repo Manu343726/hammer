@@ -1,0 +1,2 @@
+=== RUN   TestModelAnnotateOperationIDsTrimsTheNamesItBuildsFrom
+--- PASS: TestModelAnnotateOperationIDsTrimsTheNamesItBuildsFrom (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestANestedMemberIsReadFromTheConfigurationFile
---- PASS: TestANestedMemberIsReadFromTheConfigurationFile (0.01s)

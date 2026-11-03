@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme/api_key_in_query
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme/api_key_in_query (0.00s)

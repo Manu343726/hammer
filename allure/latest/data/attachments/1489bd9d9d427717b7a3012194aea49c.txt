@@ -1,0 +1,2 @@
+=== RUN   TestTheTerminalWidthIsBounded
+--- PASS: TestTheTerminalWidthIsBounded (0.00s)

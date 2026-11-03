@@ -1,0 +1,2 @@
+=== RUN   TestANestedObjectStopsBeingFlattenedAtABound
+--- PASS: TestANestedObjectStopsBeingFlattenedAtABound (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestEndpointDescriptionCarriesSideEffectsToo
---- PASS: TestEndpointDescriptionCarriesSideEffectsToo (0.03s)

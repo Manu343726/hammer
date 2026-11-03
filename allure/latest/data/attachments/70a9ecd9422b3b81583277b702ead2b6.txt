@@ -1,2 +1,0 @@
-=== RUN   TestHelpOnTheDiagnosticStreamIsRead
---- PASS: TestHelpOnTheDiagnosticStreamIsRead (0.01s)

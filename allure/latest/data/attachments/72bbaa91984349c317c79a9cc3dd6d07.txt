@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderNamesAToolWithOnlyTheCharactersTheProtocolAllows
+--- PASS: TestCovRenderNamesAToolWithOnlyTheCharactersTheProtocolAllows (0.00s)

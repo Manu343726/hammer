@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/minLength/json_number
+--- PASS: TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/minLength/json_number (0.00s)

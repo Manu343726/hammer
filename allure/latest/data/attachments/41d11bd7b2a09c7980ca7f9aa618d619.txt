@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractDeclaresAReferencedShapeOnce
+--- PASS: TestRenderedContractDeclaresAReferencedShapeOnce (0.00s)

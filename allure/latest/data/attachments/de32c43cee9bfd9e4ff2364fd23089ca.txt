@@ -1,0 +1,2 @@
+=== RUN   TestAStreamThatCannotBeReadIsAnError
+--- PASS: TestAStreamThatCannotBeReadIsAnError (0.00s)

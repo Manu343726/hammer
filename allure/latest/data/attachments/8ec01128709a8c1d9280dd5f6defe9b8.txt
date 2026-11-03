@@ -1,2 +1,0 @@
-=== RUN   TestAnEmptyDocumentationAnswerIsReported
---- PASS: TestAnEmptyDocumentationAnswerIsReported (0.02s)

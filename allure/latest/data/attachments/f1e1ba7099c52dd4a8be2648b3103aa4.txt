@@ -1,2 +1,0 @@
-=== RUN   TestCovInvokeBoundsTheResponseItReads
---- PASS: TestCovInvokeBoundsTheResponseItReads (0.33s)

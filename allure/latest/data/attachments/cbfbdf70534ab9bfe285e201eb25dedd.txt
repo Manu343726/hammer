@@ -1,0 +1,2 @@
+=== RUN   TestTheCacheIsClearedOnRequest
+--- PASS: TestTheCacheIsClearedOnRequest (0.02s)

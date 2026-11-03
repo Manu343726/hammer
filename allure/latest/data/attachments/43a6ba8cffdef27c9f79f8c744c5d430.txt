@@ -1,0 +1,2 @@
+=== RUN   TestABooleanFlagHasNoTypeWord
+--- PASS: TestABooleanFlagHasNoTypeWord (0.00s)

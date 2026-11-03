@@ -1,0 +1,2 @@
+=== RUN   TestASummaryIsAWholeSentence
+--- PASS: TestASummaryIsAWholeSentence (0.00s)

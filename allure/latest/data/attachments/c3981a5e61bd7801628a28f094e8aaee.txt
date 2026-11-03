@@ -1,2 +1,0 @@
-=== RUN   TestAReflectedSchemaIsACopyTheCallerCannotCorrupt
---- PASS: TestAReflectedSchemaIsACopyTheCallerCannotCorrupt (0.02s)

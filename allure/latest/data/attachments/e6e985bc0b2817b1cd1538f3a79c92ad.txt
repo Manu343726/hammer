@@ -1,0 +1,2 @@
+=== RUN   TestDocumentedFileOfNothingIsNothing
+--- PASS: TestDocumentedFileOfNothingIsNothing (0.00s)

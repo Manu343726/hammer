@@ -1,0 +1,2 @@
+=== RUN   TestSchemaFromJSONSchemaReadsAlternatives
+--- PASS: TestSchemaFromJSONSchemaReadsAlternatives (0.00s)

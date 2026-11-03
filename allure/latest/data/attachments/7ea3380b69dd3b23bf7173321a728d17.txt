@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_parameter_that_travels_in_the_body
+--- PASS: TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_parameter_that_travels_in_the_body (0.00s)

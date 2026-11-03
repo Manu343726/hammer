@@ -1,0 +1,2 @@
+=== RUN   TestASentenceEndingInAColonIsNotAGroupTitle
+--- PASS: TestASentenceEndingInAColonIsNotAGroupTitle (0.00s)

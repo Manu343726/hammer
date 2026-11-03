@@ -1,0 +1,2 @@
+=== RUN   TestCovParseKeepsTagOrderAndSkipsAnUnnamedTag
+--- PASS: TestCovParseKeepsTagOrderAndSkipsAnUnnamedTag (0.00s)

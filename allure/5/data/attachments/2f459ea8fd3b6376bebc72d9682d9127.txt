@@ -1,0 +1,2 @@
+=== RUN   TestACancellationMidWalkStopsTheWalk
+--- PASS: TestACancellationMidWalkStopsTheWalk (0.02s)

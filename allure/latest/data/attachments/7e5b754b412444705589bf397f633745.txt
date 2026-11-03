@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationCloneCopiesEveryPartACallerCanEdit
+--- PASS: TestModelOperationCloneCopiesEveryPartACallerCanEdit (0.00s)

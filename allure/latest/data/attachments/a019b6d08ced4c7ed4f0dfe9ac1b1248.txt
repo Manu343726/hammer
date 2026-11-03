@@ -1,0 +1,2 @@
+=== RUN   ExampleErrorKind
+--- PASS: ExampleErrorKind (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAListForAFlagThatTakesOneValueIsRefused
+--- PASS: TestAListForAFlagThatTakesOneValueIsRefused (0.00s)

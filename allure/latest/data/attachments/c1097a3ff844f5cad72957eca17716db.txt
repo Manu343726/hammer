@@ -1,0 +1,2 @@
+=== RUN   TestModelStreamingIsTrueInEitherDirection
+--- PASS: TestModelStreamingIsTrueInEitherDirection (0.00s)

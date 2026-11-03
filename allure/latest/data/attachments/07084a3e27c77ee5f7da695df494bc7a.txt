@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorReadsContractFromDescriptorSet
+--- PASS: TestDescriptorReadsContractFromDescriptorSet (0.00s)

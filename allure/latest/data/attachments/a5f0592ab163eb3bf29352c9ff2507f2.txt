@@ -1,0 +1,2 @@
+=== RUN   TestRenderOffersEveryDeclaredOperation
+--- PASS: TestRenderOffersEveryDeclaredOperation (0.00s)

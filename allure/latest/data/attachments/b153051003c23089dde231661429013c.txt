@@ -1,0 +1,2 @@
+=== RUN   TestThePackageDescribesItsOwnClaim
+--- PASS: TestThePackageDescribesItsOwnClaim (0.00s)

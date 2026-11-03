@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/document_declaring_an_array_without_items
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/document_declaring_an_array_without_items (0.00s)

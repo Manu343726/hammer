@@ -1,0 +1,2 @@
+=== RUN   TestModelServerNormalizeRefusesAnAbsentServer
+--- PASS: TestModelServerNormalizeRefusesAnAbsentServer (0.00s)

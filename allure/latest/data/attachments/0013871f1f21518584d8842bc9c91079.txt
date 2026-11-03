@@ -1,0 +1,2 @@
+=== RUN   TestAFlagWithNoDescriptionIsStillAFlag
+--- PASS: TestAFlagWithNoDescriptionIsStillAFlag (0.00s)

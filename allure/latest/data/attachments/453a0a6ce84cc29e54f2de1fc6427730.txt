@@ -1,0 +1,2 @@
+=== RUN   TestTheEnvironmentCannotSetTheTreesOwnFlags
+--- PASS: TestTheEnvironmentCannotSetTheTreesOwnFlags (0.00s)

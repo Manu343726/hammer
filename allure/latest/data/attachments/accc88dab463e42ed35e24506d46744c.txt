@@ -1,0 +1,2 @@
+=== RUN   TestTheFlagColumnIsRead
+--- PASS: TestTheFlagColumnIsRead (0.00s)

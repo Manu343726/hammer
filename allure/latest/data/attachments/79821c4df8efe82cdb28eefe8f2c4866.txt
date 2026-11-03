@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_parameter_in_a_location_this_transport_has_no_place_for
+--- PASS: TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_parameter_in_a_location_this_transport_has_no_place_for (0.00s)
