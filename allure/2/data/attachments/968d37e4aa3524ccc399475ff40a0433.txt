@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeReportsATransportFailureAsUnavailable
+--- PASS: TestCovInvokeReportsATransportFailureAsUnavailable (0.20s)

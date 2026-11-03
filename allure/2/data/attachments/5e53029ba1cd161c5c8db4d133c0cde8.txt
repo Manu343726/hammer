@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderSerializesYAMLWhenAsked
+--- PASS: TestCovRenderSerializesYAMLWhenAsked (0.00s)

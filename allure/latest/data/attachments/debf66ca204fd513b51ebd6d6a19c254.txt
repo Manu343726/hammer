@@ -1,0 +1,2 @@
+=== RUN   TestTheSummaryOfAnEmptyRunIsNotAVerdict
+--- PASS: TestTheSummaryOfAnEmptyRunIsNotAVerdict (0.00s)

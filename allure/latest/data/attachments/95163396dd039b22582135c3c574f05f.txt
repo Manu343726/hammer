@@ -1,0 +1,2 @@
+=== RUN   TestAPageWithNoOperationIsRefused
+--- PASS: TestAPageWithNoOperationIsRefused (0.00s)

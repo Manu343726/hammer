@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribesStreamingOnEitherSide
+--- PASS: TestCoverParseDescribesStreamingOnEitherSide (0.00s)

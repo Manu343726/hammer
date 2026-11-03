@@ -1,0 +1,2 @@
+=== RUN   TestAServiceAndAFieldWithNoCommentAreDocumentedAndEmpty
+--- PASS: TestAServiceAndAFieldWithNoCommentAreDocumentedAndEmpty (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestABinarysHelpCommandIsNotRead
+--- PASS: TestABinarysHelpCommandIsNotRead (0.03s)

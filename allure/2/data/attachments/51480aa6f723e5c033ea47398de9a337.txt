@@ -1,0 +1,2 @@
+=== RUN   TestNormalizeRejectsDuplicateOperations
+--- PASS: TestNormalizeRejectsDuplicateOperations (0.00s)

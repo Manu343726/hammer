@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationValidateRejectsWhatCannotBeInvoked/no_api
+--- PASS: TestModelOperationValidateRejectsWhatCannotBeInvoked/no_api (0.00s)

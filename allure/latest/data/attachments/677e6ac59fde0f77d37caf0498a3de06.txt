@@ -1,0 +1,2 @@
+=== RUN   TestAWordForAValueTheDecoderNeverProduces
+--- PASS: TestAWordForAValueTheDecoderNeverProduces (0.00s)

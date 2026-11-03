@@ -1,0 +1,2 @@
+=== RUN   TestConcurrentDescriptionIsSafe
+--- PASS: TestConcurrentDescriptionIsSafe (0.04s)

@@ -1,0 +1,2 @@
+=== RUN   TestAFlattenedServiceComesBackAsItsService
+--- PASS: TestAFlattenedServiceComesBackAsItsService (0.02s)

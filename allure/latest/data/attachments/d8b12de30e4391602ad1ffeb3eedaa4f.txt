@@ -1,0 +1,2 @@
+=== RUN   TestInvokerUnwrapsABodyArgument
+--- PASS: TestInvokerUnwrapsABodyArgument (0.04s)

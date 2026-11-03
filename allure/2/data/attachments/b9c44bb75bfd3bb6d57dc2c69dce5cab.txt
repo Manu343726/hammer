@@ -1,0 +1,2 @@
+=== RUN   TestModelServiceValidateRejectsWhatCannotBeAddressed
+--- PASS: TestModelServiceValidateRejectsWhatCannotBeAddressed (0.00s)

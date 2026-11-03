@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderSanitizesAServiceNameItCannotDeclare
+--- PASS: TestCoverRenderSanitizesAServiceNameItCannotDeclare (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/array_without_an_element_shape
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/array_without_an_element_shape (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestTextWithNoPageIsRefused
+--- PASS: TestTextWithNoPageIsRefused (0.00s)

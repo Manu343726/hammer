@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseRefusesAMethodWithNoTypes
+--- PASS: TestCoverParseRefusesAMethodWithNoTypes (0.00s)

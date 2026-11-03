@@ -1,0 +1,2 @@
+=== RUN   TestNilSchemaRendersPermissiveObject
+--- PASS: TestNilSchemaRendersPermissiveObject (0.00s)

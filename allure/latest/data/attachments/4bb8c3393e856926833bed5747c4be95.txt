@@ -1,0 +1,2 @@
+=== RUN   TestLabelsAreReadAndRefusedLoudly
+--- PASS: TestLabelsAreReadAndRefusedLoudly (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestACallToAnUnknownMethodIsRefused
+--- PASS: TestACallToAnUnknownMethodIsRefused (0.01s)

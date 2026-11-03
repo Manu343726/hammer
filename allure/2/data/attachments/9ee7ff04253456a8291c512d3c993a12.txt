@@ -1,0 +1,2 @@
+=== RUN   TestInvokerRequiresABaseURL
+--- PASS: TestInvokerRequiresABaseURL (0.00s)

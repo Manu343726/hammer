@@ -1,0 +1,2 @@
+=== RUN   TestCovDocumentationPageSurvivesADocumentItCannotRead
+--- PASS: TestCovDocumentationPageSurvivesADocumentItCannotRead (0.00s)

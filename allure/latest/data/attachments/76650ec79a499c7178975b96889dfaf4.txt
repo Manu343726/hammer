@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape (0.00s)

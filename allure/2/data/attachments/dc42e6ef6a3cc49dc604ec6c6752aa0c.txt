@@ -1,0 +1,2 @@
+=== RUN   TestServiceDescriptorRefusesAFileSetItCannotBuild
+--- PASS: TestServiceDescriptorRefusesAFileSetItCannotBuild (0.00s)

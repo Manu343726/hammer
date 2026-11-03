@@ -1,0 +1,2 @@
+=== RUN   TestAContractErrorRendersItsParts
+--- PASS: TestAContractErrorRendersItsParts (0.00s)

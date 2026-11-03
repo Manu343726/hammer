@@ -1,0 +1,2 @@
+=== RUN   TestTheEnvironmentIsReadForTheCommandThatRuns
+--- PASS: TestTheEnvironmentIsReadForTheCommandThatRuns (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestExecuteWithoutATreeFails
+--- PASS: TestExecuteWithoutATreeFails (0.00s)

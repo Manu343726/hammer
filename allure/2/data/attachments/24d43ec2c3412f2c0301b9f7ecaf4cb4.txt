@@ -1,0 +1,2 @@
+=== RUN   TestAContractEmptyPolicyIsQueryable
+--- PASS: TestAContractEmptyPolicyIsQueryable (0.00s)

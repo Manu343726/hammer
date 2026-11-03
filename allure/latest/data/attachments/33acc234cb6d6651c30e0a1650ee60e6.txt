@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme (0.01s)

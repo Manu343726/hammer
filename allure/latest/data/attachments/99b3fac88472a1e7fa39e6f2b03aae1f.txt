@@ -1,0 +1,2 @@
+=== RUN   TestConnectDescriptorDescribesTheSameContract
+--- PASS: TestConnectDescriptorDescribesTheSameContract (0.00s)

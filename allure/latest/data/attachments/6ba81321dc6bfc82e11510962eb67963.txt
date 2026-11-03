@@ -1,0 +1,2 @@
+=== RUN   TestCoverInvokeReportsAServiceTheEndpointDoesNotDescribe
+--- PASS: TestCoverInvokeReportsAServiceTheEndpointDoesNotDescribe (0.01s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/duplicate_service_name
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/duplicate_service_name (0.00s)

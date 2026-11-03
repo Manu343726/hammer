@@ -1,0 +1,2 @@
+=== RUN   TestCloningNothingAnswersNothing
+--- PASS: TestCloningNothingAnswersNothing (0.00s)

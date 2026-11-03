@@ -1,0 +1,2 @@
+=== RUN   TestCoverExamplesDocumentWhatThePackageClaims
+--- PASS: TestCoverExamplesDocumentWhatThePackageClaims (0.00s)

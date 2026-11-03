@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyBodyDocumentIsStillSent
+--- PASS: TestAnEmptyBodyDocumentIsStillSent (0.00s)

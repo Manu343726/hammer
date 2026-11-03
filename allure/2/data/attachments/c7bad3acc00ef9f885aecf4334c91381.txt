@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/operation_id_that_is_not_derivable
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/operation_id_that_is_not_derivable (0.00s)

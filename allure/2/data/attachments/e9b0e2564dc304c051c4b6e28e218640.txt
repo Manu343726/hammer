@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternReportsHowSpecificItIs/_knowledge/**_
+--- PASS: TestModelPatternReportsHowSpecificItIs/_knowledge/**_ (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaIgnoresAlternativesItCannotRead
+--- PASS: TestModelSchemaFromJSONSchemaIgnoresAlternativesItCannotRead (0.00s)

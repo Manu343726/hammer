@@ -1,0 +1,2 @@
+=== RUN   TestConcurrentRegistrationAndLookupIsSafe
+--- PASS: TestConcurrentRegistrationAndLookupIsSafe (0.00s)

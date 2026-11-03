@@ -1,0 +1,2 @@
+=== RUN   TestRenderRefusesADescriptionWithNothingToOffer
+--- PASS: TestRenderRefusesADescriptionWithNothingToOffer (0.00s)

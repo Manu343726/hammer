@@ -1,0 +1,2 @@
+=== RUN   TestEveryOutcomeIsRecordedAsItself
+--- PASS: TestEveryOutcomeIsRecordedAsItself (0.00s)

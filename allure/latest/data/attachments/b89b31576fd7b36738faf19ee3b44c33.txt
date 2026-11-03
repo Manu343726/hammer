@@ -1,0 +1,2 @@
+=== RUN   TestAMemberFlagWinsOverTheDocumentItBelongsTo
+--- PASS: TestAMemberFlagWinsOverTheDocumentItBelongsTo (0.00s)

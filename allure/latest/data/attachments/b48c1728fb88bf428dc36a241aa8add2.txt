@@ -1,0 +1,2 @@
+=== RUN   TestANarrowerDocumentationModelIsStillReadable
+--- PASS: TestANarrowerDocumentationModelIsStillReadable (0.02s)

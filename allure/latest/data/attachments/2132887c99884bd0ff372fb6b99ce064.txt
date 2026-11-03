@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeReportsAnUnknownToolAndReconnects
+--- PASS: TestCovInvokeReportsAnUnknownToolAndReconnects (0.03s)

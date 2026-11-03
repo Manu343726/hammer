@@ -1,0 +1,2 @@
+=== RUN   TestCovSurfacesListAndStopTheirInstances
+--- PASS: TestCovSurfacesListAndStopTheirInstances (0.00s)

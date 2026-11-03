@@ -1,0 +1,2 @@
+=== RUN   TestADescriptorSetDocumentsEveryServiceItCarries
+--- PASS: TestADescriptorSetDocumentsEveryServiceItCarries (0.00s)

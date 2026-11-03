@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyPolicyRefusesEverything
+--- PASS: TestAnEmptyPolicyRefusesEverything (0.00s)

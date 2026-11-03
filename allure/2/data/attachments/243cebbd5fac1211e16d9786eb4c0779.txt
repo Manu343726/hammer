@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/write-protocontract-adapter-connect
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/write-protocontract-adapter-connect (0.01s)

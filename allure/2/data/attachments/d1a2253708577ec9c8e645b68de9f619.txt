@@ -1,0 +1,2 @@
+=== RUN   TestHelpTextWithoutATreeIsRefused
+--- PASS: TestHelpTextWithoutATreeIsRefused (0.00s)

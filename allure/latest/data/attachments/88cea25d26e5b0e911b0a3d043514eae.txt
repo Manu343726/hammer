@@ -1,0 +1,2 @@
+=== RUN   TestADocumentationServiceWithoutTheMethodIsReported
+--- PASS: TestADocumentationServiceWithoutTheMethodIsReported (0.01s)

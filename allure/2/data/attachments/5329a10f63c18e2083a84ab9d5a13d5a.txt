@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderTypesAParameterThatDeclaresNoShape
+--- PASS: TestCovRenderTypesAParameterThatDeclaresNoShape (0.00s)

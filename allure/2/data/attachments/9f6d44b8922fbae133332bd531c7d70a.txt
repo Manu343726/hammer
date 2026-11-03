@@ -1,0 +1,2 @@
+=== RUN   TestMatrix/openapi-to-openapi
+--- PASS: TestMatrix/openapi-to-openapi (0.02s)

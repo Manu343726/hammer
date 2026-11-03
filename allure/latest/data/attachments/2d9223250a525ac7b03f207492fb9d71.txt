@@ -1,0 +1,2 @@
+=== RUN   ExampleErrorf
+--- PASS: ExampleErrorf (0.00s)

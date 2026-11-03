@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternRefusesAMeaninglessPattern/empty
+--- PASS: TestModelPatternRefusesAMeaninglessPattern/empty (0.00s)

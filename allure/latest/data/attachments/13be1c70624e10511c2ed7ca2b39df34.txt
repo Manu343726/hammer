@@ -1,0 +1,2 @@
+=== RUN   TestAnArrayOfObjectsIsOneJSONValue
+--- PASS: TestAnArrayOfObjectsIsOneJSONValue (0.00s)

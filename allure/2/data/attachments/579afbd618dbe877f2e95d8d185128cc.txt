@@ -1,0 +1,2 @@
+=== RUN   TestIndentedProseIsStillProse
+--- PASS: TestIndentedProseIsStillProse (0.00s)

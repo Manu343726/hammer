@@ -1,0 +1,2 @@
+=== RUN   TestAnnotationsDeclaredByTheContractReachTheCaller
+--- PASS: TestAnnotationsDeclaredByTheContractReachTheCaller (0.00s)

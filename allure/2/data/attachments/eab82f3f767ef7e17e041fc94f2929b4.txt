@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentLeavesAnUndeclaredEffectToTheHTTPMethod
+--- PASS: TestParseDocumentLeavesAnUndeclaredEffectToTheHTTPMethod (0.00s)

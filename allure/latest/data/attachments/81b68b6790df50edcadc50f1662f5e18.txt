@@ -1,0 +1,2 @@
+=== RUN   TestAMemberOfAPresentObjectIsRequired
+--- PASS: TestAMemberOfAPresentObjectIsRequired (0.00s)

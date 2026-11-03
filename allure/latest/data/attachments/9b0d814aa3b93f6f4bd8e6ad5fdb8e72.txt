@@ -1,0 +1,2 @@
+=== RUN   TestCoverFormatHandlesBothProtocols
+--- PASS: TestCoverFormatHandlesBothProtocols (0.00s)

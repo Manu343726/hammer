@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRefusesANonUnaryOperation
+--- PASS: TestCovInvokeRefusesANonUnaryOperation (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestConfigValuesRendersEveryShapeASourceCanState
+--- PASS: TestConfigValuesRendersEveryShapeASourceCanState (0.00s)

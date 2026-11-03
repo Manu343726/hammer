@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorSetLeavesAnUnannotatedMethodUnclassified
+--- PASS: TestDescriptorSetLeavesAnUnannotatedMethodUnclassified (0.00s)

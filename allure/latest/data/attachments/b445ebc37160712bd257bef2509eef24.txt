@@ -1,0 +1,2 @@
+=== RUN   TestSideEffectsReadsTheDeclaredVocabulary
+--- PASS: TestSideEffectsReadsTheDeclaredVocabulary (0.00s)

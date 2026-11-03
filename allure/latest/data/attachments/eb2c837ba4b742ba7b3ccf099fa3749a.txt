@@ -1,0 +1,2 @@
+=== RUN   TestAServiceWithNoWordIsNotALevel
+--- PASS: TestAServiceWithNoWordIsNotALevel (0.00s)

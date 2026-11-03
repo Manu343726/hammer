@@ -1,0 +1,2 @@
+=== RUN   TestDescribeDocumentKeepsTheManifestFindings
+--- PASS: TestDescribeDocumentKeepsTheManifestFindings (0.00s)

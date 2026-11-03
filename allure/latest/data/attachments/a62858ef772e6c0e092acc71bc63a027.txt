@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/two_operations_sharing_one_identifier
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/two_operations_sharing_one_identifier (0.00s)

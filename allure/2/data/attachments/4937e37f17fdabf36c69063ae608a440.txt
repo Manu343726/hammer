@@ -1,0 +1,2 @@
+=== RUN   TestCovServeReportsADuplicateRouteAndServesTheFirst
+--- PASS: TestCovServeReportsADuplicateRouteAndServesTheFirst (0.00s)

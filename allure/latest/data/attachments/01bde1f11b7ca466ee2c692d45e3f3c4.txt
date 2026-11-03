@@ -1,0 +1,2 @@
+=== RUN   TestRenderPublishesTheArtifactTheCallerAskedFor
+--- PASS: TestRenderPublishesTheArtifactTheCallerAskedFor (0.03s)

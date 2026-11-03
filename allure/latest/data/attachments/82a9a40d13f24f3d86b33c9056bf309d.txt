@@ -1,0 +1,2 @@
+=== RUN   TestAGroupPageStatesItsSideEffects
+--- PASS: TestAGroupPageStatesItsSideEffects (0.00s)

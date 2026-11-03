@@ -1,0 +1,2 @@
+=== RUN   TestCovParseTreatsANonLocalSchemaReferenceAsFreeForm
+--- PASS: TestCovParseTreatsANonLocalSchemaReferenceAsFreeForm (0.00s)

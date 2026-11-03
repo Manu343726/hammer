@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/required_property_not_declared
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/required_property_not_declared (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/write-protocontract-adapter-grpc
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/write-protocontract-adapter-grpc (0.01s)

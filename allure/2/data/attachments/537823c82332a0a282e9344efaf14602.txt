@@ -1,0 +1,2 @@
+=== RUN   TestParameterRequiresALocation
+--- PASS: TestParameterRequiresALocation (0.00s)

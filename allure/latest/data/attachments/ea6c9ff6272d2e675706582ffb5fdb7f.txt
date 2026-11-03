@@ -1,0 +1,2 @@
+=== RUN   TestTheWalkReadsNothingWhenItsCommandBoundIsAlreadyReached
+--- PASS: TestTheWalkReadsNothingWhenItsCommandBoundIsAlreadyReached (0.00s)

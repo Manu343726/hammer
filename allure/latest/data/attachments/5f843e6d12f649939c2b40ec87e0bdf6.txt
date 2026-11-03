@@ -1,0 +1,2 @@
+=== RUN   TestStreamingIsReportedFromTheContractNotGuessed
+--- PASS: TestStreamingIsReportedFromTheContractNotGuessed (0.00s)

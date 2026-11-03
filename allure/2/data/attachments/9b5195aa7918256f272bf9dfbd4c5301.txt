@@ -1,0 +1,2 @@
+=== RUN   TestFormatDescriptorDescribesTheFormat
+--- PASS: TestFormatDescriptorDescribesTheFormat (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestEqualSpecificityKeepsTheOrderRulesWereWritten
+--- PASS: TestEqualSpecificityKeepsTheOrderRulesWereWritten (0.00s)

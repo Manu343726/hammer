@@ -1,0 +1,2 @@
+=== RUN   TestBlankLinesInsideExamplesStayInsideTheExamples
+--- PASS: TestBlankLinesInsideExamplesStayInsideTheExamples (0.00s)

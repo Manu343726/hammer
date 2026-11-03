@@ -1,0 +1,2 @@
+=== RUN   TestAContractPolicyNeverMatchesAnEmptyIdentifier
+--- PASS: TestAContractPolicyNeverMatchesAnEmptyIdentifier (0.00s)

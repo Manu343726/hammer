@@ -1,0 +1,2 @@
+=== RUN   TestARequestThatCannotBeEncodedIsRefused
+--- PASS: TestARequestThatCannotBeEncodedIsRefused (0.01s)

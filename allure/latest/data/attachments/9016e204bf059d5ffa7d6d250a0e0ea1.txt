@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/unnamed_property
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/unnamed_property (0.00s)

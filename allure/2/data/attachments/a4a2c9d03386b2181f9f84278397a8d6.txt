@@ -1,0 +1,2 @@
+=== RUN   TestAddGlobalRegistryWalksEveryLinkedFile
+--- PASS: TestAddGlobalRegistryWalksEveryLinkedFile (0.00s)

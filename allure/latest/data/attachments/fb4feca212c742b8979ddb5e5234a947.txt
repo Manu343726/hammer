@@ -1,0 +1,2 @@
+=== RUN   TestAFailureKeepsItsClassification
+--- PASS: TestAFailureKeepsItsClassification (0.00s)

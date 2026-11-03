@@ -1,0 +1,2 @@
+=== RUN   TestAContractPolicyTextIsTheDocumentAReaderParses
+--- PASS: TestAContractPolicyTextIsTheDocumentAReaderParses (0.00s)

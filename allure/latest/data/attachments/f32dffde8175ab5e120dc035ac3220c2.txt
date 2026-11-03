@@ -1,0 +1,2 @@
+=== RUN   TestServedSurfaceServesDocumentationWithoutAConfiguredUI
+--- PASS: TestServedSurfaceServesDocumentationWithoutAConfiguredUI (0.01s)

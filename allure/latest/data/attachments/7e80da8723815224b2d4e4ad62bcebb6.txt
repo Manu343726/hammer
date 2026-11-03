@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationValidateRejectsWhatCannotBeInvoked/duplicate_parameter
+--- PASS: TestModelOperationValidateRejectsWhatCannotBeInvoked/duplicate_parameter (0.00s)

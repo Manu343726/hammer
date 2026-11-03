@@ -1,0 +1,2 @@
+=== RUN   TestTheConfigurationPrecedenceIsFlagsThenEnvThenFileThenDefault
+--- PASS: TestTheConfigurationPrecedenceIsFlagsThenEnvThenFileThenDefault (0.01s)

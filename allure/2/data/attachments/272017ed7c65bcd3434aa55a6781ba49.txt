@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/read-openapi-parser-openapi
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/read-openapi-parser-openapi (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/write-mcp-adapter-mcp
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/write-mcp-adapter-mcp (0.00s)

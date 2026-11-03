@@ -1,0 +1,2 @@
+=== RUN   TestARequestThatCannotBeDecodedIntoTheReflectedTypeIsRefused
+--- PASS: TestARequestThatCannotBeDecodedIntoTheReflectedTypeIsRefused (0.01s)

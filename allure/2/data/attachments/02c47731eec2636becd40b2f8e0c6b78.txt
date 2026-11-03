@@ -1,0 +1,2 @@
+=== RUN   TestCovDescribeDocumentKeepsEveryDeclaredConsequenceInOrder
+--- PASS: TestCovDescribeDocumentKeepsEveryDeclaredConsequenceInOrder (0.00s)

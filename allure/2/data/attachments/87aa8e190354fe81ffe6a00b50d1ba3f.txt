@@ -1,0 +1,2 @@
+=== RUN   TestCovScalarHelpersSurviveANodeTheyCannotDecode
+--- PASS: TestCovScalarHelpersSurviveANodeTheyCannotDecode (0.00s)

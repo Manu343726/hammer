@@ -1,0 +1,2 @@
+=== RUN   TestAnUnambiguousNameIsNotLengthened
+--- PASS: TestAnUnambiguousNameIsNotLengthened (0.00s)

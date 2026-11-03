@@ -1,0 +1,2 @@
+=== RUN   TestAReadOnlyMemberOfANestedObjectGetsNoFlag
+--- PASS: TestAReadOnlyMemberOfANestedObjectGetsNoFlag (0.00s)

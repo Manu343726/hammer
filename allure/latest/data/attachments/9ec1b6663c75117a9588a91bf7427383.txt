@@ -1,0 +1,2 @@
+=== RUN   TestAPackageThatNeverBuiltAppearsAsABrokenResult
+--- PASS: TestAPackageThatNeverBuiltAppearsAsABrokenResult (0.00s)

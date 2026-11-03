@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRefusesAnOperationThatNamesNoTool
+--- PASS: TestCovInvokeRefusesAnOperationThatNamesNoTool (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAnArrayElementOfTheWrongTypeIsRefusedLocally
+--- PASS: TestAnArrayElementOfTheWrongTypeIsRefusedLocally (0.01s)

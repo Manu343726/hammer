@@ -1,0 +1,2 @@
+=== RUN   TestCovMarshalDocumentReportsAValueItCannotEncode
+--- PASS: TestCovMarshalDocumentReportsAValueItCannotEncode (0.00s)

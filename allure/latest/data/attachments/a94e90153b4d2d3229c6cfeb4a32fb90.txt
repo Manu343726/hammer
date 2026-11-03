@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentResolvesComponentReferences
+--- PASS: TestParseDocumentResolvesComponentReferences (0.02s)

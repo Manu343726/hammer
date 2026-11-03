@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentMergesPathLevelParameters
+--- PASS: TestParseDocumentMergesPathLevelParameters (0.02s)

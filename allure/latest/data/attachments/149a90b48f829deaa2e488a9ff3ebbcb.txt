@@ -1,0 +1,2 @@
+=== RUN   TestSchemaFromJSONSchemaReadsTheKeywordsTheModelCarries
+--- PASS: TestSchemaFromJSONSchemaReadsTheKeywordsTheModelCarries (0.00s)

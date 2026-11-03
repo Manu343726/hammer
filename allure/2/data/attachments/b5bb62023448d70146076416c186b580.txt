@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseRefusesADocumentThatIsNotAFileDescriptorSet
+--- PASS: TestCoverParseRefusesADocumentThatIsNotAFileDescriptorSet (0.00s)

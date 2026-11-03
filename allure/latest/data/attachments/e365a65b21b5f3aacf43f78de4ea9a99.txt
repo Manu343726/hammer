@@ -1,0 +1,2 @@
+=== RUN   TestAdapterReportsUpstreamErrorStatus
+--- PASS: TestAdapterReportsUpstreamErrorStatus (0.00s)

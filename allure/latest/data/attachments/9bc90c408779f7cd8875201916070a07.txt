@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/malformed_json_number
+--- PASS: TestModelSchemaFromJSONSchemaReadsEveryNumberSpelling/malformed_json_number (0.00s)

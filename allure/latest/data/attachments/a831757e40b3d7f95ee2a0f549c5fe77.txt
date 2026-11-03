@@ -1,0 +1,2 @@
+=== RUN   TestTheFlatteningIsBoundedSoARecursiveMessageTerminates
+--- PASS: TestTheFlatteningIsBoundedSoARecursiveMessageTerminates (0.00s)

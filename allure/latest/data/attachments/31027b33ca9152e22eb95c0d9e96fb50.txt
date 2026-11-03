@@ -1,0 +1,2 @@
+=== RUN   TestAdapterBuildsRequestFromOperationAndArguments
+--- PASS: TestAdapterBuildsRequestFromOperationAndArguments (0.00s)

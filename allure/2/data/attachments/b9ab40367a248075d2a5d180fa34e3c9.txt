@@ -1,0 +1,2 @@
+=== RUN   TestCovParseCarriesEverySchemaShape
+--- PASS: TestCovParseCarriesEverySchemaShape (0.00s)

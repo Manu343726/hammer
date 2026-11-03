@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokerCloseWithoutAConversationIsClean
+--- PASS: TestCovInvokerCloseWithoutAConversationIsClean (0.00s)

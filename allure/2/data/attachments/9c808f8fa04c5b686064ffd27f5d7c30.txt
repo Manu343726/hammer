@@ -1,0 +1,2 @@
+=== RUN   TestARepeatedKeyIsReportedOnceAndLookedUpFromTheFirstDeclaration
+--- PASS: TestARepeatedKeyIsReportedOnceAndLookedUpFromTheFirstDeclaration (0.00s)

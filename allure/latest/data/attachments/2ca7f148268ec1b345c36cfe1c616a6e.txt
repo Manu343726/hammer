@@ -1,0 +1,2 @@
+=== RUN   TestABrokenPackageIsReportedAsUnknown
+--- PASS: TestABrokenPackageIsReportedAsUnknown (0.00s)

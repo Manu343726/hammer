@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternRefusesAMeaninglessPattern/rest_in_the_middle
+--- PASS: TestModelPatternRefusesAMeaninglessPattern/rest_in_the_middle (0.00s)

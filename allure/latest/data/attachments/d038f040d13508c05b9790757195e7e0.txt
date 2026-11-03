@@ -1,0 +1,2 @@
+=== RUN   TestAPackageFailureWithAFailingTestDoesNotAddASecondResult
+--- PASS: TestAPackageFailureWithAFailingTestDoesNotAddASecondResult (0.00s)

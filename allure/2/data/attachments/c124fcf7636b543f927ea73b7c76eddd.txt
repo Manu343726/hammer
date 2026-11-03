@@ -1,0 +1,2 @@
+=== RUN   TestExtractOnNothingIsNilRatherThanEmpty
+--- PASS: TestExtractOnNothingIsNilRatherThanEmpty (0.00s)

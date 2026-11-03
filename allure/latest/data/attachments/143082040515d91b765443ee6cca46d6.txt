@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsMalformedPathItems/parameters_are_not_a_list
+--- PASS: TestCovParseRejectsMalformedPathItems/parameters_are_not_a_list (0.00s)

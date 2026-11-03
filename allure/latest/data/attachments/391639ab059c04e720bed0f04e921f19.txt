@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderAcceptsEverySpellingOfATargetSwitch/no
+--- PASS: TestCovRenderAcceptsEverySpellingOfATargetSwitch/no (0.00s)

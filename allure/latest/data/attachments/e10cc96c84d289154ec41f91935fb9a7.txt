@@ -1,0 +1,2 @@
+=== RUN   TestGenerateRefusesToBuildWithoutAnInvoker
+--- PASS: TestGenerateRefusesToBuildWithoutAnInvoker (0.00s)

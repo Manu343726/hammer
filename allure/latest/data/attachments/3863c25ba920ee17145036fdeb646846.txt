@@ -1,0 +1,2 @@
+=== RUN   TestAContractStaticCatalogAnswersWithoutSharingItsState
+--- PASS: TestAContractStaticCatalogAnswersWithoutSharingItsState (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestThereIsNothingToAssembleFromNoPages
+--- PASS: TestThereIsNothingToAssembleFromNoPages (0.00s)

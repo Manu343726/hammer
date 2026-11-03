@@ -1,0 +1,2 @@
+=== RUN   TestAPolicyDocumentRoundTrips
+--- PASS: TestAPolicyDocumentRoundTrips (0.00s)

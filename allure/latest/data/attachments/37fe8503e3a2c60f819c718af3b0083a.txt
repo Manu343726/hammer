@@ -1,0 +1,2 @@
+=== RUN   ExampleNewInvoker
+--- PASS: ExampleNewInvoker (0.00s)

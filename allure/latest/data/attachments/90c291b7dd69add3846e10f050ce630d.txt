@@ -1,0 +1,2 @@
+=== RUN   TestParseDocumentWarnsAboutMissingComponent
+--- PASS: TestParseDocumentWarnsAboutMissingComponent (0.00s)

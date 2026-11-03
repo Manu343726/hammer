@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme/openid_connect
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme/openid_connect (0.00s)

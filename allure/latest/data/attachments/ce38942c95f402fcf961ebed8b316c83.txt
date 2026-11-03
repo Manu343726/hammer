@@ -1,0 +1,2 @@
+=== RUN   TestAContractProseIsAttachedOnlyWhenThereIsSome
+--- PASS: TestAContractProseIsAttachedOnlyWhenThereIsSome (0.00s)

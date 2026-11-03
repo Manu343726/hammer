@@ -1,0 +1,2 @@
+=== RUN   TestEffectClassesTreatUnknownAsItsOwnClass
+--- PASS: TestEffectClassesTreatUnknownAsItsOwnClass (0.00s)

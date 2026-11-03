@@ -1,0 +1,2 @@
+=== RUN   TestTwoServicesWithTheSameWordAreQualifiedByTheAPI
+--- PASS: TestTwoServicesWithTheSameWordAreQualifiedByTheAPI (0.00s)

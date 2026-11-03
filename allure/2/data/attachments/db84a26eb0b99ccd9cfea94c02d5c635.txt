@@ -1,0 +1,2 @@
+=== RUN   TestALookupAnswersTheValuesAKeyDeclared
+--- PASS: TestALookupAnswersTheValuesAKeyDeclared (0.00s)

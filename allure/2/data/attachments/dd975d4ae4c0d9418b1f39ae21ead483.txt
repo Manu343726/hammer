@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractReportsWhatProtobufCannotCarry
+--- PASS: TestRenderedContractReportsWhatProtobufCannotCarry (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectAllOfFoldsTheShapesItCanAndNamesTheOnesItCannot
+--- PASS: TestCovDefectAllOfFoldsTheShapesItCanAndNamesTheOnesItCannot (0.02s)

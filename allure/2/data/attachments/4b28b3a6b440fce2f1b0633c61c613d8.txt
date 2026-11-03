@@ -1,0 +1,2 @@
+=== RUN   TestCoverInvokeCopiesTheClientsItWasGiven
+--- PASS: TestCoverInvokeCopiesTheClientsItWasGiven (0.04s)

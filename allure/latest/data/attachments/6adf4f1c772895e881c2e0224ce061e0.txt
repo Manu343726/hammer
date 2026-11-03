@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseSlugReadsWordBoundariesFromTheName
+--- PASS: TestCoverParseSlugReadsWordBoundariesFromTheName (0.00s)

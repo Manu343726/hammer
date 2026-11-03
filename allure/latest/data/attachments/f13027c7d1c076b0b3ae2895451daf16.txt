@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternReportsHowSpecificItIs
+--- PASS: TestModelPatternReportsHowSpecificItIs (0.00s)

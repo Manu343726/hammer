@@ -1,0 +1,2 @@
+=== RUN   TestAdapterRejectsMissingRequiredParameter
+--- PASS: TestAdapterRejectsMissingRequiredParameter (0.00s)

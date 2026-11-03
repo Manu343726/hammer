@@ -1,0 +1,2 @@
+=== RUN   TestAFlagThatWasNotGivenSendsNothing
+--- PASS: TestAFlagThatWasNotGivenSendsNothing (0.00s)

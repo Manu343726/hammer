@@ -1,0 +1,2 @@
+=== RUN   TestInvokerDescribesALiveEndpointAndCallsIt
+--- PASS: TestInvokerDescribesALiveEndpointAndCallsIt (0.04s)

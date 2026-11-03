@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternMatchNeedsTheArityItWasWrittenWith
+--- PASS: TestModelPatternMatchNeedsTheArityItWasWrittenWith (0.00s)

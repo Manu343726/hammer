@@ -1,0 +1,2 @@
+=== RUN   TestTheRootHelpStatesTheServers
+--- PASS: TestTheRootHelpStatesTheServers (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestTwoInputsWithOneNameAreBothQualified
+--- PASS: TestTwoInputsWithOneNameAreBothQualified (0.00s)

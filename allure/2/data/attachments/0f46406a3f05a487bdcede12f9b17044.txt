@@ -1,0 +1,2 @@
+=== RUN   TestRenderedYAMLIsReadableAndNamedForItsContent
+--- PASS: TestRenderedYAMLIsReadableAndNamedForItsContent (0.00s)

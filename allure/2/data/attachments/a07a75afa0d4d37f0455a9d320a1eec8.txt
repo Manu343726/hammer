@@ -1,0 +1,2 @@
+=== RUN   TestTheCommandReportsAnUnwritableDestination
+--- PASS: TestTheCommandReportsAnUnwritableDestination (0.00s)

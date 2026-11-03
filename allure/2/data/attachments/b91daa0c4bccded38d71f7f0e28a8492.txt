@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeKeepsOnlySignificantAnswerHeaders
+--- PASS: TestCovInvokeKeepsOnlySignificantAnswerHeaders (0.00s)

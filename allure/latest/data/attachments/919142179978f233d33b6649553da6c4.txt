@@ -1,0 +1,2 @@
+=== RUN   TestABinaryOfGroupsOnlyDescribesNoOperation
+--- PASS: TestABinaryOfGroupsOnlyDescribesNoOperation (0.04s)

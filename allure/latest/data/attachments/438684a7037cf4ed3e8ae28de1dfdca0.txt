@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderWrapsValuesAFieldCannotCarry
+--- PASS: TestCoverRenderWrapsValuesAFieldCannotCarry (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestRegisteringTheSameProtoSourceTwiceIsRefused
+--- PASS: TestRegisteringTheSameProtoSourceTwiceIsRefused (0.00s)

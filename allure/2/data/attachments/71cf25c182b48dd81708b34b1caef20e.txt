@@ -1,0 +1,2 @@
+=== RUN   TestCovSchemaDocumentReadsEveryShapeTheProtocolAllows
+--- PASS: TestCovSchemaDocumentReadsEveryShapeTheProtocolAllows (0.00s)

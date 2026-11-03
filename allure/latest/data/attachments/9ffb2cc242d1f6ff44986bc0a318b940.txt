@@ -1,0 +1,2 @@
+=== RUN   TestANestedMemberWithNoNameIsRefused
+--- PASS: TestANestedMemberWithNoNameIsRefused (0.00s)

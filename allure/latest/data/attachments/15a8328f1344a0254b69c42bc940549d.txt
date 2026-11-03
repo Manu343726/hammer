@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractCarriesStreamingOnTheCorrectSide
+--- PASS: TestRenderedContractCarriesStreamingOnTheCorrectSide (0.00s)

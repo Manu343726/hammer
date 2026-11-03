@@ -1,0 +1,2 @@
+=== RUN   TestCovPrimaryDocumentWithoutAPrimaryFile
+--- PASS: TestCovPrimaryDocumentWithoutAPrimaryFile (0.00s)

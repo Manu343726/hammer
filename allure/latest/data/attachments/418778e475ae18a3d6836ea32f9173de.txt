@@ -1,0 +1,2 @@
+=== RUN   ExampleFormats
+--- PASS: ExampleFormats (0.00s)

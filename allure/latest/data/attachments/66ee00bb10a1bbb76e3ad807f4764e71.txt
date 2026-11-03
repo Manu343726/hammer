@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme/api_key_in_cookie
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme/api_key_in_cookie (0.00s)

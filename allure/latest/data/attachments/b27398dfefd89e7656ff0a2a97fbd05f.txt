@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderWritesTheIdentityItHas
+--- PASS: TestCoverRenderWritesTheIdentityItHas (0.00s)

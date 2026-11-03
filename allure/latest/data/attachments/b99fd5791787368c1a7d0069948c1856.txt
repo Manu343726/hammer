@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaFromJSONSchemaTrimsAReference
+--- PASS: TestModelSchemaFromJSONSchemaTrimsAReference (0.00s)

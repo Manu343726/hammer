@@ -1,0 +1,2 @@
+=== RUN   TestAPolicyIsQueryable
+--- PASS: TestAPolicyIsQueryable (0.00s)

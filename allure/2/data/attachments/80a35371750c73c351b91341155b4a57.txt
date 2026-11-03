@@ -1,0 +1,2 @@
+=== RUN   TestAPageWithNoPathStatesNoWord
+--- PASS: TestAPageWithNoPathStatesNoWord (0.00s)

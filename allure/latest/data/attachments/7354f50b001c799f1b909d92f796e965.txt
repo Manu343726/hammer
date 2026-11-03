@@ -1,0 +1,2 @@
+=== RUN   TestDeclaredServersAreReadWithTheirNotes
+--- PASS: TestDeclaredServersAreReadWithTheirNotes (0.00s)

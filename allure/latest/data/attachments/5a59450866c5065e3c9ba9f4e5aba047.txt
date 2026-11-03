@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/read-cli-parser-cli
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/read-cli-parser-cli (0.01s)

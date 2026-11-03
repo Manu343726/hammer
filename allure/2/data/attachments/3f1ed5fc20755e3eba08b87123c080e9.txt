@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/malformed_alternative_of_the_other_kind
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/malformed_alternative_of_the_other_kind (0.00s)

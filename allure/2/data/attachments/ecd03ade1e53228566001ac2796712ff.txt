@@ -1,0 +1,2 @@
+=== RUN   TestAWrappedFlagDescriptionIsOneSentence
+--- PASS: TestAWrappedFlagDescriptionIsOneSentence (0.00s)

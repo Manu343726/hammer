@@ -1,0 +1,2 @@
+=== RUN   TestCoverFormatConnectNamesTheContractItShares
+--- PASS: TestCoverFormatConnectNamesTheContractItShares (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectRenderKeepsItsFindings
+--- PASS: TestCovDefectRenderKeepsItsFindings (0.00s)

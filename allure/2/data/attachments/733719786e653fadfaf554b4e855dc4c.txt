@@ -1,0 +1,2 @@
+=== RUN   TestALineThatIsNotAnEventIsIgnored
+--- PASS: TestALineThatIsNotAnEventIsIgnored (0.00s)

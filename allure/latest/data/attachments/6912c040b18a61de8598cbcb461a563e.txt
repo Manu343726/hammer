@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternRefusesAMeaninglessPattern/wildcard_mixed_with_text
+--- PASS: TestModelPatternRefusesAMeaninglessPattern/wildcard_mixed_with_text (0.00s)

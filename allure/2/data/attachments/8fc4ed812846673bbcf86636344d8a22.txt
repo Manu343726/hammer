@@ -1,0 +1,2 @@
+=== RUN   TestCovMatchSegmentsRejectsAnEmptyParameter
+--- PASS: TestCovMatchSegmentsRejectsAnEmptyParameter (0.00s)

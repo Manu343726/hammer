@@ -1,0 +1,2 @@
+=== RUN   TestAContractExposureMapAnswersOnlyForNamedOperations
+--- PASS: TestAContractExposureMapAnswersOnlyForNamedOperations (0.00s)

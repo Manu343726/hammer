@@ -1,0 +1,2 @@
+=== RUN   TestAnObjectKeepsItsOwnProseWhenItsMembersAreFlags
+--- PASS: TestAnObjectKeepsItsOwnProseWhenItsMembersAreFlags (0.00s)

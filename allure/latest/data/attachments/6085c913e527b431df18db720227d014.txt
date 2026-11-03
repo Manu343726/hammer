@@ -1,0 +1,2 @@
+=== RUN   ExampleProvider
+--- PASS: ExampleProvider (0.00s)

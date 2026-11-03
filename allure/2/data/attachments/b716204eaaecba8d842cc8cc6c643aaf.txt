@@ -1,0 +1,3 @@
+=== RUN   TestExtractionFromAGeneratedDescriptorYieldsStructureWithoutComments
+    extract_test.go:244: no descriptor is linked into this test binary
+--- SKIP: TestExtractionFromAGeneratedDescriptorYieldsStructureWithoutComments (0.00s)

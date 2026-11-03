@@ -1,0 +1,2 @@
+=== RUN   TestCommandnamesComeFromTheDescription
+--- PASS: TestCommandnamesComeFromTheDescription (0.00s)

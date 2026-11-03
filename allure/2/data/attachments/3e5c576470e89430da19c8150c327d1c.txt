@@ -1,0 +1,2 @@
+=== RUN   TestModelAPIValidateRejectsAnUnaddressableDescription/blank_server_id
+--- PASS: TestModelAPIValidateRejectsAnUnaddressableDescription/blank_server_id (0.00s)

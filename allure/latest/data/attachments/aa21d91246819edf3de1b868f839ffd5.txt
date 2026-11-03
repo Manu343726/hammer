@@ -1,0 +1,2 @@
+=== RUN   TestExtractServiceDocumentationFromSourceInfo
+--- PASS: TestExtractServiceDocumentationFromSourceInfo (0.00s)

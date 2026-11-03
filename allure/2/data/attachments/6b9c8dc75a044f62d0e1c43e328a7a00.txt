@@ -1,0 +1,2 @@
+=== RUN   TestCovServeRefusesAnUnusableOriginalServerOrAddress
+--- PASS: TestCovServeRefusesAnUnusableOriginalServerOrAddress (0.00s)

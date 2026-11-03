@@ -1,0 +1,2 @@
+=== RUN   TestAZeroDefaultIsNotADeclaredDefault
+--- PASS: TestAZeroDefaultIsNotADeclaredDefault (0.00s)

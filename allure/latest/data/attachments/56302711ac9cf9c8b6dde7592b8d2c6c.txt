@@ -1,0 +1,2 @@
+=== RUN   TestWithoutConfigurationOptionsNothingIsRead
+--- PASS: TestWithoutConfigurationOptionsNothingIsRead (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestNormalizeKeepsUnknownSideEffectsAndSortsThem
+--- PASS: TestNormalizeKeepsUnknownSideEffectsAndSortsThem (0.00s)

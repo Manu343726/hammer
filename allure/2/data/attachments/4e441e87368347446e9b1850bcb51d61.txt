@@ -1,0 +1,2 @@
+=== RUN   TestAnEndpointWithoutADocumentationServiceIsReported
+--- PASS: TestAnEndpointWithoutADocumentationServiceIsReported (0.01s)

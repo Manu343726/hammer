@@ -1,0 +1,2 @@
+=== RUN   TestCovRegistryRecordsOneProviderPerRole
+--- PASS: TestCovRegistryRecordsOneProviderPerRole (0.00s)

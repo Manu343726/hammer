@@ -1,0 +1,2 @@
+=== RUN   TestListIsOrderedAndIndependentOfTheCatalog
+--- PASS: TestListIsOrderedAndIndependentOfTheCatalog (0.00s)

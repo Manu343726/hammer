@@ -1,0 +1,2 @@
+=== RUN   TestDeprecationIsReadFromThePagesOwnWords
+--- PASS: TestDeprecationIsReadFromThePagesOwnWords (0.00s)

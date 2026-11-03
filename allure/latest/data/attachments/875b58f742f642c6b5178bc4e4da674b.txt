@@ -1,0 +1,2 @@
+=== RUN   TestInvokerPresentsTheIdentityItWasGiven
+--- PASS: TestInvokerPresentsTheIdentityItWasGiven (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeReadsAnEndpointAndRenamesIt
+--- PASS: TestCoverParseDescribeReadsAnEndpointAndRenamesIt (0.02s)

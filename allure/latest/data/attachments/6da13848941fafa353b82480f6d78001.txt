@@ -1,0 +1,2 @@
+=== RUN   TestAPausedAndResumedTestStaysOneResult
+--- PASS: TestAPausedAndResumedTestStaysOneResult (0.00s)

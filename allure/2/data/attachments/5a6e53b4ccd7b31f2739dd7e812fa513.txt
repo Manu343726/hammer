@@ -1,0 +1,2 @@
+=== RUN   TestACommandThatRendersNoHelpIsSkipped
+--- PASS: TestACommandThatRendersNoHelpIsSkipped (0.00s)

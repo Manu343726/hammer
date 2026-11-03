@@ -1,0 +1,2 @@
+=== RUN   TestInvokerRequiresAnEndpoint
+--- PASS: TestInvokerRequiresAnEndpoint (0.00s)

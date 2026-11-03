@@ -1,0 +1,2 @@
+=== RUN   TestTwoCatalogsDoNotSeeEachOther
+--- PASS: TestTwoCatalogsDoNotSeeEachOther (0.00s)

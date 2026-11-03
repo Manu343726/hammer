@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRecordsTheCallersBaseURLWhenTheDocumentDeclaresNone
+--- PASS: TestCovParseRecordsTheCallersBaseURLWhenTheDocumentDeclaresNone (0.00s)

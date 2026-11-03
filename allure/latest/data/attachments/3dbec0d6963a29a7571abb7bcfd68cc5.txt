@@ -1,0 +1,2 @@
+=== RUN   TestADeprecatedCommandIsDescribedFromTheTree
+--- PASS: TestADeprecatedCommandIsDescribedFromTheTree (0.00s)

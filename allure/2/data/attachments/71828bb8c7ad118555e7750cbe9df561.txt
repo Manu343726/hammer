@@ -1,0 +1,2 @@
+=== RUN   ExampleParseAnnotations
+--- PASS: ExampleParseAnnotations (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestTargetAndFormatClaimsAreCaseInsensitive
+--- PASS: TestTargetAndFormatClaimsAreCaseInsensitive (0.00s)

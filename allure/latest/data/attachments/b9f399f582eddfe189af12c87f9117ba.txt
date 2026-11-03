@@ -1,0 +1,2 @@
+=== RUN   TestCovParseDescribesAnOperationWithNoResponses
+--- PASS: TestCovParseDescribesAnOperationWithNoResponses (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectAdditionalPropertiesRefusesWhatIsNeitherForm/a_malformed_shape
+--- PASS: TestCovDefectAdditionalPropertiesRefusesWhatIsNeitherForm/a_malformed_shape (0.00s)

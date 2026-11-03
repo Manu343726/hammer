@@ -1,0 +1,2 @@
+=== RUN   TestRegisteringAProtoSourceThatDoesNotCompilePanics
+--- PASS: TestRegisteringAProtoSourceThatDoesNotCompilePanics (0.00s)

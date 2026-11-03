@@ -1,0 +1,2 @@
+=== RUN   TestAFlagNamedLikeALocationPrefixKeepsItsName
+--- PASS: TestAFlagNamedLikeALocationPrefixKeepsItsName (0.00s)

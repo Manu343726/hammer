@@ -1,0 +1,2 @@
+=== RUN   TestASubtestIsNamedByItsOwnCase
+--- PASS: TestASubtestIsNamedByItsOwnCase (0.00s)

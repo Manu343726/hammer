@@ -1,0 +1,2 @@
+=== RUN   TestAnEndpointIsTrimmedAndNotOtherwiseRewritten
+--- PASS: TestAnEndpointIsTrimmedAndNotOtherwiseRewritten (0.00s)

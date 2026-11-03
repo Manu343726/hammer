@@ -1,0 +1,2 @@
+=== RUN   TestMergeIsAUnionThatKeepsEveryDeclaration
+--- PASS: TestMergeIsAUnionThatKeepsEveryDeclaration (0.00s)

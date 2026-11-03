@@ -1,0 +1,2 @@
+=== RUN   TestDescribeDocumentRefusesSomethingItCannotRead
+--- PASS: TestDescribeDocumentRefusesSomethingItCannotRead (0.00s)

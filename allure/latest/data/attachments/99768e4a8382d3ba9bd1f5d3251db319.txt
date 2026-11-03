@@ -1,0 +1,2 @@
+=== RUN   TestEveryParameterLocationIsStatedInItsHelp
+--- PASS: TestEveryParameterLocationIsStatedInItsHelp (0.00s)

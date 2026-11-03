@@ -1,0 +1,2 @@
+=== RUN   TestCovParseWarnsWhenTheOnlyMediaTypeIsNotJSON
+--- PASS: TestCovParseWarnsWhenTheOnlyMediaTypeIsNotJSON (0.00s)

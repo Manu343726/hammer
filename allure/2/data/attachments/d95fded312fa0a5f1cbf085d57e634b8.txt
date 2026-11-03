@@ -1,0 +1,2 @@
+=== RUN   TestASchemaThatContainsItselfIsNotFlattened
+--- PASS: TestASchemaThatContainsItselfIsNotFlattened (0.00s)

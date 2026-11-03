@@ -1,0 +1,2 @@
+=== RUN   TestTheCallersDeadlineIsHonoured
+--- PASS: TestTheCallersDeadlineIsHonoured (1.05s)

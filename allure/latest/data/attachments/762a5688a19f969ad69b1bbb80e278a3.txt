@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsMalformedPathItems/operation_is_not_an_object
+--- PASS: TestCovParseRejectsMalformedPathItems/operation_is_not_an_object (0.00s)

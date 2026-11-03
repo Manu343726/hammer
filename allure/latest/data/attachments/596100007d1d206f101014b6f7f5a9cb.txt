@@ -1,0 +1,2 @@
+=== RUN   TestOneTestBecomesOneResultAndAPackageIsNotATest
+--- PASS: TestOneTestBecomesOneResultAndAPackageIsNotATest (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAPolicyDocumentRefusesWhatItCannotRead
+--- PASS: TestAPolicyDocumentRefusesWhatItCannotRead (0.00s)

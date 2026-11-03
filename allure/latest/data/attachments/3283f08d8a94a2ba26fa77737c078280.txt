@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRefusesSecurityItCannotSatisfy
+--- PASS: TestCovInvokeRefusesSecurityItCannotSatisfy (0.00s)

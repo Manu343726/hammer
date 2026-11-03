@@ -1,0 +1,2 @@
+=== RUN   TestAnArrayOfScalarsTakesOneValuePerOccurrence
+--- PASS: TestAnArrayOfScalarsTakesOneValuePerOccurrence (0.00s)

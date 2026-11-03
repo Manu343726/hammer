@@ -1,0 +1,2 @@
+=== RUN   TestCovPickMediaHasNoCandidateForAnEmptyContentMap
+--- PASS: TestCovPickMediaHasNoCandidateForAnEmptyContentMap (0.00s)

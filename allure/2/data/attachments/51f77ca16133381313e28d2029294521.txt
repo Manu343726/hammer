@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationValidateRejectsWhatCannotBeInvoked/no_name
+--- PASS: TestModelOperationValidateRejectsWhatCannotBeInvoked/no_name (0.00s)

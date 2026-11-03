@@ -1,0 +1,2 @@
+=== RUN   TestRenderTurnsADescriptionIntoTools
+--- PASS: TestRenderTurnsADescriptionIntoTools (0.00s)

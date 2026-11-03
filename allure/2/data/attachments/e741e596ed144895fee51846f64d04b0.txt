@@ -1,0 +1,2 @@
+=== RUN   TestARequestValueThatIsAListOfDocuments
+--- PASS: TestARequestValueThatIsAListOfDocuments (0.00s)

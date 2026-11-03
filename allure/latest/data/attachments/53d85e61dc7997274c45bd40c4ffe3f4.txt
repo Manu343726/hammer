@@ -1,0 +1,2 @@
+=== RUN   TestADeprecationPrintedByPflagIsRead
+--- PASS: TestADeprecationPrintedByPflagIsRead (0.00s)

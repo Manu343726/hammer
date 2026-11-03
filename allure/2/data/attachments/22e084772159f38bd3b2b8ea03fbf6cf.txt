@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractReadsBackAsTheDescriptionItCameFrom
+--- PASS: TestRenderedContractReadsBackAsTheDescriptionItCameFrom (0.03s)

@@ -1,0 +1,2 @@
+=== RUN   TestATreeWithNoCommandWordIsRefused
+--- PASS: TestATreeWithNoCommandWordIsRefused (0.00s)

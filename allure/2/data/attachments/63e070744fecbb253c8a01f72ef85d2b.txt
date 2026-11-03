@@ -1,0 +1,2 @@
+=== RUN   TestAContractProtobufMessageBecomesTheStandardSchema
+--- PASS: TestAContractProtobufMessageBecomesTheStandardSchema (0.01s)

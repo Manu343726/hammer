@@ -1,0 +1,2 @@
+=== RUN   TestALocationCanBeStatedInTheFile
+--- PASS: TestALocationCanBeStatedInTheFile (0.00s)

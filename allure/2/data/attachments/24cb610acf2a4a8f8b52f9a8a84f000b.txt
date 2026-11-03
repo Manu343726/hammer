@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeAppliesEveryDocumentedCredentialScheme/oauth2
+--- PASS: TestCovInvokeAppliesEveryDocumentedCredentialScheme/oauth2 (0.00s)

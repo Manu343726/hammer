@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_scalar_parameter_supplied_as_a_value
+--- PASS: TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/a_scalar_parameter_supplied_as_a_value (0.00s)

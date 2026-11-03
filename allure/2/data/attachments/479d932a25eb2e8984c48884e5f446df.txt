@@ -1,0 +1,2 @@
+=== RUN   TestRenderCarriesTheDeclaredSideEffects
+--- PASS: TestRenderCarriesTheDeclaredSideEffects (0.00s)

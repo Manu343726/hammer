@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/read-protocontract-parser-connect
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/read-protocontract-parser-connect (0.00s)

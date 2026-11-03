@@ -1,0 +1,2 @@
+=== RUN   TestMatrix/mcp-to-mcp
+--- PASS: TestMatrix/mcp-to-mcp (0.01s)

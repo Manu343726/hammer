@@ -1,0 +1,2 @@
+=== RUN   TestWhatAToolHidesIsNotDescribed
+--- PASS: TestWhatAToolHidesIsNotDescribed (0.02s)

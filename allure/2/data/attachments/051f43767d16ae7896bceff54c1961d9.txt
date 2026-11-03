@@ -1,0 +1,2 @@
+=== RUN   TestDescribeRefusesAnEmptyEndpoint
+--- PASS: TestDescribeRefusesAnEmptyEndpoint (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeRecordsADescriptorSetAsSuch
+--- PASS: TestCoverParseDescribeRecordsADescriptorSetAsSuch (0.00s)

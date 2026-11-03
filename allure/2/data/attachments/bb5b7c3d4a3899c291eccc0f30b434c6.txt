@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeReportsADocumentItCannotRead
+--- PASS: TestCoverParseDescribeReportsADocumentItCannotRead (0.00s)

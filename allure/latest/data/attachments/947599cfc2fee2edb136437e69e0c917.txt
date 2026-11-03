@@ -1,0 +1,2 @@
+=== RUN   TestRenderSurfacesARequestValuesOwnArguments
+--- PASS: TestRenderSurfacesARequestValuesOwnArguments (0.00s)

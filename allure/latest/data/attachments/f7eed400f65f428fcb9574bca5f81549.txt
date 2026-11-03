@@ -1,0 +1,2 @@
+=== RUN   TestAMemberNodeWithNoShapeStatesNoShape
+--- PASS: TestAMemberNodeWithNoShapeStatesNoShape (0.00s)

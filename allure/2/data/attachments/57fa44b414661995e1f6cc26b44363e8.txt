@@ -1,0 +1,2 @@
+=== RUN   TestABrokenSourceFallsBackToTheDescriptorThatArrived
+--- PASS: TestABrokenSourceFallsBackToTheDescriptorThatArrived (0.00s)

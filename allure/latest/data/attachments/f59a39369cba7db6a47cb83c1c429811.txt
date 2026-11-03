@@ -1,0 +1,2 @@
+=== RUN   TestTheEnvironmentWinsOverTheFile
+--- PASS: TestTheEnvironmentWinsOverTheFile (0.00s)

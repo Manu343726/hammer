@@ -1,0 +1,2 @@
+=== RUN   TestAPathThatCannotBeWrittenIsReported
+--- PASS: TestAPathThatCannotBeWrittenIsReported (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAnUnknownFlagIsRefused
+--- PASS: TestAnUnknownFlagIsRefused (0.00s)
