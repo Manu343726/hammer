@@ -1,9 +1,9 @@
-// Package docs extracts protobuf documentation into a framework-neutral model.
+// Package docs extracts protobuf documentation into a model of its own.
 //
-// The model deliberately does not import any generated service package. Each
-// subservice can adapt these values to its own DocumentationService protocol,
-// while the CLI can consume the same model without coupling to a registry
-// implementation.
+// The model deliberately does not import any generated service package. A package
+// that describes contracts adapts these values to its own description — that is
+// what protocontract does — and a caller reads the same model without coupling to
+// how the documentation was obtained.
 package docs
 
 import (
@@ -23,8 +23,8 @@ import (
 var defaultCatalog = NewCatalog()
 
 // DefaultCatalog returns the process-wide catalog populated by generated
-// descriptor-set registration files. It is a convenience for subsystem SDKs;
-// callers may still create isolated catalogs for tests or tools.
+// registration files. It is the convenience a package that embeds its own .proto
+// uses; a caller may still create an isolated catalog for tests or tools.
 func DefaultCatalog() *Catalog {
 	return defaultCatalog
 }
@@ -36,7 +36,7 @@ var (
 	ErrInvalidDescriptor = errors.New("invalid protobuf descriptor")
 )
 
-// Service is the framework-neutral documentation for one protobuf service.
+// Service is the documentation of one protobuf service.
 type Service struct {
 	Name        string
 	Description string
@@ -48,7 +48,7 @@ type Service struct {
 	Methods     []Method
 }
 
-// Method is the framework-neutral documentation for one RPC.
+// Method is the documentation of one RPC.
 type Method struct {
 	Name            string
 	Description     string
@@ -60,7 +60,7 @@ type Method struct {
 	Parameters      []Parameter
 }
 
-// Parameter is the framework-neutral documentation for one request field.
+// Parameter is the documentation of one request field.
 type Parameter struct {
 	Name         string
 	Description  string
@@ -160,8 +160,8 @@ func (c *Catalog) AddDescriptorSet(data []byte) error {
 	return firstErr
 }
 
-// RegisterEmbeddedFile adds a descriptor set to DefaultCatalog. Generated
-// subsystem registration files call this from init.
+// RegisterEmbeddedFile adds a descriptor set to DefaultCatalog. A generated
+// registration file calls this from init.
 func RegisterEmbeddedFile(data []byte) error {
 	return defaultCatalog.AddDescriptorSet(data)
 }

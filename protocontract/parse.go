@@ -1,10 +1,11 @@
-// Package protocontract turns a protobuf service contract into the framework's
-// standard API description, and calls the services that contract describes.
+// Package protocontract turns a protobuf service contract into the standard API
+// description, and calls the services that contract describes.
 //
 // It is a plain Go package: it depends on the standard model, on protobuf
-// descriptors, and on the reflection client, and on no transport. A deployment
-// uses it directly to describe its own subsystems in process; the gRPC provider
-// subsystem wraps it when a parser has to be addressable over ConnectRPC.
+// descriptors, and on the reflection client, and on no transport of its own. A
+// caller uses it directly, in process; a program that has to offer the same
+// reading over a protocol wraps it, and this package neither knows nor cares that
+// it has been wrapped.
 //
 // Two ways in, because a contract can be held or can be served:
 //
@@ -23,9 +24,9 @@ import (
 	"strings"
 	"time"
 
-	api "github.com/Manu343726/chorizo"
-	"github.com/Manu343726/chorizo/discovery"
-	shareddocs "github.com/Manu343726/chorizo/docs"
+	api "github.com/Manu343726/hammer"
+	"github.com/Manu343726/hammer/discovery"
+	shareddocs "github.com/Manu343726/hammer/docs"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
@@ -33,7 +34,7 @@ import (
 )
 
 // Format is the format identifier a protobuf service contract is described as.
-// It is the identifier a parser claims, not a type the framework defines.
+// It is the identifier this package claims, not a type this library defines.
 const Format api.Format = "grpc"
 
 // SourceKindDescriptorSet names the origin of a description read from bytes.
@@ -54,7 +55,7 @@ type Descriptor struct {
 	// HTTPClient performs reflection reads. The zero value uses a bounded client.
 	HTTPClient *http.Client
 	// Clients supplies pre-built reflection clients, keyed by endpoint, for a
-	// deployment that shares one client per endpoint.
+	// caller that shares one client per endpoint.
 	Clients map[string]*discovery.Client
 }
 
@@ -73,47 +74,100 @@ func NewDescriptor(options Descriptor) *Descriptor {
 }
 
 // Formats returns the format identifiers this reader claims.
-func (d *Descriptor) Formats() []api.Format { return []api.Format{Format} }
+//
+// gRPC and Connect are both answered here because both are the same contract
+// seen over a different wire protocol: a caller that announced a service as
+// Connect has not handed this package a different document, and telling it that
+// its contract cannot be read would refuse a caller that speaks the protocol it
+// actually uses.
+func (d *Descriptor) Formats() []api.Format { return Formats() }
 
-// Format returns the format identifier this reader claims.
+// Format returns the format identifier this reader is a reader of. A caller that
+// names neither protocol gets the one a protobuf contract is named after.
 func (d *Descriptor) Format() api.Format { return Format }
 
-// FormatDescriptor describes the format for a catalog's index.
+// FormatDescriptor describes the format this package reads, for an index.
 func FormatDescriptor() api.FormatDescriptor {
 	return api.FormatDescriptor{
 		ID:                   string(Format),
 		Name:                 "gRPC",
-		Description:          "Protobuf service contracts, from a FileDescriptorSet or from a live endpoint's own reflection.",
+		Description:          "Protobuf service contracts, from a FileDescriptorSet, a .proto, or a live endpoint's own reflection.",
 		SpecificationVersion: "3",
 		FileExtensions:       []string{"proto", "protoset"},
-		MediaTypes:           []string{"application/proto", "application/x-protobuf"},
+		MediaTypes:           []string{MediaTypeContract, "application/proto", "application/x-protobuf"},
+		// The metadata says what the identifier covers, because "grpc" reads as a
+		// wire protocol and this is a description language: an index that took it
+		// for the protocol would record a contract it can read as a transport it
+		// cannot call.
+		Metadata: map[string]string{
+			"artifact":        "*." + FileExtensionContract,
+			"protocols":       string(Format) + " " + string(FormatConnect),
+			"contract-format": string(Format),
+		},
 	}
 }
 
+// FormatDescriptors returns a descriptor for every identifier this reader claims,
+// so an index records both without a second reader being needed for either.
+func FormatDescriptors() []api.FormatDescriptor {
+	return []api.FormatDescriptor{FormatDescriptor(), ConnectFormatDescriptor()}
+}
+
 // TransportDescriptors describes the transports this package can call over.
+//
+// All three carry one contract, and each descriptor says so. gRPC and Connect
+// differ in framing, not in what a service declares: a caller chooses a transport
+// to reach a server, never to change the description it was given. A descriptor
+// that stayed silent about this would let a consumer conclude that a service
+// published over Connect is a service whose contract is something other than the
+// .proto it was rendered from.
 func TransportDescriptors() []api.TransportDescriptor {
+	contract := func() map[string]string {
+		return map[string]string{
+			"contract-format": string(Format),
+			"artifact":        "*." + FileExtensionContract,
+		}
+	}
 	return []api.TransportDescriptor{
-		{ID: "connectrpc", Name: "ConnectRPC", Description: "The Connect protocol, over HTTP/1.1, HTTP/2, or h2c."},
-		{ID: "grpc", Name: "gRPC", Description: "The gRPC protocol, over HTTP/2."},
-		{ID: "grpc-web", Name: "gRPC-Web", Description: "The gRPC-Web protocol, for browsers and proxies that do not speak HTTP/2."},
+		{
+			ID:                "connectrpc",
+			Name:              "ConnectRPC",
+			Description:       "The Connect protocol, over HTTP/1.1, HTTP/2, or h2c. It carries the same protobuf contract as gRPC and gRPC-Web.",
+			SupportsStreaming: true,
+			Metadata:          contract(),
+		},
+		{
+			ID:                "grpc",
+			Name:              "gRPC",
+			Description:       "The gRPC protocol, over HTTP/2. It carries the same protobuf contract as Connect and gRPC-Web.",
+			SupportsStreaming: true,
+			Metadata:          contract(),
+		},
+		{
+			ID:                "grpc-web",
+			Name:              "gRPC-Web",
+			Description:       "The gRPC-Web protocol, for browsers and proxies that do not speak HTTP/2. It carries the same protobuf contract as Connect and gRPC.",
+			SupportsStreaming: true,
+			Metadata:          contract(),
+		},
 	}
 }
 
 // Describe reads a contract from a document, or from a live endpoint that describes
 // itself, honouring the identifier and source the caller supplied.
 //
-// It is the entry point a catalog or a host uses, because it is the shape the
-// framework's describe request already has: a document, a format, a base URL, an
-// identifier, and where the description came from. The reader's own options supply
-// the defaults a request leaves empty, and the result is the framework's describe
-// result, so a composition does not translate between shapes.
+// It is the entry point a caller uses, because it takes the shape a description
+// request has: a document, a format, a base URL, an identifier, and where the
+// description came from. The reader's own options supply the defaults a request
+// leaves empty, and the result is the standard describe result, so a caller does
+// not translate between two shapes.
 func (d *Descriptor) Describe(ctx context.Context, request api.DescribeRequest) (api.DescribeResult, error) {
 	if len(request.Document) == 0 && strings.TrimSpace(request.BaseURL) == "" {
 		return api.DescribeResult{}, api.Errorf(api.KindInvalid, "a document or a base url is required")
 	}
 	result := api.DescribeResult{
 		API:        api.API{},
-		Formats:    []api.FormatDescriptor{d.FormatDescriptor()},
+		Formats:    d.FormatDescriptors(),
 		ProviderID: "",
 	}
 	if len(request.Document) == 0 {
@@ -172,15 +226,21 @@ func (d *Descriptor) rewrite(described api.API, request api.DescribeRequest) (ap
 	return d.rename(described, request)
 }
 
-// FormatDescriptor describes the format this reader claims, for a catalog's index.
+// FormatDescriptor describes the format this reader claims, for an index.
 func (d *Descriptor) FormatDescriptor() api.FormatDescriptor {
 	descriptor := FormatDescriptor()
 	if d != nil {
 		if format := d.Format(); format != "" {
 			descriptor.ID = string(format)
+			descriptor.Metadata["contract-format"] = string(format)
 		}
 	}
 	return descriptor
+}
+
+// FormatDescriptors returns a descriptor for every identifier this reader claims.
+func (d *Descriptor) FormatDescriptors() []api.FormatDescriptor {
+	return []api.FormatDescriptor{d.FormatDescriptor(), ConnectFormatDescriptor()}
 }
 
 // FromDescriptorSet reads a contract from a FileDescriptorSet.
@@ -257,8 +317,8 @@ func (d *Descriptor) FromEndpoint(ctx context.Context, endpoint string) (api.API
 			// descriptor set a contract's build embedded over the reflected
 			// descriptor — which carries no source locations at all, and with them no
 			// declared side effects. Reading it from here rather than resolving it
-			// again is what keeps the reflection path and the catalog path agreeing on
-			// what an operation does.
+			// again is what keeps the reflection path and the descriptor-set path
+			// agreeing on what an operation does.
 			documented[name] = schema.Documentation
 		}
 	}
@@ -358,7 +418,7 @@ func (d *Descriptor) clientFor(endpoint string) *discovery.Client {
 //
 // Only the call transport is supplied. The reflection client is left to the
 // discovery package, which builds one that can speak the protocol reflection needs
-// — h2c, in this framework's case — instead of borrowing a client configured for
+// — h2c, in this package's case — instead of borrowing a client configured for
 // ordinary calls and discovering the difference as a failed read.
 func DiscoveryOptions(client *http.Client) []discovery.Option {
 	if client == nil {
@@ -392,7 +452,7 @@ func buildService(
 		// A service's own annotations classify every method it declares, so a
 		// uniformly read-only service says so once. A method's annotations
 		// override them, which is the same rule a nearer declaration follows
-		// everywhere else in the framework.
+		// everywhere else in this library.
 		SideEffects: sideEffectsOf(documentation, nil),
 	}
 	methods := service.Methods()

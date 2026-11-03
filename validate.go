@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"errors"
@@ -154,10 +154,9 @@ func (s Service) Validate(path string) error {
 // Identifiers must stay derivable, because they are what an exposure decision
 // or a tool name refers to.
 //
-// The format identifier is only required to be present. The framework does not
-// know which formats exist, so it cannot reject one it has not seen; deciding
-// whether a deployment can actually parse a format belongs to the parser
-// provider and the catalog's provider index.
+// The format identifier is only required to be present. This function does not
+// know which formats exist, so it cannot reject one it has not seen; whether a
+// format can actually be parsed is the answer providers.HandlesFormat gives.
 func (a API) Validate() error {
 	if strings.TrimSpace(a.ID) == "" {
 		return invalid("api", "api id is required")
@@ -313,9 +312,9 @@ func (a *API) Normalize() (API, error) {
 }
 
 // normalizeSideEffects keeps the declared effects in a stable order and
-// preserves unknown identifiers: a format the framework does not know may
-// declare effects this framework has never seen, and dropping them would make
-// a consequential operation look harmless.
+// preserves unknown identifiers: a format this library does not know may
+// declare effects it has never seen, and dropping them would make a
+// consequential operation look harmless.
 func normalizeSideEffects(values []SideEffect) []SideEffect {
 	normalized := normalizeStrings(values)
 	sortStable(normalized)

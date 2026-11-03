@@ -8,11 +8,10 @@ import (
 
 	"go.yaml.in/yaml/v3"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
-// Renderer implements the framework's adapter contract: it renders a standard
-// API description into an OpenAPI 3.1 document.
+// Renderer renders a standard API description into an OpenAPI 3.1 document.
 //
 // It reads only the standard description. Which format that description was
 // parsed from is not this renderer's concern, and that is the point: a protobuf
@@ -37,8 +36,6 @@ func (r *Renderer) Targets() []string {
 	return result
 }
 
-// RenderApi implements the framework's ApiAdapterService.
-
 type renderOptions struct {
 	mediaType string
 	options   map[string]string
@@ -59,8 +56,9 @@ func (o renderOptions) boolean(name string, fallback bool) bool {
 	}
 }
 
-// TargetDescriptor describes the representation this renderer produces, so a
-// catalog can index what the deployment can publish.
+// TargetDescriptor describes the representation this renderer produces, so an
+// index can say what this library is able to publish and not only what it can
+// read.
 func TargetDescriptor() api.FormatDescriptor {
 	return api.FormatDescriptor{
 		ID:                   Target,
@@ -100,10 +98,12 @@ func renderOpenAPI(described api.API, options renderOptions) ([]byte, []string, 
 		document["servers"] = servers
 	}
 	if options.boolean("x-toolbox-include-capabilities", true) {
-		// Capabilities and side effects are Toolbox declarations, not OpenAPI
-		// ones, so they travel as extensions. Dropping them would mean a rendered
-		// document could no longer be parsed back into something the catalog is
-		// willing to expose.
+		// The switch is honoured rather than removed, so that a caller which sets it
+		// keeps working, but there is nothing here for it to turn off: this library
+		// declares no capabilities. The one classification a description carries —
+		// its side effects — is written per operation and always, because a rendered
+		// document without it is one this package reads back unclassified, and an
+		// unclassified operation is one no policy can expose.
 	}
 	if len(described.SecuritySchemes) > 0 {
 		schemes := make(map[string]any, len(described.SecuritySchemes))
@@ -459,9 +459,3 @@ func marshalDocument(document map[string]any, options renderOptions) ([]byte, []
 	}
 	return encoded, nil, nil
 }
-
-// Adapter implements the framework's adapter contract by combining the two
-// faces of adaptation: it returns the target's schema files, and it can serve the
-// target's surface while tunneling to the original server.
-//
-// Keeping both in one service is deliberate. A schema that a client reads and a

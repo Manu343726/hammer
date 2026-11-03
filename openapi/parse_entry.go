@@ -4,7 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 // ParseOptions configures reading a document.
@@ -17,8 +17,8 @@ type ParseOptions struct {
 	// changed under it.
 	Source api.Source
 	// BaseURL is the endpoint the document describes. When the document declares
-	// no servers, this becomes the declared one so a catalog can bind the API to
-	// it.
+	// no servers, this becomes the declared one so the caller can bind the API to
+	// the endpoint it actually reaches.
 	BaseURL string
 }
 
@@ -26,10 +26,11 @@ type ParseOptions struct {
 // description.
 //
 // The result is a normalized description: identifiers are derived, parameters
-// and bodies are resolved, and every capability the document declared is carried
-// through. What the document does not declare stays empty — capabilities above
-// all — so a policy can refuse an operation until a deployment says what it
-// authorizes, rather than inferring safety from the presence of a function.
+// and bodies are resolved, and every declaration the document carries is carried
+// through. What the document does not declare stays empty — the consequences of
+// invoking an operation above all — so a policy can refuse an operation until
+// the caller says what it authorizes, rather than inferring safety from the
+// presence of a function.
 func Parse(document []byte, options ParseOptions) (api.API, []string, error) {
 	digest := sha256.Sum256(document)
 	source := options.Source
@@ -45,7 +46,7 @@ func Parse(document []byte, options ParseOptions) (api.API, []string, error) {
 	}
 	// A document may declare its own servers; when the caller supplied a base URL
 	// and the document declared none, the caller's location becomes the declared
-	// one so the catalog can bind the API to it.
+	// one so the API can be bound to the endpoint that was actually read.
 	if len(described.DeclaredServers) == 0 && options.BaseURL != "" {
 		described.DeclaredServers = []api.DeclaredServer{{URL: options.BaseURL}}
 	}

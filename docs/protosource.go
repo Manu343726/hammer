@@ -14,14 +14,14 @@ import (
 
 // A generated descriptor carries no comments. protoc-gen-go writes the prose into the Go
 // source as doc comments and protoc's source info is a build artefact that has to be asked for
-// separately — so a subsystem that generates its descriptor set without `--include_source_info`
+// separately — so a package that generates its descriptor set without `--include_source_info`
 // has a contract with no documentation at all, and nothing fails: the help it generates simply
 // says less, one field and one annotation at a time.
 //
-// The documentation is therefore read from the original `.proto`, which every subsystem already
-// has and which is the thing the comments were written in. A subsystem embeds its `.proto` and
-// registers it; documentation is then compiled from that text with source info, and the
-// generated descriptor supplies only the structure.
+// The documentation is therefore read from the original `.proto`, which every package that
+// publishes a contract already has and which is the thing the comments were written in. A
+// package embeds its `.proto` and registers it; documentation is then compiled from that text
+// with source info, and the generated descriptor supplies only the structure.
 //
 // This also fixes the annotations, which are read from the same comments: an operation whose
 // `@toolbox.side-effects` line is lost does not merely lose a description, it becomes
@@ -29,22 +29,22 @@ import (
 
 // protoSources holds the original .proto text, by the path protoc would give it.
 //
-// The key is the descriptor's own path — "proto/logger.proto" for a subsystem, because that is
-// what --proto_path=. produces — so a service found through a generated descriptor and a file
-// found through the embedded source meet on the same name.
+// The key is the descriptor's own path — "proto/logger.proto" for a contract embedded under a
+// proto directory, because that is what --proto_path=. produces — so a service found through a
+// generated descriptor and a file found through the embedded source meet on the same name.
 var protoSources sync.Map
 
 // compiled caches the descriptor compiled from each registered source.
 //
-// Compilation is not cheap and a subsystem is asked about its contracts on every call that
-// generates help, so each source is compiled once. The cache is never invalidated: the source
+// Compilation is not cheap and a contract is asked about on every call that generates help, so
+// each source is compiled once. The cache is never invalidated: the source
 // is embedded in the binary, so it cannot change under a running process.
 var compiled sync.Map
 
 // compiledFailure remembers a source that would not compile.
 //
 // A failure is remembered because the alternative is re-parsing a broken file on every request
-// to find out the same thing, and a subsystem whose .proto does not compile should say so once
+// to find out the same thing, and a contract whose .proto does not compile should say so once
 // rather than on every help page.
 var compiledFailure sync.Map
 
@@ -70,16 +70,16 @@ func RegisterProtoSource(path string, source []byte) error {
 // RegisterEmbeddedProtoSource registers a proto source from a package's init, and panics if it
 // cannot.
 //
-// It is the form a docs_embed.go calls, and panicking is right there: a subsystem that cannot
+// It is the form a docs_embed.go calls, and panicking is right there: a package that cannot
 // register its own contract is broken at build time, and a process that started anyway would
 // serve help with no descriptions and no annotations, which is exactly the failure this exists
 // to remove.
 //
-// It also contributes the contract to [DefaultCatalog], which is what a subsystem falls back to
+// It also contributes the contract to [DefaultCatalog], which is what a reader falls back to
 // when nothing else gave it documentation. Registering the source without doing so would leave
-// the default catalog permanently empty — a subsystem that serves documentation would serve none,
-// and every other subsystem would default to describing nothing. Both come from the same source
-// here, so the two can no longer disagree about what a contract says.
+// the default catalog permanently empty — a contract described from its source would come back
+// with prose and no structure, and everything else would default to describing nothing. Both
+// come from the same source here, so the two can no longer disagree about what a contract says.
 func RegisterEmbeddedProtoSource(path string, source []byte) {
 	if err := RegisterProtoSource(path, source); err != nil {
 		panic(err)
@@ -125,7 +125,7 @@ func documentedFile(file protoreflect.FileDescriptor) protoreflect.FileDescripto
 //
 // It is exported because a caller that needs a contract to work from — a tool generating
 // commands, a test building a fixture — needs it compiled the same way the documentation is, or
-// it is testing a path the framework does not take.
+// it is testing a path this library does not take.
 func CompileProtoSource(path string) (protoreflect.FileDescriptor, error) {
 	return compileSource(path)
 }
@@ -164,9 +164,9 @@ func compileSource(path string) (protoreflect.FileDescriptor, error) {
 // protoSourceResolver finds an import from the registered sources, or from the descriptors
 // already linked into this process.
 //
-// The second case matters: a contract that imports the framework's api.proto resolves through
-// the generated descriptors that api's own package linked in, so a subsystem does not have to
-// embed a file it does not own.
+// The second case matters: a contract that imports another package's .proto resolves through
+// the descriptors that package linked into the process, so a package does not have to embed a
+// file it does not own.
 type protoSourceResolver struct{}
 
 // FindFileByPath implements protocompile.Resolver.

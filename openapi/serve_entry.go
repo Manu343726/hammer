@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 // Serve mounts an API in the OpenAPI target format and forwards its requests to

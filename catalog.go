@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"context"
@@ -7,8 +7,9 @@ import (
 
 // Catalog is the read side an adapter consumes: the servers that are
 // registered and the APIs they host. It is deliberately narrow so the storage
-// behind it can be an in-memory subsystem, a ConnectRPC client, or a
-// configuration file. Implementations return deterministic, sorted results.
+// behind it can be an in-memory value, a file, or a client of whatever keeps the
+// record in a caller's own program. Implementations return deterministic, sorted
+// results.
 type Catalog interface {
 	// Servers returns the registered servers, ordered by identifier.
 	Servers(context.Context) ([]Server, error)
@@ -59,9 +60,9 @@ func (f InvokerFunc) Invoke(ctx context.Context, call Call) (Result, error) {
 	return f(ctx, call)
 }
 
-// StaticCatalog is an in-memory Catalog. It is useful for tests, for a
-// configuration-file catalog, and as the catalog an adapter sees when a
-// deployment registers APIs programmatically.
+// StaticCatalog is an in-memory Catalog. It is useful for tests, for a catalog
+// read from a configuration file, and as the catalog an adapter sees when a
+// program registers APIs itself.
 type StaticCatalog struct {
 	// RegisteredServers are the registered servers.
 	RegisteredServers []Server
@@ -69,7 +70,7 @@ type StaticCatalog struct {
 	RegisteredAPIs []API
 	// ExposedOperations are the exposure decisions this catalog holds, keyed by
 	// operation identifier. A catalog that carries them answers for them, so a
-	// gateway does not decide differently.
+	// consumer does not decide differently.
 	ExposedOperations ExposureMap
 }
 

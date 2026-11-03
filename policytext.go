@@ -1,13 +1,12 @@
-package churrera
+package hammer
 
 import (
 	"fmt"
 	"strings"
 )
 
-// A policy is stored as text so one document can live in a file, in the policy
-// subsystem's own storage, and in a test fixture, and be read the same way in all
-// three. The format is one rule per line and nothing else:
+// A policy is stored as text so one document can live in a file, in a caller's
+// own storage, and in a test fixture, and be read the same way in all three. The format is one rule per line and nothing else:
 //
 //	allow knowledge/**                          read
 //	deny  registry/toolbox.registry.v1.RegistryService/Register

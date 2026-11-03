@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package testcontract.v1;
+
+option go_package = "github.com/Manu343726/hammer/internal/testcontract/testcontractv1;testcontractv1";
+
+// This file is the contract the packages in this module describe and call in their tests.
+//
+// It is a real contract rather than a stub: a reader is tested against a .proto with checked-in
+// generated Go and the same source registration a subsystem performs, so a comment and an
+// annotation reach a caller the way they reach one in a deployment. A test that built its
+// descriptors by hand would prove that the reader reads what the test wrote.
+//
+// It is deliberately small, and deliberately not the framework's own contract: this module is a
+// library with no .proto contract of its own, and reintroducing one to have something to
+// describe is how a library acquires a generated dependency it does not need.
+//
+// Three services, because the readers under test behave differently depending on how many a file
+// declares. ApiAdapterService comes first alphabetically on purpose: an identifier derived from
+// a contract with several services is taken from the first one, and that has to be a fact a test
+// can assert rather than an accident of declaration order.
+//
+// The generated Go is checked in on purpose, so that a plain `go test` on a fresh checkout needs
+// no protoc. Regenerate it from the module root with:
+//
+//	protoc --proto_path=internal/testcontract/testcontractv1 \
+//	  --go_out=. --go_opt=module=github.com/Manu343726/hammer \
+//	  --connect-go_out=. --connect-go_opt=module=github.com/Manu343726/hammer \
+//	  testcontract.proto
+//
+// The proto_path is this directory rather than the module root because the path protoc gives the
+// file is the key the documentation registry is asked for, and the path a reflected descriptor
+// arrives under; both have to be the same string.
+
+// ApiAdapterService renders a description into another format.
+//
+// It is the fixture's heaviest-shaped service: a request with a scalar and a response with a
+// repeated message, which is what a reader has to turn into a string schema and an array schema.
+service ApiAdapterService {
+  // RenderApi renders a document into the format named by target.
+  //
+  // Rendering is a computation, and the annotation is the only classification a ConnectRPC method
+  // can carry: every RPC is a POST, so nothing about the transport says what invoking one does.
+  //
+  // @toolbox.side-effects read_only
+  rpc RenderApi(RenderApiRequest) returns (RenderApiResponse);
+}
+
+// RenderApiRequest is one render request.
+message RenderApiRequest {
+  // Format to render into.
+  string target = 1;
+  // Document to render.
+  bytes document = 2;
+}
+
+// RenderApiResponse is what a renderer produced.
+message RenderApiResponse {
+  // Documents produced, one per file the renderer emits.
+  repeated RenderedFile files = 1;
+}
+
+// RenderedFile is one output document.
+message RenderedFile {
+  // File name the document is published under.
+  string name = 1;
+  // File contents.
+  bytes content = 2;
+  // Whether this is the file a client should start from.
+  bool primary = 3;
+}
+
+// ApiParserService reads a contract and answers with a description.
+//
+// A parser is reachable over reflection and its method comments are where the framework's
+// annotation vocabulary lives, so this service is what a test uses to prove that a declared side
+// effect survives the trip from a .proto to a caller that never saw it.
+service ApiParserService {
+  // ParseApi reads the contract at base_url, or the document supplied.
+  //
+  // The annotation below is load-bearing for the tests that assert a reflected description keeps
+  // the classification its contract declared; without it the method would be unclassified, which
+  // is the one state no policy can grant by naming read or write.
+  //
+  // @toolbox.side-effects read_only
+  rpc ParseApi(ParseApiRequest) returns (ParseApiResponse);
+}
+
+// ParseApiRequest names what to read.
+message ParseApiRequest {
+  // Address of the endpoint to read, when the contract is served rather than supplied.
+  string base_url = 1;
+  // Format the document is in.
+  string format = 2;
+  // The document itself.
+  bytes document = 3;
+}
+
+// ParseApiResponse is the description a parser produced.
+message ParseApiResponse {
+  // The described API.
+  Api api = 1;
+}
+
+// Api is the fixture's own description of an API, shaped after the description a reader answers
+// with: an identity, the format it was read from, and where it came from.
+message Api {
+  // Identifier, unique within a catalog.
+  string id = 1;
+  // Human-readable name.
+  string name = 2;
+  // Format identifier the document was read as.
+  string format = 3;
+  // Where the description came from.
+  ApiSource source = 4;
+}
+
+// ApiSource names the origin of a description.
+message ApiSource {
+  // Kind of origin, such as descriptor_set or reflection. An open vocabulary, like every format
+  // identifier in this framework: it is defined by whoever produced the description.
+  string kind = 1;
+  // Address the description was read from, when it was read from one.
+  string location = 2;
+}
+
+// ApiInvokerService calls an operation of a server a catalog described.
+//
+// Its own comment is what the documentation test asserts on: a caller that reflected this
+// contract has to receive the description the .proto declared, and "invoker" is the word it
+// looks for. A generated descriptor carries no comments, so this only works when the contract's
+// source was registered — which is exactly the behaviour worth pinning.
+service ApiInvokerService {
+  // InvokeApi calls one operation and answers with what the server returned.
+  rpc InvokeApi(InvokeApiRequest) returns (InvokeApiResponse);
+}
+
+// InvokeApiRequest names the operation to call.
+message InvokeApiRequest {
+  // Operation to call, as the description names it.
+  string operation_id = 1;
+}
+
+// InvokeApiResponse carries a downstream server's answer unflattened, because the caller asked
+// for the server's response and not for a rendering of it.
+message InvokeApiResponse {
+  // Status the downstream server answered with.
+  int32 status = 1;
+  // Content type of the body.
+  string content_type = 2;
+  // Body the downstream server returned, as bytes it returned.
+  bytes body_json = 3;
+}

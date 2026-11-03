@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="hero">
+  <div class="wrap">
+    <h1>{{ .Title | markdownify }}</h1>
+    <p class="lede">{{ .Params.lede }}</p>
+    <div class="formats">
+      {{ range site.Params.formats }}<span>{{ . }}</span>{{ end }}
+    </div>
+    <div class="buttons">
+      <a class="primary" href="#examples">Get started</a>
+      <a href="{{ site.Params.godoc }}">Go documentation</a>
+      <a href="{{ "allure/latest/" | relURL }}">Latest test report</a>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="wrap">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}

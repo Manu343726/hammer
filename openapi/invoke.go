@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 // maxResponseBytes bounds how much of a response the adapter reads. An adapter
@@ -29,14 +29,14 @@ type InvokerOptions struct {
 	// own. It defaults to 30 seconds.
 	RequestTimeout time.Duration
 	// Credentials supplies values for the security schemes a document declares.
-	// The catalog decides that a call is allowed; the adapter only applies the
-	// credentials a deployment chose to give it.
+	// Whether a call is allowed is decided before this package is reached; the
+	// invoker only applies the credentials the caller supplied.
 	Credentials CredentialSource
 }
 
 // CredentialSource resolves a security scheme's credential for one call. It is
-// deliberately an interface: a deployment holds credentials, and the adapter
-// never invents them.
+// deliberately an interface: the caller holds credentials, and this package never
+// invents them.
 type CredentialSource interface {
 	// Credential returns the value for one scheme and requirement.
 	Credential(scheme api.SecurityScheme, requirement api.SecurityRequirement) (string, bool)
@@ -60,13 +60,11 @@ func (c StaticCredentials) Credential(scheme api.SecurityScheme, _ api.SecurityR
 	return value, ok
 }
 
-// Invoker implements the framework's invocation contract for APIs described by
-// an OpenAPI document. It builds one HTTP request from the registered operation
-// and the caller's arguments.
+// Invoker calls operations described by an OpenAPI document. It builds one HTTP
+// request from the registered operation and the caller's arguments.
 //
-// It is an invoker, not an adapter: it calls a live server rather than producing
-// a description. Adapting a description into a target format is the renderer's
-// and the serving adapter's job.
+// It is an invoker, not a renderer: it calls a live server rather than producing a
+// description. Writing a description in a target format is Render's job.
 type Invoker struct {
 	client      *http.Client
 	credentials CredentialSource
@@ -145,7 +143,7 @@ func headerValues(headers http.Header) map[string][]string {
 	return values
 }
 
-// assert the invoker satisfies the framework's interface at compile time.
+// assert the invoker satisfies the interface at compile time.
 var _ api.Invoker = (*Invoker)(nil)
 
 // buildRequest turns the operation and the caller's arguments into a URL, query
@@ -308,9 +306,9 @@ func fieldsArgument(values map[string]json.RawMessage, consumed, allowed map[str
 	return encoded, true
 }
 
-// applySecurity applies the credentials a deployment supplied for the
+// applySecurity applies the credentials the caller supplied for the
 // requirements the operation declares. An operation that requires a scheme the
-// deployment has no credential for is refused before the request is sent, rather
+// caller has no credential for is refused before the request is sent, rather
 // than being sent unauthenticated and failing somewhere less clear.
 func (a *Invoker) applySecurity(target api.API, operation api.Operation, headers http.Header, query url.Values) error {
 	requirements := operation.Security

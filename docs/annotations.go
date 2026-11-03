@@ -67,7 +67,7 @@ func (s AnnotationSet) Keys() []string {
 
 // Merge returns the union of two sets, later values winning for a repeated key.
 // A method's own annotations override the ones its service declared, which is the
-// same rule a nearer declaration follows everywhere else in the framework.
+// same rule a nearer declaration follows everywhere else in this library.
 func (s AnnotationSet) Merge(over AnnotationSet) AnnotationSet {
 	merged := make(AnnotationSet, 0, len(s)+len(over))
 	merged = append(merged, s...)

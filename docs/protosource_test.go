@@ -3,16 +3,16 @@ package docs_test
 import (
 	"testing"
 
-	shareddocs "github.com/Manu343726/chorizo/docs"
+	shareddocs "github.com/Manu343726/hammer/docs"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-// A subsystem's docs_embed.go registers its contract from init, and that
-// registration is the only thing that makes the framework's own contracts
-// describable in a process that links them. A subsystem that registers nothing
-// still builds, still serves, and answers every documentation request with
-// nothing at all — so this asserts both halves of what one registration does.
+// A package's docs_embed.go registers its contract from init, and that
+// registration is the only thing that makes the package's own contracts
+// describable in a process that links them. A package that registers nothing still
+// builds, still runs, and answers every documentation request with nothing at all —
+// so this asserts both halves of what one registration does.
 
 const fixtureContract = `syntax = "proto3";
 
@@ -41,8 +41,8 @@ message DoThingResponse {
 
 // Registering a source does two things, and they come from the same text: the
 // contract becomes readable wherever documentation is extracted, and it reaches
-// the default catalog a subsystem falls back to. Doing only the first leaves
-// every subsystem that was handed no catalog describing nothing.
+// the default catalog a reader falls back to. Doing only the first leaves every
+// contract that was handed no catalog describing nothing.
 func TestRegisteringAProtoSourceDescribesItInTheDefaultCatalog(t *testing.T) {
 	const path = "fixture/registered.proto"
 	shareddocs.RegisterEmbeddedProtoSource(path, []byte(fixtureContract))
@@ -88,8 +88,8 @@ func TestRegisteringTheSameProtoSourceTwiceIsRefused(t *testing.T) {
 	})
 }
 
-// A source that does not compile cannot be documented, and a subsystem whose
-// contract does not compile is broken at build time rather than at first request.
+// A source that does not compile cannot be documented, and a contract that does
+// not compile is broken at build time rather than at first request.
 func TestRegisteringAProtoSourceThatDoesNotCompilePanics(t *testing.T) {
 	assert.Panics(t, func() {
 		shareddocs.RegisterEmbeddedProtoSource("fixture/broken.proto", []byte("this is not a proto file"))

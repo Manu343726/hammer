@@ -1,11 +1,11 @@
-package churrera
+package hammer
 
-// ProviderRole is the open identifier of the role a provider subsystem plays.
+// ProviderRole is the open identifier of the role a provider plays.
 // The documented roles are parser and adapter; a user may add another.
 type ProviderRole = string
 
-// Provider roles the framework documents. They are conventions, not a closed
-// set: a user may add another role together with its own contract.
+// Provider roles this library documents. They are conventions, not a closed
+// set: a user may add another role together with its own rules.
 const (
 	// ProviderParser parses a description document into the standard model.
 	ProviderParser ProviderRole = "parser"
@@ -19,14 +19,19 @@ const (
 	ProviderInvoker ProviderRole = "invoker"
 )
 
-// Provider describes one extension-point subsystem available in a deployment.
-// A catalog lists providers to answer "which formats can this deployment parse
-// and which transports can it invoke over?", and resolves a provider to call
-// it.
+// Provider describes one package's claim about what it can do: which formats it
+// reads, which representations it renders, and which transports it calls over.
+//
+// A record states one role, so a package that both reads and writes a format
+// contributes a record for each. providers builds the records from the claims the
+// packages publish, which is why a caller can ask "which formats can this library
+// parse?" once instead of importing every provider to find out.
 type Provider struct {
-	// ID is the stable provider identifier, unique within the deployment.
+	// ID is the stable provider identifier, unique within the index.
 	ID string
-	// Subsystem is the subsystem hosting the provider.
+	// Subsystem names the component hosting the provider, when one does. It is
+	// empty for a package that is itself the provider, which is the only case this
+	// library has.
 	Subsystem string
 	// Role states which contract the provider implements, as an open identifier.
 	Role ProviderRole
@@ -40,13 +45,16 @@ type Provider struct {
 	// Transports are the transports the provider can invoke over. It is empty
 	// for roles that do not call.
 	Transports []Transport
-	// Endpoint is where the provider is reachable.
+	// Endpoint is where the provider is reachable. It is empty for a package that
+	// is called in process, which is what every provider here is.
 	Endpoint string
-	// ServiceNames are the fully-qualified services the provider serves.
+	// ServiceNames are the fully-qualified services the provider serves, for a
+	// provider that is served over a protocol. A package that is imported rather
+	// than dialled serves none.
 	ServiceNames []string
 	// Status is the operational state of the provider.
 	Status ServerStatus
-	// ImplementationVersion is the provider subsystem version.
+	// ImplementationVersion is the version the provider's own descriptors state.
 	ImplementationVersion string
 }
 
@@ -101,14 +109,18 @@ func (p Provider) Serves(serviceName string) bool {
 	return false
 }
 
-// The framework's extension contract names, in one place so components that
-// reason about them — the MCP gateway, for instance — do not repeat string
-// literals.
+// The contract names a host uses when it publishes these roles as services,
+// kept in one place so two hosts do not write the same string twice.
+//
+// Nothing in this library serves them: a caller imports a package and calls it.
+// They are here for the program that wraps these packages in an RPC surface of
+// its own, which then has one copy of each name rather than a literal at every
+// call site.
 const (
-	// ParserService is the contract a parser subsystem implements.
+	// ParserService names the contract a parser is published under.
 	ParserService = "toolbox.api.v1.ApiParserService"
-	// AdapterService is the contract an adapter subsystem implements.
+	// AdapterService names the contract an adapter is published under.
 	AdapterService = "toolbox.api.v1.ApiAdapterService"
-	// InvokerService is the contract an invoker subsystem implements.
+	// InvokerService names the contract an invoker is published under.
 	InvokerService = "toolbox.api.v1.ApiInvokerService"
 )

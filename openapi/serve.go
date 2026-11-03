@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 // Reserved paths under an adapted surface's base path. They belong to the target
@@ -42,7 +42,7 @@ const (
 type Surfaces struct {
 	renderer *Renderer
 	timeout  time.Duration
-	// swaggerUI is an OpenAPI documentation UI supplied by the deployment, such
+	// swaggerUI is an OpenAPI documentation UI supplied by the caller, such
 	// as the official swagger-ui bundle. When none is supplied the server
 	// generates a documentation page from the schema it already produced, so the
 	// documentation endpoint always exists and always describes this API.
@@ -116,10 +116,6 @@ type servedInstance struct {
 	endpoint string
 	client   *http.Client
 }
-
-// ServeApi implements the framework's adapter contract for serving.
-
-// StopApi implements the framework's adapter contract.
 
 // route is one adapted operation the surface serves.
 type route struct {

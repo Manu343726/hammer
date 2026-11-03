@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 // Authorization is a name and a class, and nothing else. A contract says which
-// operations exist and what invoking them does; a deployment says which of those
+// operations exist and what invoking them does; the caller says which of those
 // it permits. Keeping the two apart is what lets a policy be coarse — "every read,
 // no writes" — without enumerating anything, and it is why a capability, which was
 // both a classification and a grant, is not needed here.
@@ -45,9 +45,9 @@ func ParseDecision(value string) (Decision, error) {
 // OperationFacts is what a policy is evaluated against: the operation's
 // identifier and what invoking it declares it does.
 //
-// The identifier is the catalog's, which includes the API that owns the
-// operation, because that is what makes it unique when several subsystems serve
-// one contract.
+// The identifier includes the API that owns the operation, because that is what
+// keeps two operations of one service apart when several APIs are described
+// together.
 type OperationFacts struct {
 	// ID is the operation identifier, "<api>/<service>/<method>".
 	ID string
@@ -69,7 +69,7 @@ type Rule struct {
 	// Classes restricts the rule to operations in those classes. Empty matches
 	// every class, including the unclassified one — a rule that says nothing about
 	// what an operation does is a statement about every operation, which is how a
-	// deployment deliberately trusts an unclassified one.
+	// caller deliberately trusts an unclassified one.
 	Classes []EffectClass
 	// Decision is what the rule concludes.
 	Decision Decision
@@ -77,8 +77,8 @@ type Rule struct {
 
 // Policy is an ordered set of rules, compiled once and consulted per operation.
 //
-// The zero value denies everything, which is the answer when a deployment has
-// stated no policy. A policy that grants everything is written explicitly, with
+// The zero value denies everything, which is the answer when no policy has been
+// stated. A policy that grants everything is written explicitly, with
 // AllowAll, because "no policy" and "every policy" must never be the same value.
 type Policy struct {
 	rules []compiledRule
@@ -95,7 +95,7 @@ type compiledRule struct {
 
 // AllowAll returns a policy that permits every operation.
 //
-// It is for a deployment that has decided its whole surface is available, and it
+// It is for a caller that has decided its whole surface is available, and it
 // is never the default: an absent policy denies everything, so granting
 // everything has to be something somebody wrote down.
 func AllowAll() Policy {
@@ -109,8 +109,8 @@ func AllowAll() Policy {
 	return policy
 }
 
-// DenyAll returns a policy that permits no operation. It is what a deployment
-// with no stated policy gets, spelled out for a caller that wants to be explicit.
+// DenyAll returns a policy that permits no operation. It is what a caller with no
+// stated policy gets, spelled out for a caller that wants to be explicit.
 func DenyAll() Policy { return Policy{} }
 
 // NewPolicy compiles a set of rules, most specific first.

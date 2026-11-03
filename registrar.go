@@ -1,19 +1,18 @@
-package churrera
+package hammer
 
 import (
 	"context"
 	"strings"
 )
 
-// Registrar is the write side of a catalog. A deployment registers the servers
-// it knows and the APIs they host; the catalog decides who may act on them.
+// Registrar is the write side of a catalog. A caller registers the servers it
+// knows and the APIs they host; the catalog decides who may act on them.
 //
 // It is the counterpart of Catalog, and it exists so a composition can feed a
-// catalog without importing the subsystem that implements one. Registering a
-// server and describing an API are separate steps on purpose: a description is
-// produced by a parser provider, which may be a different subsystem entirely, and
-// the party doing the registering may want to enrich a description — with the
-// capabilities a server declared, for instance — before it is stored.
+// catalog without importing the code that keeps one. Registering a server and
+// describing an API are separate steps on purpose: a description is produced by a
+// parser — a different package, usually — and the party doing the registering may
+// want to enrich a description before it is stored.
 type Registrar interface {
 	// RegisterServer records a server, replacing an existing record with the same
 	// identifier unless failIfExists is set. The second result reports whether a
@@ -64,7 +63,7 @@ type DescribeResult struct {
 	// Warnings are non-fatal findings about the description.
 	Warnings []string
 	// Formats are the format descriptors the parser reported, which is how a
-	// catalog learns what its deployment can parse.
+	// caller learns what this library can parse.
 	Formats []FormatDescriptor
 }
 
@@ -98,8 +97,8 @@ type Exposure struct {
 }
 
 // ExposureMap is an in-memory ExposureSource, used by tests, by a
-// configuration-file catalog, and by a deployment that decides exposure before
-// the catalog is running.
+// configuration-file catalog, and by a program that decides exposure before a
+// catalog exists.
 type ExposureMap map[string]Exposure
 
 // Exposures implements ExposureSource. Operations the map does not mention are

@@ -3,7 +3,7 @@ package openapi
 import (
 	"strings"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 // File is one schema file of a rendered target representation.
@@ -41,7 +41,7 @@ type RenderOptions struct {
 	// by default, or application/yaml.
 	MediaType string
 	// Options are target-specific switches, as key/value pairs. A switch this
-	// package does not know is ignored, because the framework does not know every
+	// package does not know is ignored, because a package cannot know every
 	// target's vocabulary.
 	Options map[string]string
 }

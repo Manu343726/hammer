@@ -1,0 +1,38 @@
+# The site is built with Hugo and published by scripts/publish-site.sh.
+#
+# baseURL is the project page of this repository. Every internal link in the
+# templates goes through relURL, so the site keeps working when it is served
+# from a subdirectory — which is exactly what a project page is.
+baseURL = "https://manu343726.github.io/hammer/"
+locale = "en"
+title = "hammer"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[params]
+  tagline = "One description of an API, every shape it has to fit."
+  description = "hammer models an API once and converts it to and from OpenAPI, gRPC, Connect, MCP and the command line."
+  github = "https://github.com/Manu343726/hammer"
+  godoc = "https://pkg.go.dev/github.com/Manu343726/hammer"
+  module = "github.com/Manu343726/hammer"
+  formats = ["openapi", "grpc", "connect", "mcp", "cli"]
+
+[markup]
+  [markup.goldmark.renderer]
+    # The landing page uses a little inline HTML where markdown has no shape for
+    # it (the format chips, the button row). It is authored here, not
+    # user-supplied.
+    unsafe = true
+  [markup.highlight]
+    # The same palette as the rest of the site, applied by the highlighter
+    # rather than by a second stylesheet.
+    style = "monokai"
+    lineNos = false
+
+[minify]
+  minifyOutput = true
+
+[markup.goldmark.parser.attribute]
+  # Heading anchors are written as {#examples} so the navigation can point at
+  # them without depending on a generated slug that a wording change breaks.
+  block = true

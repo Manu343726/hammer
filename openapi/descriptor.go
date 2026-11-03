@@ -2,20 +2,20 @@
 // documents.
 //
 // It is a plain Go package: it depends on the standard model and on the
-// specification's own document shapes, and on no transport. A deployment uses it
+// specification's own document shapes, and on no transport. A caller uses it
 // directly — to describe an API from a document it already holds, to publish a
 // description in OpenAPI whatever language it was parsed from, to serve that
-// published API, or to call an operation — and the OpenAPI provider subsystem
-// wraps it when a parser, an adapter, or an invoker has to be addressable over
-// ConnectRPC.
+// published API, or to call an operation. It is the package that does the work; a
+// program that wants to offer these four jobs over a network wraps it, and this
+// package neither knows nor cares that it has been wrapped.
 //
 // The four capabilities are separate on purpose. Reading a document, writing one,
-// serving one, and calling one are different jobs, and a deployment often needs
-// only some of them.
+// serving one, and calling one are different jobs, and a caller often needs only
+// some of them.
 package openapi
 
 import (
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
 const (
@@ -51,9 +51,9 @@ func HandlesFormat(format api.Format) bool {
 // HandlesTarget reports whether this package renders into a target.
 func HandlesTarget(target string) bool { return api.NormalizeIdentifier(target) == Target }
 
-// FormatDescriptor describes the format for a catalog's index, so the index can
-// answer "can this deployment read an OpenAPI document?" for a format identifier
-// the framework itself never enumerates.
+// FormatDescriptor describes the format for an index, so the index can answer
+// "can this library read an OpenAPI document?" without importing this package to
+// find out.
 func FormatDescriptor() api.FormatDescriptor {
 	return api.FormatDescriptor{
 		ID:                   string(Format),

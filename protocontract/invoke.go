@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
-	api "github.com/Manu343726/chorizo"
-	"github.com/Manu343726/chorizo/discovery"
+	api "github.com/Manu343726/hammer"
+	"github.com/Manu343726/hammer/discovery"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/dynamicpb"
 )
@@ -35,7 +35,7 @@ type InvokerOptions struct {
 	// RequestTimeout bounds one invocation. It defaults to 30 seconds.
 	RequestTimeout time.Duration
 	// Clients optionally supplies pre-built discovery clients, keyed by base URL,
-	// for a deployment that shares one client per endpoint.
+	// for a caller that shares one client per endpoint.
 	Clients map[string]*discovery.Client
 }
 
@@ -70,7 +70,7 @@ func (i *Invoker) Invoke(ctx context.Context, call api.Call) (api.Result, error)
 	}
 	schema, err := i.clientFor(server.BaseURL).DescribeService(ctx, operation.Service)
 	if err != nil {
-		// An endpoint that cannot be reached is a deployment problem; an endpoint
+		// An endpoint that cannot be reached is a reachability problem; an endpoint
 		// that answers but does not describe the service is a description problem.
 		// The two are reported differently, because the fix differs.
 		kind := api.KindFailedPrecondition
@@ -117,10 +117,10 @@ func (i *Invoker) Invoke(ctx context.Context, call api.Call) (api.Result, error)
 // transport itself.
 //
 // The answer is read from [TransportDescriptors] rather than restated, because the
-// list of transports a deployment may describe and the list this package can call
-// over are the same fact written down twice. A catalog uses it to decide whether
-// an operation needs an invoker provider deployed alongside it: it does not for a
-// transport the framework speaks, and it does for one the framework does not.
+// list of transports a caller may describe and the list this package can call over
+// are the same fact written down twice. A caller uses it to decide whether an
+// operation needs a different invoker: this package can call an operation whose
+// transport is in that list, and cannot call one that is not.
 func HandlesTransport(transport api.Transport) bool {
 	for _, descriptor := range TransportDescriptors() {
 		if api.Transport(descriptor.ID) == transport {
@@ -192,7 +192,7 @@ func RequestPayload(arguments json.RawMessage) (json.RawMessage, error) {
 	return arguments, nil
 }
 
-// assert the invoker satisfies the framework's interface at compile time.
+// assert the invoker satisfies the interface at compile time.
 var _ api.Invoker = (*Invoker)(nil)
 
 // FormatString renders a format identifier for messages.

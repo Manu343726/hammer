@@ -7,14 +7,14 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 // These tests exercise the HTTP invoker as a plain Go call, because that is how a
-// host uses it: the RPC layer in the provider subsystem adds message conversion
-// and nothing else.
+// host uses it: a program that publishes the call adds message conversion and
+// nothing else.
 
 func invokerForTest(t *testing.T, credentials CredentialSource) *Invoker {
 	t.Helper()

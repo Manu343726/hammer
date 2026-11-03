@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"fmt"
@@ -10,11 +10,11 @@ import (
 // SchemaForMessage converts a protobuf message descriptor into the standard
 // value description.
 //
-// This is the gRPC side of the standard model, and it lives here rather than in
-// an adapter because a protobuf contract is something the framework already
-// speaks: any component that needs to describe a protobuf message in standard
-// terms — the MCP gateway, a gRPC provider subsystem, documentation — uses this
-// one conversion instead of growing its own.
+// This is the protobuf side of the standard model, and it lives here rather than
+// in one adapter because more than one package needs it: protocontract describes
+// a contract with it, and the documentation reader describes the same messages.
+// A second conversion written beside either of them is how two descriptions of one
+// message start to disagree.
 //
 // Names are the protobuf JSON names, because those are the names callers and
 // agent tooling use when they supply a request.

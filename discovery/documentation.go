@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Manu343726/chorizo/docs"
+	"github.com/Manu343726/hammer/docs"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/dynamicpb"
 )

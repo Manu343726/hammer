@@ -1,6 +1,6 @@
-// Package api defines the standard, provider-neutral description of an API.
+// Package hammer defines the standard, provider-neutral description of an API.
 //
-// It is the shared vocabulary of the framework: an API parsed from an OpenAPI
+// It is the shared vocabulary of this library: an API parsed from an OpenAPI
 // document, from a gRPC contract, or from a description language a user adds
 // later is represented by the same Go types, so an adapter never has to
 // understand a provider-specific schema. The description describes an API; it
@@ -19,18 +19,18 @@
 //
 // # Extensibility
 //
-// The framework does not enumerate the API formats or transports it supports.
+// This library does not enumerate the API formats or transports it supports.
 // A format and a transport are open identifiers, described by FormatDescriptor
-// and TransportDescriptor, and a catalog indexes the descriptors it knows so a
-// consumer can discover which formats this deployment can parse and which
-// transports it can reach — including formats contributed by a user that the
-// framework itself has never heard of. OpenAPI and gRPC are two such formats,
-// not two privileged cases.
+// and TransportDescriptor, and the descriptors a package publishes are what the
+// providers package indexes — so a caller can ask which formats this library can
+// parse and which transports it can reach, including formats contributed by a
+// user that hammer itself has never heard of. OpenAPI and gRPC are two such
+// formats, not two privileged cases.
 //
 // The only closed vocabularies in this package are the JSON value types, which
-// JSON itself defines, and a registered server's lifecycle status, which the
-// framework's registry defines.
-package churrera
+// JSON itself defines, and a registered server's lifecycle status, which this
+// package defines.
+package hammer
 
 import (
 	"fmt"
@@ -40,9 +40,9 @@ import (
 )
 
 // Format is the open identifier of a description language, such as a
-// user-defined identifier. The framework never switches on it: only a parser
-// subsystem claims to handle a format, and a catalog indexes the format
-// descriptors it has been given.
+// user-defined identifier. Nothing here switches on it: a package claims the
+// formats it reads, and providers indexes the descriptors those packages
+// publish.
 type Format = string
 
 // Transport is the open identifier of a transport used to reach a server.
@@ -53,7 +53,7 @@ type Transport = string
 // transport contributed by a user may define its own.
 type ParameterIn = string
 
-// Parameter locations the framework documents. They are conventions, not a
+// Parameter locations this library documents. They are conventions, not a
 // closed set.
 const (
 	ParameterInPath   ParameterIn = "path"
@@ -77,7 +77,7 @@ type SourceKind = string
 // recognize a declared effect must treat it as consequential.
 type SideEffect = string
 
-// Side effects the framework documents. They are conventions, not a closed set.
+// Side effects this library documents. They are conventions, not a closed set.
 const (
 	SideEffectReadOnly     SideEffect = "read_only"
 	SideEffectCreate       SideEffect = "create"
@@ -115,7 +115,7 @@ const (
 func (t SchemaType) String() string { return string(t) }
 
 // ServerStatus is the operational state of a registered server. It is owned by
-// the framework's registry vocabulary and is not extensible.
+// this package and is not extensible.
 type ServerStatus string
 
 const (
@@ -129,9 +129,9 @@ const (
 	ServerStatusUnknown ServerStatus = "unknown"
 )
 
-// FormatDescriptor describes one description format that a deployment can
-// parse. A parser subsystem contributes it; a catalog indexes it so discovery
-// can answer "which formats can this deployment parse?".
+// FormatDescriptor describes one description format a package can parse. The
+// package that reads the format publishes the descriptor, and providers indexes
+// it so a caller can answer "which formats can this library parse?".
 type FormatDescriptor struct {
 	// ID is the format identifier APIs and servers refer to, unique within a
 	// catalog.
@@ -148,7 +148,9 @@ type FormatDescriptor struct {
 	FileExtensions []string
 	// SpecificationVersion is the version of the format specification.
 	SpecificationVersion string
-	// Provider is the subsystem that contributed the descriptor.
+	// Provider names the component that contributed the descriptor, when a caller
+	// wraps the package that reads the format. A package publishing its own
+	// descriptor leaves it empty, because a package is not a component.
 	Provider string
 	// Metadata holds additional descriptor attributes.
 	Metadata map[string]string
@@ -163,10 +165,9 @@ func (d FormatDescriptor) Clone() FormatDescriptor {
 	return clone
 }
 
-// TransportDescriptor describes one transport that a deployment can use to
-// reach a server. An adapter subsystem contributes it; a catalog indexes it so
-// discovery can answer "which transports can this deployment reach servers
-// over?".
+// TransportDescriptor describes one transport a package can reach a server
+// over. The package that calls publishes it, and providers indexes it so a
+// caller can answer "which transports can this library reach servers over?".
 type TransportDescriptor struct {
 	// ID is the transport identifier servers refer to, unique within a catalog.
 	ID string
@@ -180,7 +181,9 @@ type TransportDescriptor struct {
 	Schemes []string
 	// SupportsStreaming states whether the transport streams responses.
 	SupportsStreaming bool
-	// Provider is the subsystem that contributed the descriptor.
+	// Provider names the component that contributed the descriptor, when a caller
+	// wraps the package that calls. A package publishing its own descriptor leaves
+	// it empty, because a package is not a component.
 	Provider string
 	// Metadata holds additional descriptor attributes.
 	Metadata map[string]string

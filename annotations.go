@@ -1,15 +1,15 @@
-package churrera
+package hammer
 
 import (
 	"sort"
 	"strings"
 
-	shareddocs "github.com/Manu343726/chorizo/docs"
+	shareddocs "github.com/Manu343726/hammer/docs"
 )
 
 // A contract states authorization-relevant facts in its documentation, because a
 // descriptor knows which methods exist and nothing about what invoking one does.
-// The keys below are the framework's vocabulary, and they are the protobuf spelling
+// The keys below are this library's vocabulary, and they are the protobuf spelling
 // of the same facts an OpenAPI document states through x-toolbox-* extensions, so
 // one policy written against side effects means the same thing in both formats.
 //
@@ -19,11 +19,11 @@ import (
 // a misspelt key silently leaves an operation unclassified, and an unclassified
 // operation is one no policy can expose. The failure has to be visible.
 
-// Annotation keys the framework recognises in a protobuf comment.
+// Annotation keys this library recognises in a protobuf comment.
 const (
 	// AnnotationSideEffects declares what invoking the method does, as one or more
 	// side effects. It is the only key that states an authorization-relevant fact,
-	// and it is what makes a method of a ConnectRPC service classifiable at all:
+	// and it is what makes a method of a protobuf service classifiable at all:
 	// every RPC is a POST, so nothing about the transport implies an effect.
 	AnnotationSideEffects = "toolbox.side-effects"
 )
@@ -50,7 +50,7 @@ func SideEffects(annotations shareddocs.AnnotationSet) (effects []SideEffect, un
 	return deduplicateSideEffects(effects), unknown
 }
 
-// UnknownAnnotations returns the keys of a set the framework does not recognise.
+// UnknownAnnotations returns the keys of a set this library does not recognise.
 func UnknownAnnotations(annotations shareddocs.AnnotationSet) []string {
 	unknown := make([]string, 0)
 	for _, key := range annotations.Keys() {
@@ -62,11 +62,11 @@ func UnknownAnnotations(annotations shareddocs.AnnotationSet) []string {
 	return unknown
 }
 
-// KnownSideEffect reports whether an effect is one this framework documents.
+// KnownSideEffect reports whether an effect is one this library documents.
 //
 // The vocabulary is open: a description may declare an effect nobody recognises,
 // and a consumer must treat it as consequential. This reports whether the name is
-// one the framework defines, which is what lets a reader reject a typo without
+// one this library defines, which is what lets a reader reject a typo without
 // rejecting a valid extension.
 func KnownSideEffect(effect SideEffect) bool {
 	switch effect {

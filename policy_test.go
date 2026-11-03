@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"strings"
@@ -42,8 +42,8 @@ func TestAnEmptyPolicyRefusesEverything(t *testing.T) {
 
 func TestAPatternAddressesOneAPIsOperations(t *testing.T) {
 	// The identifier includes the API that owns the operation, which is what makes
-	// it unique when several subsystems serve one contract. A rule therefore has to
-	// be able to name one provider rather than the contract all of them serve.
+	// it unique when several APIs describe one contract. A rule therefore has to be
+	// able to name one API rather than the contract all of them describe.
 	policy, err := NewPolicy(Rule{
 		Pattern:  "apimcp/toolbox.api.v1.ApiParserService/ParseApi",
 		Decision: DecisionAllow,
@@ -185,8 +185,8 @@ func TestAPolicyIsQueryable(t *testing.T) {
 }
 
 func TestAPolicyDocumentRoundTrips(t *testing.T) {
-	// One document, read the same way whether it lives in a file, in the policy
-	// subsystem's storage, or in a fixture.
+	// One document, read the same way whether it lives in a file, in a caller's own
+	// storage, or in a fixture.
 	const document = `
 # Every read in the deployment, and nothing else, except the two services a
 # deployment has decided are safe to write to.

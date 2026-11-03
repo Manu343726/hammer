@@ -10,10 +10,10 @@ import (
 
 	"go.yaml.in/yaml/v3"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 )
 
-// Extensions a document may use to declare what the framework needs to know and
+// Extensions a document may use to declare what this library needs to know and
 // cannot infer. Everything else about an operation is described by the document
 // itself; these extensions are the only way a document states anything the HTTP
 // method does not already imply.
@@ -262,7 +262,7 @@ func methodSuccess(method httpMethod) string {
 }
 
 // parseDocument interprets an OpenAPI 3.x document. The document may be JSON or
-// YAML, and the format identifier is the one this subsystem owns.
+// YAML, and the format identifier is the one this package owns.
 func parseDocument(data []byte, request parseRequest) (api.API, []string, error) {
 	if len(data) == 0 {
 		return api.API{}, nil, fmt.Errorf("document is empty")
@@ -342,7 +342,7 @@ func parseDocument(data []byte, request parseRequest) (api.API, []string, error)
 	return normalized, builder.warnings, nil
 }
 
-// parseRequest carries the catalog's provenance hints for one document.
+// parseRequest carries the caller's provenance hints for one document.
 type parseRequest struct {
 	// APID overrides the identifier assigned to the parsed API.
 	APID string

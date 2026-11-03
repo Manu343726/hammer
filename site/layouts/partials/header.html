@@ -1,0 +1,18 @@
+<header>
+  <div class="wrap">
+    <a class="brand" href="{{ site.Home.RelPermalink }}"><b>hammer</b></a>
+    <nav>
+      {{/* Anchors are built on the home permalink rather than on a root-absolute
+           path, because the site is served from the project's subdirectory and
+           "/#formats" would point outside it. */}}
+      <a href="{{ site.Home.RelPermalink }}#formats">Formats</a>
+      <a href="{{ site.Home.RelPermalink }}#examples">Examples</a>
+      <a href="{{ site.Home.RelPermalink }}#design">Design</a>
+      <a href="{{ site.Params.godoc }}">Go docs</a>
+      {{/* Links outside Hugo's content are built with relURL for the same
+           reason: the published reports live beside the site, not under it. */}}
+      <a href="{{ "allure/latest/" | relURL }}">Test report</a>
+      <a href="{{ site.Params.github }}">GitHub</a>
+    </nav>
+  </div>
+</header>

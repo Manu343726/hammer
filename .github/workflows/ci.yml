@@ -1,0 +1,231 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write # publishing the site to the gh-pages branch
+  pull-requests: write # the run summary comments on a pull request
+
+env:
+  # The floor the suite is held to. Raise it as coverage rises; lower it only
+  # with a comment saying which package could not keep up and why.
+  COVERAGE_MIN: "99"
+  # How many per-run reports to keep on the Pages branch. A report is tens of
+  # megabytes, so this is a storage decision as much as a historical one.
+  KEEP_RUNS: "10"
+
+jobs:
+  build:
+    name: Build, vet and format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download modules
+        run: go mod download
+
+      - name: Check go.mod and go.sum are tidy
+        run: |
+          go mod tidy
+          if ! git diff --exit-code -- go.mod go.sum; then
+            echo "::error::go.mod or go.sum is not tidy — run 'go mod tidy' and commit the result"
+            exit 1
+          fi
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Format
+        run: |
+          unformatted=$(gofmt -l . | grep -v '^internal/' || true)
+          if [ -n "$unformatted" ]; then
+            echo "::error::these files are not gofmt'd:"
+            echo "$unformatted"
+            exit 1
+          fi
+
+  test:
+    name: Test, report and publish
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # A failing test still has to produce a report, and a step that fails
+      # stops the ones after it. So the exit status is recorded and acted on at
+      # the end of the job, after the report and the summary exist.
+      - name: Run tests
+        id: tests
+        run: |
+          set +e
+          go test -race -count=1 -json -covermode=atomic -coverprofile=coverage.out ./... \
+            > test-events.json 2>&1
+          status=$?
+          echo "status=${status}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Describe the run
+        run: |
+          mkdir -p build
+          {
+            echo "go=$(go version)"
+            echo "commit=${GITHUB_SHA}"
+            echo "ref=${GITHUB_REF_NAME}"
+            echo "run=${GITHUB_RUN_NUMBER}"
+            echo "os=$(uname -sr)"
+          } > build/environment.properties
+
+      - name: Convert the test stream to Allure results
+        run: |
+          go run ./tools/allure \
+            -in test-events.json \
+            -out build/allure-results \
+            -module github.com/Manu343726/hammer \
+            -environment build/environment.properties \
+            -labels "ci.run=${GITHUB_RUN_NUMBER},ci.commit=${GITHUB_SHA}" \
+            -summary build/summary.md
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate the Allure report
+        run: |
+          npm install --global "allure@^3"
+          allure --version
+          allure generate build/allure-results --output allure-report --clean
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      # baseURL is the project page of this repository, and it has to be given
+      # at build time: every link the site makes is relative to it, which is
+      # what keeps the site working when it is served from a subdirectory.
+      - name: Build the project site
+        run: |
+          owner=$(printf '%s' "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
+          name=${GITHUB_REPOSITORY##*/}
+          hugo --source site \
+            --destination "$PWD/public" \
+            --baseURL "https://${owner}.github.io/${name}/" \
+            --gc --minify
+
+      - name: Coverage per package
+        run: |
+          go test -count=1 -cover ./... | grep -v 'no test files' | tee cover-summary.txt
+
+      - name: Coverage gate
+        id: coverage
+        run: |
+          total=$(go tool cover -func=coverage.out | awk '/^total:/ {print $3}' | tr -d '%')
+          echo "total=${total}" >> "$GITHUB_OUTPUT"
+          echo "total: ${total}% (floor ${COVERAGE_MIN}%)"
+          if awk -v t="$total" -v m="$COVERAGE_MIN" 'BEGIN { exit !(t+0 >= m+0) }'; then
+            exit 0
+          fi
+          echo "::error::total coverage ${total}% is below the ${COVERAGE_MIN}% floor"
+          echo "Uncovered functions, worst first:"
+          go tool cover -func=coverage.out \
+            | awk '$1 != "total:" && $3+0 < 100 {print $3, $2, $1}' \
+            | sort -n \
+            | head -50
+          exit 1
+
+      # The report is generated for every run, including a pull request's, but
+      # only a push to main has a durable place to live.
+      - name: Publish the site and the report
+        id: publish
+        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+          GITHUB_SHA: ${{ github.sha }}
+          SITE_DIR: public
+          REPORT_DIR: allure-report
+          KEEP_RUNS: ${{ env.KEEP_RUNS }}
+        run: ./scripts/publish-site.sh
+
+      - name: Upload the raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: |
+            allure-report
+            build/allure-results
+            coverage.out
+            test-events.json
+          if-no-files-found: ignore
+
+      # The run page is where somebody looks first, so it says what happened and
+      # where to read more — in that order.
+      - name: Write the run summary
+        if: always()
+        env:
+          REPORT_URL: ${{ steps.publish.outputs.url }}
+          SITE_URL: ${{ steps.publish.outputs.site }}
+          COVERAGE: ${{ steps.coverage.outputs.total }}
+          TEST_STATUS: ${{ steps.tests.outputs.status }}
+        run: |
+          {
+            if [ -f build/summary.md ]; then
+              cat build/summary.md
+            else
+              echo "### The run produced no test events"
+              printf '\n```\n'
+              tail -40 test-events.json || true
+              printf '```\n'
+            fi
+
+            if [ -n "${COVERAGE}" ]; then
+              printf '\n**Coverage: %s%%** of statements (floor %s%%)\n' \
+                "${COVERAGE}" "${COVERAGE_MIN}"
+            fi
+
+            printf '\n#### Where to read more\n'
+            if [ -n "${REPORT_URL}" ]; then
+              printf '\n- [Allure report for this run](%s)\n' "${REPORT_URL}"
+              printf -- '- [Project site](%s) · [Latest report](%sallure/latest/)\n' \
+                "${SITE_URL}" "${SITE_URL}"
+            else
+              printf '\n- The Allure report is attached to this run as the `test-report` artifact.\n'
+              printf -- '- A published report exists only for runs on `main`.\n'
+            fi
+            printf -- '- [The project site](https://%s) goes live after the first run on `main`.\n' \
+              "$(echo "${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')"
+
+            if [ -f cover-summary.txt ]; then
+              printf '\n<details><summary>Coverage per package</summary>\n\n```\n'
+              cat cover-summary.txt
+              printf '```\n\n</details>\n'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if the tests failed
+        if: always()
+        run: |
+          if [ "${{ steps.tests.outputs.status }}" != "0" ]; then
+            echo "::error::the test suite failed — see the summary and the Allure report"
+            exit 1
+          fi

@@ -13,3 +13,14 @@ coverage.*
 .idea/
 .vscode/
 *.swp
+
+# Hugo build output and cache
+/public/
+/resources/
+.hugo_build.lock
+
+# Test and report artifacts
+/build/
+/allure-report/
+test-events.json
+cover-summary.txt

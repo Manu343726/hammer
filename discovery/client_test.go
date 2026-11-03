@@ -3,7 +3,7 @@ package discovery_test
 import (
 	"testing"
 
-	"github.com/Manu343726/chorizo/discovery"
+	"github.com/Manu343726/hammer/discovery"
 	"github.com/stretchr/testify/assert"
 )
 

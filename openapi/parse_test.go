@@ -3,7 +3,7 @@ package openapi
 import (
 	"testing"
 
-	api "github.com/Manu343726/chorizo"
+	api "github.com/Manu343726/hammer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"context"
@@ -9,11 +9,10 @@ import (
 
 // ErrorKind is the canonical classification of a failure in the API layer.
 //
-// The standard model's implementations live in plain Go packages that know
-// nothing about any transport, so they report what went wrong rather than which
-// status code it maps to. A transport layer — a ConnectRPC handler, an HTTP
-// gateway — maps the kind to its own codes, and a caller that speaks neither
-// transport can still read the kind.
+// The packages that implement the standard model know nothing about any
+// transport, so they report what went wrong rather than which status code it maps
+// to. A caller that publishes these failures over a protocol maps the kind to its
+// own codes; a caller that does not can still read the kind.
 type ErrorKind string
 
 const (
@@ -22,7 +21,8 @@ const (
 	// KindNotFound is a request for something that does not exist.
 	KindNotFound ErrorKind = "not_found"
 	// KindFailedPrecondition is a request that cannot be satisfied in the current
-	// state, such as describing an API whose parser is not deployed.
+	// state, such as describing an API from a document the format's reader cannot
+	// accept.
 	KindFailedPrecondition ErrorKind = "failed_precondition"
 	// KindDenied is a request the policy refuses.
 	KindDenied ErrorKind = "permission_denied"

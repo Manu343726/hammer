@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"encoding/json"

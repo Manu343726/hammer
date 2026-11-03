@@ -1,10 +1,10 @@
-package churrera
+package hammer
 
 import (
 	"strings"
 	"testing"
 
-	shareddocs "github.com/Manu343726/chorizo/docs"
+	shareddocs "github.com/Manu343726/hammer/docs"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

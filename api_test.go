@@ -1,4 +1,4 @@
-package churrera
+package hammer
 
 import (
 	"encoding/json"
@@ -71,8 +71,8 @@ func TestNormalizeRequiresIdentityAndFormat(t *testing.T) {
 }
 
 func TestNormalizeAcceptsAFormatTheFrameworkHasNeverSeen(t *testing.T) {
-	// The framework does not know which formats exist, so it cannot reject one it
-	// has not seen. A user-defined format normalizes exactly like a known one.
+	// Nothing here knows which formats exist, so it cannot reject one it has not
+	// seen. A user-defined format normalizes exactly like a known one.
 	for _, format := range []Format{"openapi", "grpc", "smithy", "graphql", "asyncapi", "x-made-up"} {
 		described := sample()
 		described.Format = format
@@ -379,10 +379,10 @@ func TestAPIRoundTripsItsTransportClaim(t *testing.T) {
 }
 
 func TestAProviderDeclaresOpenIdentifiers(t *testing.T) {
-	// The framework has no list of formats, targets, or transports. A provider
-	// states what it handles, and an identifier nobody has heard of resolves like
-	// any other — which is what lets a user add a format without changing anything
-	// that has to recognize it.
+	// There is no list of formats, targets, or transports. A provider states what it
+	// handles, and an identifier nobody has heard of resolves like any other — which
+	// is what lets a user add a format without changing anything that has to
+	// recognize it.
 	provider := Provider{
 		ID:      "smithy",
 		Role:    ProviderParser,
