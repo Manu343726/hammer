@@ -1,0 +1,2 @@
+=== RUN   TestTheDescribedAPIIsWellFormed
+--- PASS: TestTheDescribedAPIIsWellFormed (0.02s)

@@ -1,0 +1,2 @@
+=== RUN   TestAMemberWithNoSchemaIsAStringFlag
+--- PASS: TestAMemberWithNoSchemaIsAStringFlag (0.00s)

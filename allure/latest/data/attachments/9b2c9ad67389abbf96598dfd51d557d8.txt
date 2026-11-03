@@ -1,0 +1,2 @@
+=== RUN   TestAMalformedAnnotationLineStaysProse
+--- PASS: TestAMalformedAnnotationLineStaysProse (0.00s)

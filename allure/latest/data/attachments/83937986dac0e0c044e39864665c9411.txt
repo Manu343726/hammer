@@ -1,0 +1,2 @@
+=== RUN   TestAFlagHelpIsTheDescriptionsOwnComment
+--- PASS: TestAFlagHelpIsTheDescriptionsOwnComment (0.00s)

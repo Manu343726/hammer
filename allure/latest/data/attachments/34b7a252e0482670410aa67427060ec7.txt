@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyPathHasNoSource
+--- PASS: TestAnEmptyPathHasNoSource (0.00s)

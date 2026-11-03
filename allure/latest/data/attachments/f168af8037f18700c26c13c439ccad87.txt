@@ -1,0 +1,2 @@
+=== RUN   TestModelOperationValidateRejectsWhatCannotBeInvoked/malformed_request
+--- PASS: TestModelOperationValidateRejectsWhatCannotBeInvoked/malformed_request (0.00s)

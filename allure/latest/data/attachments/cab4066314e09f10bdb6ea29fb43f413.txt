@@ -1,0 +1,2 @@
+=== RUN   TestRendersAnOpenAPIDescriptionAsAContract
+--- PASS: TestRendersAnOpenAPIDescriptionAsAContract (0.01s)

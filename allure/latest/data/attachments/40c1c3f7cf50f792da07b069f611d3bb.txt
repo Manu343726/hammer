@@ -1,0 +1,2 @@
+=== RUN   ExampleParse
+--- PASS: ExampleParse (0.00s)

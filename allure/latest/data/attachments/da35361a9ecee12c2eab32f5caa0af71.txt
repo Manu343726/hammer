@@ -1,0 +1,2 @@
+=== RUN   TestEveryAdvertisedCapabilityIsReachable/write-cli-adapter-cli
+--- PASS: TestEveryAdvertisedCapabilityIsReachable/write-cli-adapter-cli (0.00s)

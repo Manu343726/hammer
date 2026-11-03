@@ -1,0 +1,2 @@
+=== RUN   TestAdapterRejectsUnknownArgument
+--- PASS: TestAdapterRejectsUnknownArgument (0.00s)

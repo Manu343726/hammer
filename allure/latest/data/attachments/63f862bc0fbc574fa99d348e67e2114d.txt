@@ -1,0 +1,2 @@
+=== RUN   TestAnUnknownNamespacedAnnotationIsStillReturned
+--- PASS: TestAnUnknownNamespacedAnnotationIsStillReturned (0.00s)

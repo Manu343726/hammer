@@ -1,2 +1,0 @@
-=== RUN   TestRenderEmitsTheDescriptorSetOnRequest
---- PASS: TestRenderEmitsTheDescriptorSetOnRequest (0.03s)

@@ -1,0 +1,2 @@
+=== RUN   TestALadderWithNoDistinctWordFallsBack
+--- PASS: TestALadderWithNoDistinctWordFallsBack (0.00s)

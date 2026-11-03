@@ -1,0 +1,2 @@
+=== RUN   TestTheConfigurationFormatFollowsTheFile
+--- PASS: TestTheConfigurationFormatFollowsTheFile (0.01s)

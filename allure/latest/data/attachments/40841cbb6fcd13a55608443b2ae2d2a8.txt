@@ -1,2 +1,0 @@
-=== RUN   TestIdentityPerProvider/protocontract
---- PASS: TestIdentityPerProvider/protocontract (0.03s)

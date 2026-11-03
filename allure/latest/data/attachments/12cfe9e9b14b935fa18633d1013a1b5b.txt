@@ -1,0 +1,2 @@
+=== RUN   TestTheFirstNonEmptyValueMayBeNothing
+--- PASS: TestTheFirstNonEmptyValueMayBeNothing (0.00s)

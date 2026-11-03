@@ -1,2 +1,0 @@
-=== RUN   TestCovDefectAllOfNamesARecursiveMember
---- PASS: TestCovDefectAllOfNamesARecursiveMember (0.01s)

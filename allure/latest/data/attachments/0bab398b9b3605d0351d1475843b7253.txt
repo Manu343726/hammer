@@ -1,0 +1,2 @@
+=== RUN   TestToolNameSegmentIsReadable
+--- PASS: TestToolNameSegmentIsReadable (0.00s)

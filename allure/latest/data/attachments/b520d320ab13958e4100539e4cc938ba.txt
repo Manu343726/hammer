@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderRefusesOrOmitsOperationsItCannotRepresent
+--- PASS: TestCovRenderRefusesOrOmitsOperationsItCannotRepresent (0.00s)

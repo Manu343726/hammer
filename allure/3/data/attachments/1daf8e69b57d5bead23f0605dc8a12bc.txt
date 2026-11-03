@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractDoesNotPutAParameterIntoASharedMessage
+--- PASS: TestRenderedContractDoesNotPutAParameterIntoASharedMessage (0.01s)

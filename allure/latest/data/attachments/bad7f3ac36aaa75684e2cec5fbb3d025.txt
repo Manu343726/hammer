@@ -1,0 +1,2 @@
+=== RUN   TestAnArrayDocumentOfTheWrongShapeIsRefused
+--- PASS: TestAnArrayDocumentOfTheWrongShapeIsRefused (0.00s)

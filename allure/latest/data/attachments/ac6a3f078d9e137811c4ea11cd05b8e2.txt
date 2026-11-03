@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyLabelListIsNoLabels
+--- PASS: TestAnEmptyLabelListIsNoLabels (0.00s)

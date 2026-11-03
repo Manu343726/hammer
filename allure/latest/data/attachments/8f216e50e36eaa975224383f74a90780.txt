@@ -1,2 +1,0 @@
-=== RUN   TestAnUnclassifiedFailureIsPrintedWithoutAKind
---- PASS: TestAnUnclassifiedFailureIsPrintedWithoutAKind (0.01s)

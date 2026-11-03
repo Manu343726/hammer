@@ -1,0 +1,2 @@
+=== RUN   TestAValueIsReadFromTheConfigurationFile
+--- PASS: TestAValueIsReadFromTheConfigurationFile (0.00s)

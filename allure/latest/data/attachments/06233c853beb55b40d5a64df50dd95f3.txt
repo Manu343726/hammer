@@ -1,0 +1,2 @@
+=== RUN   TestRenderNamesTheContractAfterTheCallersChoice
+--- PASS: TestRenderNamesTheContractAfterTheCallersChoice (0.01s)

@@ -1,0 +1,2 @@
+=== RUN   TestTheCommandWritesNoSummaryWhenNoneIsAskedFor
+--- PASS: TestTheCommandWritesNoSummaryWhenNoneIsAskedFor (0.00s)

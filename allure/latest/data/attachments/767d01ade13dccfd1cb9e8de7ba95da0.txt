@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsDuplicateOperationIdentifiers
+--- PASS: TestCovParseRejectsDuplicateOperationIdentifiers (0.00s)

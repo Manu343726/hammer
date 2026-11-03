@@ -1,0 +1,2 @@
+=== RUN   TestRenderKeepsABodyWhenTheOperationDeclaresParameters
+--- PASS: TestRenderKeepsABodyWhenTheOperationDeclaresParameters (0.00s)

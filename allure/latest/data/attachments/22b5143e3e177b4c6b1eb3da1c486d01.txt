@@ -1,2 +1,0 @@
-=== RUN   TestTheCommandBoundStopsTheWalk
---- PASS: TestTheCommandBoundStopsTheWalk (0.03s)

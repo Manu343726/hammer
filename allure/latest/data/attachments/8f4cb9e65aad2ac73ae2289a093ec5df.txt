@@ -1,2 +1,0 @@
-=== RUN   TestCoverParseFromEndpointWarnsAboutAServiceItCannotDescribe
---- PASS: TestCoverParseFromEndpointWarnsAboutAServiceItCannotDescribe (0.03s)

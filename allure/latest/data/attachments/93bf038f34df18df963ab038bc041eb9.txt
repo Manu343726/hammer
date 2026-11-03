@@ -1,0 +1,2 @@
+=== RUN   TestBasePathWarnsWhenItShadowsTheOriginalServerPath
+--- PASS: TestBasePathWarnsWhenItShadowsTheOriginalServerPath (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelPatternReportsHowSpecificItIs/knowledge/toolbox.v1.Knowledge/Search
+--- PASS: TestModelPatternReportsHowSpecificItIs/knowledge/toolbox.v1.Knowledge/Search (0.00s)

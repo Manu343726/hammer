@@ -1,0 +1,2 @@
+=== RUN   TestServiceDescriptorRefusesASymbolThatIsNotAService
+--- PASS: TestServiceDescriptorRefusesASymbolThatIsNotAService (0.00s)

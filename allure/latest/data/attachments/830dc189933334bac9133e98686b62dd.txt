@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectAdditionalPropertiesRefusesWhatIsNeitherForm/a_list
+--- PASS: TestCovDefectAdditionalPropertiesRefusesWhatIsNeitherForm/a_list (0.00s)

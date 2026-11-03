@@ -1,0 +1,2 @@
+=== RUN   TestACommandWithNoFlagsIsAnOperation
+--- PASS: TestACommandWithNoFlagsIsAnOperation (0.00s)

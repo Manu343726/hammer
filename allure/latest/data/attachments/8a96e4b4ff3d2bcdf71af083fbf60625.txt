@@ -1,0 +1,2 @@
+=== RUN   TestADefaultIsReadOutOfTheHelpText
+--- PASS: TestADefaultIsReadOutOfTheHelpText (0.00s)

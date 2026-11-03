@@ -1,0 +1,2 @@
+=== RUN   TestCovManifestReportsADocumentItCannotEncode
+--- PASS: TestCovManifestReportsADocumentItCannotEncode (0.00s)

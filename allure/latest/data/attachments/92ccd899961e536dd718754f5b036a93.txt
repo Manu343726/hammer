@@ -1,0 +1,2 @@
+=== RUN   TestADeprecatedOperationSaysSoInItsHelp
+--- PASS: TestADeprecatedOperationSaysSoInItsHelp (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestRegisteringAnEmbeddedFileReachesTheDefaultCatalog
+--- PASS: TestRegisteringAnEmbeddedFileReachesTheDefaultCatalog (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestABinaryIsDescribedFromItsOwnHelp
---- PASS: TestABinaryIsDescribedFromItsOwnHelp (0.05s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsDeclarationsThatCollide
+--- PASS: TestCoverRenderReportsDeclarationsThatCollide (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeReportsAnEndpointItCannotReach
+--- PASS: TestCoverParseDescribeReportsAnEndpointItCannotReach (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsTagsAndReferencesFromAnotherDialect
+--- PASS: TestCoverRenderReportsTagsAndReferencesFromAnotherDialect (0.00s)

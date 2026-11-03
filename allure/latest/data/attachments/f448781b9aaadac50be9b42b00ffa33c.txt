@@ -1,0 +1,2 @@
+=== RUN   TestAnAPIWithNoServicesIsStillACommand
+--- PASS: TestAnAPIWithNoServicesIsStillACommand (0.00s)

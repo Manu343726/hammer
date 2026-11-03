@@ -1,0 +1,2 @@
+=== RUN   TestEveryTypeWordAPageCanPrintIsRead
+--- PASS: TestEveryTypeWordAPageCanPrintIsRead (0.00s)

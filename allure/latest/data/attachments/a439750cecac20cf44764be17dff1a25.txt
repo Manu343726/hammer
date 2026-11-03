@@ -1,0 +1,2 @@
+=== RUN   TestACallToAnUnknownServiceIsRefused
+--- PASS: TestACallToAnUnknownServiceIsRefused (0.01s)

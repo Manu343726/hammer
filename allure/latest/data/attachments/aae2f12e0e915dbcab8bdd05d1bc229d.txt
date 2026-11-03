@@ -1,0 +1,2 @@
+=== RUN   TestTransportDescriptorsSayTheyCarryOneContract
+--- PASS: TestTransportDescriptorsSayTheyCarryOneContract (0.00s)

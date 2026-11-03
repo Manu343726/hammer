@@ -1,0 +1,2 @@
+=== RUN   TestAScalarParameterKeepsItsType
+--- PASS: TestAScalarParameterKeepsItsType (0.00s)

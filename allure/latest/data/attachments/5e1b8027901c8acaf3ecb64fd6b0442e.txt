@@ -1,2 +1,0 @@
-=== RUN   TestTheOperationsSurviveTheRoundTrip
---- PASS: TestTheOperationsSurviveTheRoundTrip (0.02s)

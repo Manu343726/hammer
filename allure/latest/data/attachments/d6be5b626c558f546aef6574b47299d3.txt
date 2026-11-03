@@ -1,0 +1,2 @@
+=== RUN   TestCloneIsDeep
+--- PASS: TestCloneIsDeep (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorCarriesTheSideEffectsTheContractDeclares
+--- PASS: TestDescriptorCarriesTheSideEffectsTheContractDeclares (0.00s)

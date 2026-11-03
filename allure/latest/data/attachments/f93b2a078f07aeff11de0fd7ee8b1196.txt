@@ -1,0 +1,2 @@
+=== RUN   TestCatalogRejectsInvalidInput
+--- PASS: TestCatalogRejectsInvalidInput (0.00s)

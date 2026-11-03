@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsUnresolvablePathParameter
+--- PASS: TestCovParseRejectsUnresolvablePathParameter (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestCovRegistryRecordsNothingForAContributionThatClaimsNothing
+--- PASS: TestCovRegistryRecordsNothingForAContributionThatClaimsNothing (0.00s)

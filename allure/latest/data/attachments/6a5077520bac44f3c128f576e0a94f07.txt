@@ -1,2 +1,0 @@
-=== RUN   TestInvokerRefusesArgumentsThatAreNotAnObject
---- PASS: TestInvokerRefusesArgumentsThatAreNotAnObject (0.02s)

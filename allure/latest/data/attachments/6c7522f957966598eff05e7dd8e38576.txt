@@ -1,0 +1,2 @@
+=== RUN   TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/arguments_are_not_a_JSON_object
+--- PASS: TestCovInvokeRejectsArgumentsTheDeclarationCannotUse/arguments_are_not_a_JSON_object (0.00s)

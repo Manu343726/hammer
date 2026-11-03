@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorMarksStreamingWithoutInvokingIt
+--- PASS: TestDescriptorMarksStreamingWithoutInvokingIt (0.00s)

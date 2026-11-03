@@ -1,0 +1,2 @@
+=== RUN   TestASourceThatDoesNotCompileIsRefusedAndTheFailureIsRemembered
+--- PASS: TestASourceThatDoesNotCompileIsRefusedAndTheFailureIsRemembered (0.00s)

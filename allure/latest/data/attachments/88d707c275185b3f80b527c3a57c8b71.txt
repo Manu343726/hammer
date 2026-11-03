@@ -1,0 +1,2 @@
+=== RUN   TestCovParameterTextWithoutAValue
+--- PASS: TestCovParameterTextWithoutAValue (0.00s)

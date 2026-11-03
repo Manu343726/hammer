@@ -1,2 +1,0 @@
-=== RUN   TestTheRootPrintsItsOwnHelp
---- PASS: TestTheRootPrintsItsOwnHelp (0.01s)

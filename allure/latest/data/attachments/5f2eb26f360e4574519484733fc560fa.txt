@@ -1,0 +1,2 @@
+=== RUN   TestMatrix/mcp-to-openapi
+--- PASS: TestMatrix/mcp-to-openapi (0.01s)

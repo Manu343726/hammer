@@ -1,2 +1,0 @@
-=== RUN   TestCoverInvokeReportsAResponseItCannotEncode
---- PASS: TestCoverInvokeReportsAResponseItCannotEncode (0.03s)

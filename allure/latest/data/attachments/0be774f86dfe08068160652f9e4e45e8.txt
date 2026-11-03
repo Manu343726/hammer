@@ -1,0 +1,2 @@
+=== RUN   TestAPathThatCannotBeWrittenIsReported/the_temporary_result
+--- PASS: TestAPathThatCannotBeWrittenIsReported/the_temporary_result (0.00s)

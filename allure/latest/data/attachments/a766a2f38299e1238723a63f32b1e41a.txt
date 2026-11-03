@@ -1,0 +1,2 @@
+=== RUN   TestDescribeToolReportsAToolWithNoInputSchema
+--- PASS: TestDescribeToolReportsAToolWithNoInputSchema (0.00s)

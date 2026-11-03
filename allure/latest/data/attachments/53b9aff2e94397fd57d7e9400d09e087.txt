@@ -1,0 +1,2 @@
+=== RUN   TestAServiceWithNoMethodsIsDescribedAsEmpty
+--- PASS: TestAServiceWithNoMethodsIsDescribedAsEmpty (0.01s)

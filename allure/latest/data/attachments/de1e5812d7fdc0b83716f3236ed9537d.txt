@@ -1,2 +1,0 @@
-=== RUN   TestRenderedContractKeepsAValueThatIsNotAnObject
---- PASS: TestRenderedContractKeepsAValueThatIsNotAnObject (0.01s)

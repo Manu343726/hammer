@@ -1,0 +1,2 @@
+=== RUN   TestCovDescribeDocumentRefusesAnEntryItCannotIdentify
+--- PASS: TestCovDescribeDocumentRefusesAnEntryItCannotIdentify (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestAContractProtobufDescribesANilMessagePermissively
+--- PASS: TestAContractProtobufDescribesANilMessagePermissively (0.00s)

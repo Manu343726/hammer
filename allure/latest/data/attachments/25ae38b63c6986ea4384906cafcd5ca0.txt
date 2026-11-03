@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderRefusesDescriptionsItCannotDeclare
+--- PASS: TestCoverRenderRefusesDescriptionsItCannotDeclare (0.00s)

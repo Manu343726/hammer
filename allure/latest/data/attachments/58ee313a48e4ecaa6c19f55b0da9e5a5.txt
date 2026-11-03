@@ -1,0 +1,2 @@
+=== RUN   TestDescribingASymbolThatIsNotAServiceIsRefused
+--- PASS: TestDescribingASymbolThatIsNotAServiceIsRefused (0.01s)

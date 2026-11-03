@@ -1,0 +1,2 @@
+=== RUN   TestALabelsResultByPackageParentAndSubtest
+--- PASS: TestALabelsResultByPackageParentAndSubtest (0.00s)

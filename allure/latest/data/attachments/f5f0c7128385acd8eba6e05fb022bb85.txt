@@ -1,0 +1,2 @@
+=== RUN   TestAContractProviderHandlesExactlyWhatItDeclares
+--- PASS: TestAContractProviderHandlesExactlyWhatItDeclares (0.00s)

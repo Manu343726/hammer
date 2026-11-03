@@ -1,0 +1,2 @@
+=== RUN   TestCovSchemaEndpointsAreDiscoverableAndDownloadable
+--- PASS: TestCovSchemaEndpointsAreDiscoverableAndDownloadable (0.00s)

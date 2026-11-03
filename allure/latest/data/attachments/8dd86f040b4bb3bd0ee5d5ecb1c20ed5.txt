@@ -1,0 +1,2 @@
+=== RUN   TestASlowHelpIsBoundByItsTimeout
+--- PASS: TestASlowHelpIsBoundByItsTimeout (1.05s)

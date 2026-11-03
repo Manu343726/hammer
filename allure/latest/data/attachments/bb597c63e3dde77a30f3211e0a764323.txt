@@ -1,0 +1,2 @@
+=== RUN   TestManifestCarriesTheTranslationFindings
+--- PASS: TestManifestCarriesTheTranslationFindings (0.00s)

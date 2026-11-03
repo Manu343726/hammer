@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorsDescribeTheFormatAndTheTarget
+--- PASS: TestDescriptorsDescribeTheFormatAndTheTarget (0.00s)

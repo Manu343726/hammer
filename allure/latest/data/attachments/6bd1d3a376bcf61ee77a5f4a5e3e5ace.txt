@@ -1,0 +1,2 @@
+=== RUN   ExampleAPI_Summarize
+--- PASS: ExampleAPI_Summarize (0.00s)

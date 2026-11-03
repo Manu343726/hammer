@@ -1,0 +1,2 @@
+=== RUN   TestCovRenderWritesEverySchemaDetail
+--- PASS: TestCovRenderWritesEverySchemaDetail (0.00s)

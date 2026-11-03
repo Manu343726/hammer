@@ -1,0 +1,2 @@
+=== RUN   TestSchemaFromJSONSchemaTakesTheFirstOfSeveralTypes
+--- PASS: TestSchemaFromJSONSchemaTakesTheFirstOfSeveralTypes (0.00s)

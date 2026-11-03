@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsAlternativesItCannotExpress
+--- PASS: TestCoverRenderReportsAlternativesItCannotExpress (0.00s)

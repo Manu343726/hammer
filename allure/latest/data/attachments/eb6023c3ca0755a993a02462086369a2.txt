@@ -1,0 +1,2 @@
+=== RUN   TestCovDescribeOptionsHonoursTheSourceItWasTold
+--- PASS: TestCovDescribeOptionsHonoursTheSourceItWasTold (0.01s)

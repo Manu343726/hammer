@@ -1,0 +1,2 @@
+=== RUN   TestTwoParametersInOneLocationKeepDistinctFlags
+--- PASS: TestTwoParametersInOneLocationKeepDistinctFlags (0.00s)

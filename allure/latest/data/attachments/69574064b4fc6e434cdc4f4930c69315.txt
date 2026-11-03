@@ -1,0 +1,2 @@
+=== RUN   TestModelParameterValidateRejectsAnUnnamedParameter
+--- PASS: TestModelParameterValidateRejectsAnUnnamedParameter (0.00s)

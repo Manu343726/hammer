@@ -1,0 +1,2 @@
+=== RUN   TestAContractKindIsNormalizedFromConfiguration
+--- PASS: TestAContractKindIsNormalizedFromConfiguration (0.00s)

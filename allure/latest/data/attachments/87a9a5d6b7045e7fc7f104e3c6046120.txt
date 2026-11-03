@@ -1,0 +1,2 @@
+=== RUN   TestInvokerReportsAnUnknownMethod
+--- PASS: TestInvokerReportsAnUnknownMethod (0.01s)

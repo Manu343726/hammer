@@ -1,2 +1,0 @@
-=== RUN   TestDocumentationPageLinksTheSchemaDownload
---- PASS: TestDocumentationPageLinksTheSchemaDownload (0.01s)

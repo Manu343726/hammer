@@ -1,0 +1,2 @@
+=== RUN   TestCovServedRootOperation
+--- PASS: TestCovServedRootOperation (0.00s)

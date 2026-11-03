@@ -1,0 +1,2 @@
+=== RUN   TestCovParseRejectsMalformedPathItems/summary_is_not_text
+--- PASS: TestCovParseRejectsMalformedPathItems/summary_is_not_text (0.00s)

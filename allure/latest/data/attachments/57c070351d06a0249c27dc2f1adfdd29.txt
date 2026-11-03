@@ -1,2 +1,0 @@
-=== RUN   TestTheClientOptionsAreAppliedOrHarmless
---- PASS: TestTheClientOptionsAreAppliedOrHarmless (0.08s)

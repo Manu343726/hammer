@@ -1,2 +1,0 @@
-=== RUN   TestACommandThatCannotBeReadFailsTheDescription
---- PASS: TestACommandThatCannotBeReadFailsTheDescription (0.05s)

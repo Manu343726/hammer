@@ -1,2 +1,0 @@
-=== RUN   TestInvokerReusesOneSessionPerEndpoint
---- PASS: TestInvokerReusesOneSessionPerEndpoint (0.03s)

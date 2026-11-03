@@ -1,0 +1,2 @@
+=== RUN   TestADocumentationResponseWithoutTheDocumentationFieldIsReported
+--- PASS: TestADocumentationResponseWithoutTheDocumentationFieldIsReported (0.01s)

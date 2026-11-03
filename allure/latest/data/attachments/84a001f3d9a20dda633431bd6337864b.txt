@@ -1,0 +1,2 @@
+=== RUN   TestTheCommandReadsStandardInput
+--- PASS: TestTheCommandReadsStandardInput (0.00s)

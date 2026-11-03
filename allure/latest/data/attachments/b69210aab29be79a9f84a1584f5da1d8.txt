@@ -1,0 +1,2 @@
+=== RUN   TestResultsAreOrderedByPackageThenTest
+--- PASS: TestResultsAreOrderedByPackageThenTest (0.00s)

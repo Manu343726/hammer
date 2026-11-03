@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseDescribeChoosesTheDocumentOverTheEndpoint
+--- PASS: TestCoverParseDescribeChoosesTheDocumentOverTheEndpoint (0.00s)

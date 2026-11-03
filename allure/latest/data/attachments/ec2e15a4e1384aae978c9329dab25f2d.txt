@@ -1,0 +1,2 @@
+=== RUN   TestAProviderDeclaresOpenIdentifiers
+--- PASS: TestAProviderDeclaresOpenIdentifiers (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestASectionHeaderMayStateItsContentOnItsOwnLine
+--- PASS: TestASectionHeaderMayStateItsContentOnItsOwnLine (0.00s)

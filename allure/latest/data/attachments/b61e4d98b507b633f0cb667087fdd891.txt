@@ -1,0 +1,2 @@
+=== RUN   TestModelMetadataKeysAreSorted
+--- PASS: TestModelMetadataKeysAreSorted (0.00s)

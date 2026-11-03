@@ -1,0 +1,2 @@
+=== RUN   TestAnOperationIsNamedFromItsIdentifierWhenItHasNoName
+--- PASS: TestAnOperationIsNamedFromItsIdentifierWhenItHasNoName (0.00s)

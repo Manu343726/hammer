@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractClassifiesAServiceOnceWhenItCan
+--- PASS: TestRenderedContractClassifiesAServiceOnceWhenItCan (0.01s)

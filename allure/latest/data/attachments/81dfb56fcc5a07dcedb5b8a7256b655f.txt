@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyIdentifierRendersNoWord
+--- PASS: TestAnEmptyIdentifierRendersNoWord (0.00s)

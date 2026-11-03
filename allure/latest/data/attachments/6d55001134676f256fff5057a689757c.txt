@@ -1,2 +1,0 @@
-=== RUN   TestCoverInvokeClassifiesACallItCouldNotStart
---- PASS: TestCoverInvokeClassifiesACallItCouldNotStart (0.03s)

@@ -1,0 +1,2 @@
+=== RUN   TestAnEmptyMemberPathNamesNoMember
+--- PASS: TestAnEmptyMemberPathNamesNoMember (0.00s)

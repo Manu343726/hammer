@@ -1,0 +1,2 @@
+=== RUN   TestModelDescriptorValidateRequiresAName
+--- PASS: TestModelDescriptorValidateRequiresAName (0.00s)

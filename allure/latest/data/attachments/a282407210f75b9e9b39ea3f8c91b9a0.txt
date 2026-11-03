@@ -1,2 +1,0 @@
-=== RUN   TestANestedObjectIsADocumentAndItsMembersAreFlags
---- PASS: TestANestedObjectIsADocumentAndItsMembersAreFlags (0.01s)

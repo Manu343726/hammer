@@ -1,0 +1,2 @@
+=== RUN   TestValidateRejectsArrayWithoutItems
+--- PASS: TestValidateRejectsArrayWithoutItems (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestModelIdentifierConstructionNeverEmitsADanglingSeparator
+--- PASS: TestModelIdentifierConstructionNeverEmitsADanglingSeparator (0.00s)

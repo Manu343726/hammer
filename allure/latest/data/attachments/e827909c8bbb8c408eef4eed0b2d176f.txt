@@ -1,2 +1,0 @@
-=== RUN   TestCoverParseFromEndpointHonoursExclusionsAndSorts
---- PASS: TestCoverParseFromEndpointHonoursExclusionsAndSorts (0.04s)

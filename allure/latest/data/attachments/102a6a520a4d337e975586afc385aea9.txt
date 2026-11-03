@@ -1,0 +1,2 @@
+=== RUN   TestCovParseReadsPathItemMetadataAndSkipsAPathWithNoOperations
+--- PASS: TestCovParseReadsPathItemMetadataAndSkipsAPathWithNoOperations (0.00s)

@@ -1,0 +1,2 @@
+=== RUN   TestTheJSONPathReportsWhatWentWrong
+--- PASS: TestTheJSONPathReportsWhatWentWrong (0.02s)

@@ -1,0 +1,2 @@
+=== RUN   TestABinaryOfOneCommandIsOneOperation
+--- PASS: TestABinaryOfOneCommandIsOneOperation (0.01s)

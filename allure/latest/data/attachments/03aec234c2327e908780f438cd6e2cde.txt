@@ -1,0 +1,2 @@
+=== RUN   TestAPathThatCannotBeWrittenIsReported/the_attachment
+--- PASS: TestAPathThatCannotBeWrittenIsReported/the_attachment (0.00s)

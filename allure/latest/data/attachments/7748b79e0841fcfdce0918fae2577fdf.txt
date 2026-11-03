@@ -1,0 +1,2 @@
+=== RUN   TestFlattenIsOneLine
+--- PASS: TestFlattenIsOneLine (0.00s)

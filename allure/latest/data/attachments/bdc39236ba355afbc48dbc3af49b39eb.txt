@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/malformed_additional_property_shape
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/malformed_additional_property_shape (0.00s)

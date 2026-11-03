@@ -1,2 +1,0 @@
-=== RUN   TestIdentityPerProvider/mcp
---- PASS: TestIdentityPerProvider/mcp (0.01s)

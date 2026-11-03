@@ -1,0 +1,2 @@
+=== RUN   TestAServiceIsNamedFromItsIdentifierWhenItHasNoName
+--- PASS: TestAServiceIsNamedFromItsIdentifierWhenItHasNoName (0.00s)

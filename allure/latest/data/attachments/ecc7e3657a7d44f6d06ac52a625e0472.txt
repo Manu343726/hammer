@@ -1,2 +1,0 @@
-=== RUN   TestIdentityPerProvider/openapi
---- PASS: TestIdentityPerProvider/openapi (0.02s)

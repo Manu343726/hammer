@@ -1,0 +1,2 @@
+=== RUN   TestRunningAnOperationInvokesTheOperation
+--- PASS: TestRunningAnOperationInvokesTheOperation (0.00s)

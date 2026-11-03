@@ -1,0 +1,2 @@
+=== RUN   TestABodyParameterWithAnUnnamedMemberIsRefused
+--- PASS: TestABodyParameterWithAnUnnamedMemberIsRefused (0.00s)

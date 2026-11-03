@@ -1,0 +1,2 @@
+=== RUN   TestModelSchemaValidateRejectsAMalformedShape/duplicate_property
+--- PASS: TestModelSchemaValidateRejectsAMalformedShape/duplicate_property (0.00s)

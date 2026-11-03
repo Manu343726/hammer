@@ -1,0 +1,2 @@
+=== RUN   TestAPatternAddressesOneAPIsOperations
+--- PASS: TestAPatternAddressesOneAPIsOperations (0.00s)

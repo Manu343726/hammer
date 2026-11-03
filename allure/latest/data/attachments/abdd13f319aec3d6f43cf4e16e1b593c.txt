@@ -1,0 +1,2 @@
+=== RUN   TestCovDefectAdditionalPropertiesBooleanFormInfersAnObject
+--- PASS: TestCovDefectAdditionalPropertiesBooleanFormInfersAnObject (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestServingTheSameAPITwiceIsReported
---- PASS: TestServingTheSameAPITwiceIsReported (0.01s)

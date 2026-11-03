@@ -1,0 +1,2 @@
+=== RUN   TestTheWholeBodyCanBeOneDocument
+--- PASS: TestTheWholeBodyCanBeOneDocument (0.00s)

@@ -1,2 +1,0 @@
-=== RUN   TestCovInvokeDropsOnlyTheConversationThatFailed
---- PASS: TestCovInvokeDropsOnlyTheConversationThatFailed (0.04s)

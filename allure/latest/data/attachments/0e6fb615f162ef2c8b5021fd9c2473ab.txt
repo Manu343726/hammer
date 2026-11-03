@@ -1,2 +1,0 @@
-=== RUN   TestAReusedClientIsSafeUnderConcurrentUse
---- PASS: TestAReusedClientIsSafeUnderConcurrentUse (0.09s)

@@ -1,2 +1,0 @@
-=== RUN   TestParseDocumentGroupsOperationsByTag
---- PASS: TestParseDocumentGroupsOperationsByTag (0.03s)

@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsThePresenceAndConstraintsItCannotWrite
+--- PASS: TestCoverRenderReportsThePresenceAndConstraintsItCannotWrite (0.00s)

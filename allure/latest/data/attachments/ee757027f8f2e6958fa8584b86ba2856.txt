@@ -1,0 +1,2 @@
+=== RUN   TestDescribeDocumentRecoversTheOperationNameFromTheToolName
+--- PASS: TestDescribeDocumentRecoversTheOperationNameFromTheToolName (0.00s)

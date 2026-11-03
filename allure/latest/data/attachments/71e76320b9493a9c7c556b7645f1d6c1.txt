@@ -1,2 +1,0 @@
-=== RUN   TestTheConfigurationPrecedenceIsFlagsThenEnvThenFileThenDefault/description
---- PASS: TestTheConfigurationPrecedenceIsFlagsThenEnvThenFileThenDefault/description (0.00s)

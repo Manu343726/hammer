@@ -1,0 +1,2 @@
+=== RUN   TestModelPropertyCloneDoesNotShareItsSchema
+--- PASS: TestModelPropertyCloneDoesNotShareItsSchema (0.00s)

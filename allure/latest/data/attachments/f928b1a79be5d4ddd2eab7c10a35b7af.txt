@@ -1,0 +1,2 @@
+=== RUN   TestCoverRenderReportsEnumLiteralsProtobufCannotDeclare
+--- PASS: TestCoverRenderReportsEnumLiteralsProtobufCannotDeclare (0.00s)

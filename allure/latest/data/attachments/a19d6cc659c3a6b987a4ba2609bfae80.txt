@@ -1,0 +1,2 @@
+=== RUN   TestCoverParseRefusesAContractWithNoService
+--- PASS: TestCoverParseRefusesAContractWithNoService (0.00s)

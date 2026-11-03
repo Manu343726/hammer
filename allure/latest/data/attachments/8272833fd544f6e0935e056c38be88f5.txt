@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractKeepsPackagesApart
+--- PASS: TestRenderedContractKeepsPackagesApart (0.00s)

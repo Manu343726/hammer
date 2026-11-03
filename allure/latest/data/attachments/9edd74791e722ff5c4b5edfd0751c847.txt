@@ -1,0 +1,2 @@
+=== RUN   TestCovDescribeDocumentHonoursTheToolFilter
+--- PASS: TestCovDescribeDocumentHonoursTheToolFilter (0.00s)

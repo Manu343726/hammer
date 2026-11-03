@@ -1,0 +1,2 @@
+=== RUN   TestRenderedContractDeclaresAMapAsAMap
+--- PASS: TestRenderedContractDeclaresAMapAsAMap (0.00s)

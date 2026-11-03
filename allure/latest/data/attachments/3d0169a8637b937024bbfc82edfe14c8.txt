@@ -1,0 +1,2 @@
+=== RUN   TestACommentOfAnnotationsOnlyHasNoProse
+--- PASS: TestACommentOfAnnotationsOnlyHasNoProse (0.00s)

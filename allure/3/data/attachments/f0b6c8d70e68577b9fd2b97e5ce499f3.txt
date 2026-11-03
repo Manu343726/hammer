@@ -1,0 +1,2 @@
+=== RUN   TestACallThatFailsIsReportedAgainstTheMethod
+--- PASS: TestACallThatFailsIsReportedAgainstTheMethod (0.01s)

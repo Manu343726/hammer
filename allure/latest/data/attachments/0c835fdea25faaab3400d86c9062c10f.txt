@@ -1,0 +1,2 @@
+=== RUN   TestADeclaredDefaultIsCarriedHoweverTheDocumentSpeltIt
+--- PASS: TestADeclaredDefaultIsCarriedHoweverTheDocumentSpeltIt (0.00s)

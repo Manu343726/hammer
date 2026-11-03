@@ -1,0 +1,2 @@
+=== RUN   TestANumberInADocumentKeepsItsOwnSpelling
+--- PASS: TestANumberInADocumentKeepsItsOwnSpelling (0.00s)

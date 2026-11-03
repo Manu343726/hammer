@@ -1,0 +1,2 @@
+=== RUN   TestAnIdentifierWithAnEmptySegmentNamesNothing
+--- PASS: TestAnIdentifierWithAnEmptySegmentNamesNothing (0.00s)

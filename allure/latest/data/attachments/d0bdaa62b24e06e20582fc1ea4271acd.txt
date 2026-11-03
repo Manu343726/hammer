@@ -1,2 +1,0 @@
-=== RUN   TestIdentityPerProvider
---- PASS: TestIdentityPerProvider (0.06s)

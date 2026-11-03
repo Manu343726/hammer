@@ -1,0 +1,2 @@
+=== RUN   TestCoverInvokeTreatsANullBodyAsNoRequest
+--- PASS: TestCoverInvokeTreatsANullBodyAsNoRequest (0.00s)

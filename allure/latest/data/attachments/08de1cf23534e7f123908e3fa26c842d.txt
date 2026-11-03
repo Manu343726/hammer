@@ -1,0 +1,2 @@
+=== RUN   TestCoverFormatSaysWhichFormatsAndTargetsItCovers
+--- PASS: TestCoverFormatSaysWhichFormatsAndTargetsItCovers (0.00s)

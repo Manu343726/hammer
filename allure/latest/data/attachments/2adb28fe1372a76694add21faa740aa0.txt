@@ -1,0 +1,2 @@
+=== RUN   TestDescriptorRejectsAnExcludedService
+--- PASS: TestDescriptorRejectsAnExcludedService (0.00s)
